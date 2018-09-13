@@ -1,0 +1,74 @@
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{usenix,epsfig,endnotes}
+\usepackage{graphicx}
+\usepackage{balance}
+\usepackage{hyperref}
+
+% Section references
+\renewcommand{\sectionautorefname}{\S}
+\renewcommand{\subsectionautorefname}{\S}
+
+% Footnotes with symbols
+\usepackage[symbol]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% In-line lists
+\usepackage[inline]{enumitem}
+\newlist{mylist}{enumerate*}{1}
+\setlist[mylist]{label=(\roman*)}
+
+\begin{document}
+
+\title{Master's thesis project proposal}
+
+% No date
+\date{}
+
+\author{
+{   \rm Marco Micera}\\
+    Politecnico di Torino\\
+    \href{mailto:marco.micera@gmail.com}{marco.micera@gmail.com}
+}
+\maketitle
+
+
+% \begin{abstract}
+\section{Introduction}
+This document briefly describes my thesis proposal as well as a possible project workflow. This Master's thesis will be written at the Technische Universit{\"a}t Darmstadt, Germany, during a six-month Erasmus+ exchange and under the supervision of Prof. Patrick Eugster \footnote[2]{\label{tuda} Distributed Systems Programming Group, Technische Universit{\"a}t Darmstadt}, M.Sc. Marcel Bl{\"o}cher \footref{tuda} and Prof. Fulvio Risso \footnote[3]{\label{polito} Computer Networks Group, Politecnico di Torino}.
+% \end{abstract}
+
+\section{Motivation} \label{motivation}
+Data centers distributed systems can nowadays make use of in-network computation to improve several factors: \textsc{Daiet} \cite{daiet} inventors claim to achieve a 86.9\%-89.3\% traffic reduction by performing data aggregation entirely in the network data plane. Other solutions like \textsc{NetChain} \cite{netchain} and \textsc{IncBricks} \cite{incbricks} let programmable switches store data and process queries in order to cut end-to-end latency. It is now even possible to provide guarantees to applications with specific requirements: for instance, \textsc{CloudMirror} \cite{cloudmirror} enables applications to reserve a minimum bandwidth.\\ For the time being, it seems that there is still no valid resource allocation algorithm that takes into account the presence of a network having a data plane that is (in part o completely) capable of basic in-network processing (INP) operations. The objective of this thesis would be to model and evaluate an API through which applications can ask for resources in a data center exploiting INP capabilities while providing guarantees (e.g., bandwidth).
+
+\section{Possible workflow}
+Here I list a possible workflow I could be following during this project: however, last-minute changes could drive me to vary it, hence it may not be strictly followed.
+\subsection{Literature research}
+A first step could consist in studying all the material (e.g., scientific papers, books, etc.) needed to have a better comprehension of INP and guarantee provisioning in data centers.
+\subsection{Resource modeling}
+As mentioned in \autoref{motivation}, existing applications exploit different INP capabilities, such as data aggregation, data storage, query processing, etc.; applications could also require different guarantees, such as minimum bandwidth.
+Current cloud computing platforms allow clients to request server resources only. In order to include INP and guarantees in the resource management, these two features need to be modeled as well.
+It might be convenient to come up with a list of generic groups of INP applications describing all common constrains and needed resource types shared by similar INP application types: for instance, a \textit{data aggregation group} could require a certain amount of local memory in each INP-capable network node needed by the client application and a hierarchical topology for those nodes.
+In this way, client applications could specify all their needed resource types and requirements more easily, just by selecting the most appropriate generic group.
+\subsection{Defining an API for resource acquisition}
+Finding a good API through which client applications can request both server and INP resources is not a trivial task: it is not clear a priori how the API granularity and the resource allocation algorithm's performance are correlated. For instance, the more detailed the API is, the more difficult it could be for the resource allocation algorithm to find a feasible solution so that the application resources could be correctly deployed.
+\subsection[Resource allocation algorithm development]{Resource allocation algorithm\\development} \label{allocation}
+As soon as the client application has
+\begin{mylist}
+    \item specified a generic group and
+    \item requested all the needed resources through the API
+\end{mylist}
+, an allocation algorithm could start trying to acquire all requested resources, while providing the specified guarantees. During this part of the project, an allocation algorithm should be developed so that, at the end, the allocation request will be either successfully approved or denied (in case at least one hard requirement could not have been satisfied).\\
+One thing to notice is that the resource allocation algorithm's result strongly depends on the characteristics of the physical network, such as the types of operations supported by programmable switches, the bandwidth of the physical links and the network topology itself.
+\subsection{Evaluation}
+The final step of this thesis would consists in the evaluation of the previously-mentioned resource allocation algorithm (\autoref{allocation}), and hence on the modeled API on which the algorithm is based on.
+During this step, the Omega simulator \cite{omega} could be adapted in such a way that it also considers INP resources, and the evaluation could then be done by means of this modified tool.
+The API performance could be measured by calculating different factors, such as 
+\begin{mylist}
+  \item the allocation time or
+  \item the ratio between the number of accepted allocation requests and the total amount of requests issued by the application
+\end{mylist}.
+
+\bibliographystyle{abbrv}
+\bibliography{references}
+
+\end{document}
