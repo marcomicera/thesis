@@ -1,0 +1,70 @@
+\documentclass[a4paper, 11pt]{article}
+
+% Miscellaneous
+\usepackage{comment} % Multi-line comments
+\usepackage{fullpage} % Different margin
+\usepackage{hyperref} % Links
+
+% In-line lists
+\usepackage[inline]{enumitem}
+\newlist{mylist}{enumerate*}{1}
+\setlist[mylist]{label=(\roman*)}
+
+% Title
+\begin{document}
+\noindent
+\large\textbf{Useful papers recap} \hfill \textbf{Marco Micera} \\
+\normalsize Notes on papers that might be useful \hfill \textit{Politecnico di Torino} \\
+\normalsize for the development of this thesis \hfill \href{mailto:marco.micera@gmail.com}{marco.micera@gmail.com}
+
+\section{In-network processing}
+
+\subsection{In-network data aggregation}
+\subsubsection{Daiet \cite{daiet}}
+Solution for partition/aggregate data center applications (big data analysis such as MapReduce \cite{mapreduce}, machine learning, graph processing and stream processing).\\
+The network controller pushes a set of rules to network devices in order to
+\begin{mylist}
+    \item establish an aggregation tree (spanning tree) and
+    \item perform per-tree aggregation
+\end{mylist}.\\ 
+Inventors claim to achieve a 86.9\%-89.3\% traffic reduction.
+
+\subsection{In-network data storage}
+Network devices can be used for data storage and caching, using a distributed key-value map.\\
+The network controller can handle system reconfigurations such as switch failures, additions (e.g., new switch onboarding) and removals (e.g., switch firmware upgrade).
+\subsubsection{NetChain \cite{netchain}}
+The network device in charge of storing the distributed storage/cache is a programmable switch: this brings an obvious limitation in terms of storage size, which makes NetChain \cite{netchain} an acceptable solution only when a small amount of critical data must be stored in the network data plane (e.g., locks). NetChain \cite{netchain} also processes queries entirely in the network data plane.
+\subsubsection{IncBricks \cite{incbricks}}
+This solution makes use of network accelerators attached to programmable switches whenever complicated operations should be performed on payloads.\\
+Supporting multiple gigabytes of memory, network accelerators overcome the limited storage problem typical of programmable switches, which usually have a memory of tens of megabytes.
+
+\section{Resource management}
+\subsection{Apache YARN \cite{yarn}}
+Apache YARN \cite{yarn} uses a single resource manager per cluster: for this reason, this solution may not scale up in large clusters with massive amounts of small applications. 
+\subsection{Omega \cite{omega}}
+Omega \cite{omega} is a parallel, lock-free and optimistic cluster scheduler by Google.\\
+There is no central resource allocator: all of the resource-allocation decisions take place in the schedulers. This solution makes use of a data structure (called \textit{cell state}) containing information about all the resource allocation in the cluster. Each cell has a shared copy of this data structure, and each scheduler is given a private, local, frequently-updated copy of cell state that it uses for making scheduling decisions.\\
+According to the optimistic concurrency technique, once a scheduler makes a placement decision, it updates the shared copy of cell state with a transaction. Whether or not the transaction succeeds, the scheduler resyncs its local copy of cell state afterwards and, if necessary, re-runs its scheduling algorithm and tries again.
+
+\section{Provider interfaces and guarantee provisioning}
+\subsection{Bazaar \cite{bazaar}}
+Bazaar \cite{bazaar} is a cloud framework that allows client applications to only specify high-level goals regarding their jobs and applications instead of expressing requirements in terms of needed resources. For instance, a tenant can only specify a maximum completion time of its MapReduce \cite{mapreduce} job and let Bazaar \cite{bazaar} determine the best resource combination to satisfy the request. This translation is done by two components:
+\begin{mylist}
+    \item a \textit{performance prediction} component that predicts a set of \textit{resource tuples} (each comprising the number of VMs and the network bandwidth between the VMs) and
+    \item a \textit{resource selection} component that selects the best (less costly) resource tuple to be used to complete the task
+\end{mylist}.\\
+\subsection{CloudMirror \cite{cloudmirror}}
+CloudMirror \cite{cloudmirror} allows client applications to specify bandwidth and high availability guarantees: this can be done by providing a \textit{Tenant Application Graph} (TAG), a directed graph where each vertex represents an application component and links' weights represent the minimum requested bandwidth. An heuristic VM placement algorithm then tries to solve this NP-hard allocation problem.
+\subsection{Oktopus \cite{oktopus}}
+This system maps tenant virtual networks to the physical network while respecting minimum bandwidth constrains. Client applications can request two kinds of network:
+\begin{mylist}
+    \item a \textit{virtual cluster}, consisting in $N$ VMs connected to a virtual switch by a bidirectional link of capacity $B$ (switch bandwidth $= N \cdot B$), resulting in a one-level tree topology; or a
+    \item \textit{virtual oversubscribed cluster}, composed of a total number of $N$ VMs in groups of size $S$, with each group connected connected by a virtual switch of bandwidth $S \cdot B$ and groups connected by a root virtual switch of bandwidth $N \cdot B / O$
+\end{mylist}.
+The latter abstraction allows provider to fit more tenants on the physical network and limits tenant costs.\\
+The mapping is made possible by a logically centralized network manager that is aware of the network topology, residual bandwidth on links (via SNMP), etc.
+
+\bibliographystyle{abbrv}
+\bibliography{references}
+
+\end{document}
