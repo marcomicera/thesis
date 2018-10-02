@@ -13,12 +13,11 @@
 % Title
 \begin{document}
 \noindent
-\large\textbf{Useful papers recap} \hfill \textbf{Marco Micera} \\
-\normalsize Notes on papers that might be useful \hfill \textit{Politecnico di Torino} \\
-\normalsize for the development of this thesis \hfill \href{mailto:marco.micera@gmail.com}{marco.micera@gmail.com}
+\Large{\textbf{Useful papers recap}} \hfill \large{\textbf{Marco Micera}} \\
+\normalsize \phantom{Notes on papers that might be useful} \hfill \textit{Politecnico di Torino} \\
+\normalsize \phantom{for the development of this thesis} \hfill \href{mailto:marco.micera@gmail.com}{marco.micera@gmail.com}
 
 \section{In-network processing}
-
 \subsection{In-network data aggregation}
 \subsubsection{Daiet \cite{daiet}}
 Solution for partition/aggregate data center applications (big data analysis such as MapReduce \cite{mapreduce}, machine learning, graph processing and stream processing).\\
@@ -26,7 +25,7 @@ The network controller pushes a set of rules to network devices in order to
 \begin{mylist}
     \item establish an aggregation tree (spanning tree) and
     \item perform per-tree aggregation
-\end{mylist}.\\ 
+\end{mylist}. Network device store two hash tables (with single-element buckets) for each tree: one for the keys and one for the values. The aggregated data is flushed to the next node when all the children have sent their intermediate results. Data is also flushed in case of collision in the hash table.\\
 Inventors claim to achieve a 86.9\%-89.3\% traffic reduction.
 
 \subsection{In-network data storage}
@@ -37,6 +36,12 @@ The network device in charge of storing the distributed storage/cache is a progr
 \subsubsection{IncBricks \cite{incbricks}}
 This solution makes use of network accelerators attached to programmable switches whenever complicated operations should be performed on payloads.\\
 Supporting multiple gigabytes of memory, network accelerators overcome the limited storage problem typical of programmable switches, which usually have a memory of tens of megabytes.
+
+\subsection{INP on network operators' platforms}
+\subsubsection{In-Net \cite{in-net}}
+In the past, network operators used to run network functions on middleboxes: nowadays, commodity hardware is being deployed more and more since it is cheaper and provides more flexibility by running network functions as a software (VNF). This higher flexibility can allow network operators to fully utilize their commodity hardware by offering processing on demand to other parties, effectively becoming miniature cloud providers specialized for in-network processing. In-Net \cite{in-net} is an architecture that allows untrusted endpoints to deploy custom in-network processing to be run on such devices.\\
+The main reason why existing cloud solutions cannot simply be adopted to support INP platforms is scalability: commodity hardware are not able to run as many VMs as needed. As a consequence, this solution lets a single VM serve multiple users in a secure manner.\\
+Besides preventing malicious users to use providers' commodity hardware to perform large-scale DDoS attacks, In-Net \cite{in-net} makes use of symbolic execution (in two configurations: logic implemented in the network and on a server as usual) to determine whether custom INP tenant applications are secure or not. A network controller instantiates the tenant application on a commodity hardware and then the checking is done.
 
 \section{Resource management}
 \subsection{Apache YARN \cite{yarn}}

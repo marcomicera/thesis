@@ -1,0 +1,49 @@
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{usenix,epsfig,endnotes}
+\usepackage{graphicx}
+\usepackage{balance}
+\usepackage{hyperref}
+
+% Section references
+\renewcommand{\sectionautorefname}{\S}
+\renewcommand{\subsectionautorefname}{\S}
+
+% Footnotes with symbols
+\usepackage[symbol]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% In-line lists
+\usepackage[inline]{enumitem}
+\newlist{mylist}{enumerate*}{1}
+\setlist[mylist]{label=(\roman*)}
+
+\begin{document}
+
+\title{Problem statement}
+
+% No date
+\date{}
+
+\author{
+{   \rm Marco Micera}\\
+    Politecnico di Torino\\
+    \href{mailto:marco.micera@gmail.com}{marco.micera@gmail.com}
+}
+\maketitle
+
+\section{In-network processing: a definition}
+Within this project, in-network processing (INP) refers to the technique that exploits network switches to modify and/or store data packets, without involving any kind of higher-layer devices. Therefore, approaches that make use of middle-boxes do not fall within our definition of INP. Same applies for \textit{active networking} since its main aim is to carry operations (within packets) to be performed by network devices.
+
+\section{Problem}
+Using INP to keep scaling data centers' performance seems a promising idea: Daiet \cite{daiet} inventors claim to achieve a 86.9\%-89.3\% traffic reduction, hence reducing servers' workload; NetChain \cite{netchain} can process queries entirely in the network data plane, eliminating the query processing at servers and cutting the end-to-end latency to as little as half of an RTT.\\
+However, current data center resource managers like Apache YARN \cite{yarn} or Google Omega \cite{omega} only manage server-local resources, without considering network ones: as a consequence, tenant applications cannot request INP services while asking for server resources.
+
+\section{Modeling network resources}
+In order to offer INP services to a tenant application, the latter should be capable to ask for network resources through an API. To do that, network resources must be modeled not only to support currently existing INP solutions as \cite{daiet} \cite{netchain} \cite{incbricks} \cite{sharp}, but also to support future ones. It might be convenient to derive a single model to describe both server and network resources.\\
+Classic tenant application requests can often be modeled as a key-value data structure. CloudMirror \cite{cloudmirror} requires a \textit{Tenant Application Graph} (TAG) as an input, which is a directed graph where each vertex represents an application component and links' weights represent the minimum requested bandwidth. One possible model could be based on a TAG, describing network resources and/or INP services as vertexes or links. Tenants applications could either use the same model used within the data center or a simplified one, adding another level of abstraction.\\
+Finally, a network-aware placement algorithm in the resource manager should then be able to allocate the requested resources accordingly.
+
+\bibliographystyle{abbrv}
+\bibliography{references}
+
+\end{document}
