@@ -1,0 +1,39 @@
+Daiet \cite{daiet} is a system that performs in-network data aggregation for partition/aggregate data center applications (big data analysis such as MapReduce \cite{mapreduce}, machine learning, graph processing and stream processing).
+Instead of letting worker servers entirely perform computation on the data and then communicate with each other to update shared state or finalize the computation, the system let network devices perform data aggregation in order to achieve traffic reduction, thus reducing the processing load at the destination.\par
+The inventors have proven that in-network data aggregation can reduce the network traffic significantly for machine learning algorithms (e.g., TensorFlow \cite{tensorflow}) and for graph analytics algorithms (e.g., GPS \cite{gps}), hence justifying the usefulness of this system. The system has been designed for P4 and programmabile ASICs, but it can be used on any other SDN platform.
+
+\subsection{Details}
+When executing a MapReduce program, the job allocator informs the network controller of the job allocation to the workers.
+Then, the network controller pushes a set of rules to network devices in order to
+\begin{mylist}
+    \item establish one aggregation tree for each reducer and
+    \item perform per-tree aggregation
+\end{mylist}.
+An aggregation tree is a spanning tree from all the mappers to the reducer.\par
+Since every reducer has its own aggregation tree associated with it, network devices should know how to correctly forward traffic according to the corresponding tree: to achieve this, a special \textit{tree ID} (that could coincide with the \textit{reducer ID}) packet field allows network devices to distinguish different packets belonging to different aggregation trees.
+Obviously, they must also know the output port towards the next network device in the tree and the aggregation function to be performed on the data.\par
+Packets are sent via UDP (therefore communication is not reliable) with a small preamble that specifies
+\begin{mylist}
+    \item the number of key-value pairs contained in the packet and
+    \item the \textit{tree ID} whose packet belongs to
+\end{mylist}. They payload is not serialized to achieve a faster computation by network devices.
+
+\subsection{Algorithm}
+To store the key-value map, network devices use two hash tables (with single-element buckets) for each tree: one for the keys and one for the values.
+Upon a collision, the algorithm checks whether the key is matching or just the hash is.
+In the former case, data aggregation is performed. In the latter case, the conflicting pair will end up in a \textit{spillover bucket} that will be flushed to the next node as soon as it becomes full: this is done since this data is more likely to be aggregated if the next network device has spare memory.
+A network device will also flush its data as soon as all its children (according to the aggregation tree) have sent their data: this is made possible by letting network devices send a special \textit{END} packet after transmitting all key-value pairs to the next node.\par
+Used indexes are stored in a \textit{index stack} to avoid scanning the whole hash table when flushing.
+
+\subsection{Minimum system requirements}
+For each aggregation tree (i.e. for each reducer), network devices must form a tree whose root is connected to the reducer and whose leaves are connected to mappers.
+Each mapper has to be connected to exactly one network device of the lowest level.
+Network devices must
+\begin{mylist}
+    \item store two arrays (one for the keys and one for the values) and
+    \item be able to hash keys
+\end{mylist}.
+
+\subsection{Conclusions}
+P4 brings the drawback of not having variable-lenght data structures, forcing programmers to waste a lot of memory in case of variable-length keys such as strings.
+Inventors claim to achieve a 86.9\%-89.3\% traffic reduction, causing the execution time at the reducer to drop by 83.6\% on average.

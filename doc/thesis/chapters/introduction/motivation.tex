@@ -1,0 +1,5 @@
+Data centers distributed systems can nowadays make use of in-network computation to improve several factors: \textsc{Daiet} \cite{daiet} inventors claim to achieve a 86.9\%-89.3\% traffic reduction by performing data aggregation entirely in the network data plane.
+Other solutions like \textsc{NetChain} \cite{netchain} and \textsc{IncBricks} \cite{incbricks} let programmable switches store data and process queries in order to cut end-to-end latency.
+It is now even possible to provide guarantees to applications with specific requirements: for instance, \textsc{CloudMirror} \cite{cloudmirror} enables applications to reserve a minimum bandwidth.\par
+For the time being, it seems that there is still no valid resource allocation algorithm that takes into account the presence of a network having a data plane that is (in part o completely) capable of basic in-network processing (INP) operations.
+The objective of this thesis is to model and evaluate an API through which applications can ask for resources in a data center exploiting INP capabilities while providing guarantees (e.g., bandwidth).

@@ -1,0 +1,26 @@
+% Document class
+\documentclass[a4paper, 11pt]{report}
+\usepackage[utf8]{inputenc}
+
+% Table of contents
+\setcounter{tocdepth}{4} % depth
+\usepackage[nottoc,notlof,notlot]{tocbibind} % including references
+\setcounter{secnumdepth}{4} % section numbering depth
+
+% Miscellaneous
+\usepackage{fullpage} % Different margin
+\usepackage{hyperref} % Links
+
+% In-line lists
+\usepackage[inline]{enumitem}
+\newlist{mylist}{enumerate*}{1}
+\setlist[mylist]{label=(\roman*)}
+
+% References sections
+\renewcommand{\sectionautorefname}{\S}
+\renewcommand{\subsectionautorefname}{\S}
+\renewcommand\bibname{References}
+
+% Footnotes with symbols
+\usepackage[symbol]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
