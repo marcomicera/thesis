@@ -1,0 +1,19 @@
+Examples:
+\begin{itemize}
+    \item Daiet \cite{daiet}
+\end{itemize}
+Network devices must:
+\begin{itemize}
+    \item form a tree whose root is connected to the data consumer and whose leaves are connected to data producers
+    \item dedicate part of their local memory to store a key-value map
+    \item be able to perform basic operations on data, such as writing and hashing
+\end{itemize}
+Data producers must:
+\begin{itemize}
+    \item be connected to exactly one tree leaf
+    \item wait for all its children to send aggregated data
+\end{itemize}
+The data consumer must:
+\begin{itemize}
+    \item be connected to the tree root
+\end{itemize}

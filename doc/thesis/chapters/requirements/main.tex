@@ -1,32 +1,7 @@
-\section{In-network data aggregation}
-Examples:
-\begin{itemize}
-    \item Daiet \cite{daiet}
-    \item SHArP \cite{sharp}
-\end{itemize}
-Network devices must:
-\begin{itemize}
-    \item form a tree whose root is connected to the sink VM and whose leaves are connected to data producers
-    \item dedicate part of their local memory to store a key-value map
-    \item be able to perform basic operations on data, such as writing and hashing
-\end{itemize}
-The sink must:
-\begin{itemize}
-    \item be connected to the tree root
-\end{itemize}
-Data producers must:
-\begin{itemize}
-    \item be connected to exactly one tree leaf
-\end{itemize}
+\input{chapters/requirements/intro.tex}
 
-\section{In-network data storage}
-Examples:
-\begin{itemize}
-    \item NetChain \cite{netchain}
-    \item IncBricks \cite{incbricks}
-\end{itemize}
-Network devices must:
-\begin{itemize}
-    \item form a chain connecting the two communicating nodes
-    \item store data along the path
-\end{itemize}
+\section{In-network key-value stores}
+\input{chapters/requirements/storage.tex}
+
+\section{In-network data aggregation}
+\input{chapters/requirements/aggregation.tex}

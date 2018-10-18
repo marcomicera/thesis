@@ -1,6 +1,7 @@
 % Commands
 \input{utility/commands.tex}
 
+% Document start
 \begin{document}
 \noindent
 
@@ -10,26 +11,28 @@
 % Table of contents
 \tableofcontents
 
-\chapter{Introduction}
+% Chapters
+\chapter{Introduction} \label{introduction}
 \input{chapters/introduction/main.tex}
-
-\chapter{Background}
+\chapter{Background} \label{background}
 \input{chapters/background/main.tex}
-
-\chapter{Analysis}
+\chapter{Analysis} \label{analysis}
 \input{chapters/analysis/main.tex}
-
-\chapter{Requirements}
+\chapter{Requirements} \label{requirements}
 \input{chapters/requirements/main.tex}
+\chapter{System} \label{system}
+\input{chapters/system/main.tex}
+\chapter{Evaluation} \label{evaluation}
+\input{chapters/evaluation/main.tex}
+\chapter{Conclusions} \label{conclusions}
+\input{chapters/conclusions/main.tex}
 
-\chapter{System}
-
-\chapter{Evaluation}
-
-\chapter{Conclusions}
+% Abbreviations
+\printacronyms
 
 % References
 \bibliographystyle{abbrv}
 \bibliography{utility/references}
 
+% Document end
 \end{document}

@@ -1,0 +1,28 @@
+Examples:
+\begin{itemize}
+    \item NetChain \cite{netchain} for coordination services
+    \item IncBricks \cite{incbricks} for in-network caching
+\end{itemize}
+Network devices must:
+\begin{itemize}
+    \item form a chain
+    \begin{itemize}
+        \item NetChain \cite{netchain}: the NetChain \cite{netchain} agent must explicitly specify the list of IP addresses of all switches belonging to the chain, since its order depends on the query type (read or write).
+        \item IncBricks \cite{incbricks}: the chain must connect the two communicating nodes, having just one switch connected per node (the \gls{tor} switch).
+    \end{itemize}
+    \item dedicate part of their local memory to store a key-value map
+    \begin{itemize}
+        \item NetChain \cite{netchain}: distributed map, hash segments are repeated across multiple physical switches. Servers are never involved.
+        \item IncBricks \cite{incbricks}: cache, zero or more switches can store the pair. Servers can be involved in case no switch has cached the pair.
+    \end{itemize}
+\end{itemize}
+Data producers:
+\begin{itemize}
+    \item execute queries
+    \item are servers (\glspl{vm})
+\end{itemize}
+Data consumers:
+\begin{itemize}
+    \item NetChain \cite{netchain}: it is the data producer.
+    \item IncBricks \cite{incbricks}: it is not the data producer.
+\end{itemize}

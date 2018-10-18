@@ -3,13 +3,23 @@
 \usepackage[utf8]{inputenc}
 
 % Table of contents
-\setcounter{tocdepth}{4} % depth
 \usepackage[nottoc,notlof,notlot]{tocbibind} % including references
-\setcounter{secnumdepth}{4} % section numbering depth
+\setcounter{tocdepth}{3} % depth
+\setcounter{secnumdepth}{3} % section numbering depth
 
 % Miscellaneous
 \usepackage{fullpage} % Different margin
 \usepackage{hyperref} % Links
+\usepackage[binary-units=true]{siunitx} % MB, GB, etc.
+
+% Adding a dot at the end of paragraph titles
+\let\originalparagraph\paragraph
+\renewcommand{\paragraph}[2][.]{\originalparagraph{#2#1}}
+
+% Acronyms
+\usepackage[acronym,toc]{glossaries}
+\input{utility/acronyms.tex} % acronyms list
+\makeglossaries % computing acronyms
 
 % In-line lists
 \usepackage[inline]{enumitem}
@@ -20,6 +30,9 @@
 \renewcommand{\sectionautorefname}{\S}
 \renewcommand{\subsectionautorefname}{\S}
 \renewcommand\bibname{References}
+
+% Capitalized references
+\usepackage{cleveref}
 
 % Footnotes with symbols
 \usepackage[symbol]{footmisc}
