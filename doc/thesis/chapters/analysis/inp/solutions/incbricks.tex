@@ -2,6 +2,7 @@ IncBricks \cite{incbricks} is a hardware-software co-designed system for in-netw
 Supporting multiple gigabytes of memory, network accelerators overcome the limited storage problem typical of programmable switches, which usually have a memory of tens of megabytes.
 
 \subsubsection{Details}
+\paragraph{Hardware}
 IncBricks \cite{incbricks} is composed by two components:
 \begin{mylist}
     \item IncBox, an hardware unit consisting of a network accelerator and a programmable switch, and
@@ -9,13 +10,7 @@ IncBricks \cite{incbricks} is composed by two components:
 \end{mylist}.
 Packets arriving to an IncBox device are first managed by the switch, which forwards the packet to the network accelerator only if it is labeled as an in-network cache one.
 If there is a match, the programmable switch will check whether the packet has been already cached by the network accelerator or not, and will forward the packet to the right network accelerator attached to it in the former case.
-% Continue from here
-The storage has been implemented using a bucket spilling hash table plus a hash index table
-\textbf{\textit{TO BE CONTINUED}} ...
-
-\subsubsection{Implementation}
-
-\subsubsection{Minimum system requirements}
+\paragraph{Logic}
 The system has been designed having a multi-rooted tree topology in mind.
 For each key the centralized \gls{sdn} controller comes up with a set of \textit{designated} IncBox units allowed to cache that key.
 Any other IncBox unit placed between these designated units won't cache data with that specific key.
@@ -27,8 +22,14 @@ Every IncBox unit in the system will get to know
 \end{mylist}.
 This data is stored in the so-called \textit{global registration table}.
 Storing the former information can be useful in case of failures since it is possible to build alternative paths immediately, making the whole system more reliable.
-As soon as a failure is detected, the \gls{sdn} controller updates all the involved tables.\par
-Communicating nodes (\glspl{vm}) represent the leaves of this tree.
+As soon as a failure is detected, the \gls{sdn} controller updates all the involved tables.
+
+\subsubsection{Implementation}
+The storage has been implemented using a bucket spilling hash table plus a hash index table
+\textbf{\textit{TO BE CONTINUED}} ...
+
+\subsubsection{Minimum system requirements}
+Communicating nodes (\glspl{vm}) represent the leaves of the tree.
 Each path must include exactly one root switch.
 All things considered, it seems reasonable to state that the actual required topology is a chain starting from a leaf, passing through a root node and ending on another leaf.
 IncBox units must dedicate some local storage to realize the caching system.
