@@ -44,6 +44,8 @@ Network devices must
     \item store two arrays (one for the keys and one for the values) and
     \item be able to hash keys
 \end{mylist}.
+The solution requires that the system has a centralized \gls{sdn} controller connected to all switches.
+The \gls{sdn} controller must push flow rules to all switches belonging to at least one tree.
 
 \subsubsection{Conclusions}
-Besides all the drawbacks brought by P4 \cite{p4} and listed in \cref{daiet_implementation}, inventors claim to achieve a 86.9\%-89.3\% traffic reduction, causing the execution time at the reducer to drop by 83.6\% on average.
+Besides all the drawbacks brought by P4 \cite{p4} listed in \cref{daiet_implementation}, inventors claim to achieve a 86.9\%-89.3\% traffic reduction, causing the execution time at the reducer to drop by 83.6\% on average.

@@ -33,5 +33,7 @@ Communicating nodes (\glspl{vm}) represent the leaves of the tree.
 Each path must include exactly one root switch.
 All things considered, it seems reasonable to state that the actual required topology is a chain starting from a leaf, passing through a root node and ending on another leaf.
 IncBox units must dedicate some local storage to realize the caching system.
+The solution requires that the system has a centralized \gls{sdn} controller connected to all switches.
+The \gls{sdn} controller must set configure network devices in order for them to forward IncBricks \cite{incbricks} packets accordingly.
 
 \subsubsection{Conclusions}

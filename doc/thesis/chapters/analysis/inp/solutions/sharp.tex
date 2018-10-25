@@ -48,6 +48,8 @@ One \gls{an} can participate to at most 64 different aggregation trees.
 \glspl{an} (usually run by network devices) must form a tree whose leaves are connected to data producers (a \textit{communicator} in MPI \cite{mpi}).
 Each data producer is connected to only one tree leaf.
 The root \gls{an}, instead, is connected to the data consumer, which receives the final aggregated result.
+\glspl{an} must dedicate part of their local memory to the system.
+The special management unit (\gls{am}) must act as a SHArP \cite{sharp} \gls{rm}, dedicating SHArP \cite{sharp} resources to those entities who request for them.
 
 \subsubsection{Conclusions}
 For MPI \cite{mpi} applications SHArP \cite{sharp} brings a significant advantage in terms of latency: tests show that the latency improvement factor (latency experienced without SHArP \cite{sharp} divided by the one experienced with SHArP \cite{sharp}) is proportional to the message size.

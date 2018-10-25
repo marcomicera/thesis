@@ -13,16 +13,28 @@ Network devices must:
     \item dedicate part of their local memory to store a key-value map
     \begin{itemize}
         \item NetChain \cite{netchain}: distributed map, hash segments are repeated across multiple physical switches. Servers are never involved.
-        \item IncBricks \cite{incbricks}: cache, zero or more switches can store the pair. Servers can be involved in case no switch has cached the pair.
+        \item IncBricks \cite{incbricks}: cache, zero or more switches can store the pair. Servers may be involved in case no switch has cached the pair.
     \end{itemize}
-\end{itemize}
-Data producers:
-\begin{itemize}
-    \item execute queries
-    \item are servers (\glspl{vm})
 \end{itemize}
 Data consumers:
 \begin{itemize}
-    \item NetChain \cite{netchain}: it is the data producer.
-    \item IncBricks \cite{incbricks}: it is not the data producer.
+    \item execute queries
+    \item are \glspl{vm}
+\end{itemize}
+Data producers:
+\begin{itemize}
+    \item own data
+    \item are \glspl{vm}
+    \begin{itemize}
+        \item NetChain \cite{netchain}: are data consumers
+        \item IncBricks \cite{incbricks}: are not data consumers
+    \end{itemize}
+\end{itemize}
+The \gls{sdn} controller:
+\begin{itemize}
+    \item must be connected to all the network devices
+    \begin{itemize}
+        \item NetChain \cite{netchain}: must form the chain and handle switches reconfigurations
+        \item IncBricks \cite{incbricks}: must configure network devices in order for them to forward IncBricks \cite{incbricks} packets accordingly
+    \end{itemize}
 \end{itemize}
