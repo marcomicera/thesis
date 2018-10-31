@@ -18,7 +18,8 @@ The key-value store is partitioned amongst \textit{virtual nodes} using consiste
 Each ring segment is stored by $f + 1$ virtual nodes allocated on different physical switches, hence tolerating faults involving up to $f$ switches.
 
 \subsubsection{Implementation}
-The network data plane has been programmed in P4 \cite{p4} while the controller has been coded in Python, it runs on a server and communicates with switches through the standard Python RPC library. Switches agents are Python processes who run in the switch OS. Some P4 \cite{p4} drawbacks were already discussed in \cref{p4_drawbacks}.\par
+The network data plane has been programmed in P4 \cite{p4} while the controller has been coded in Python, it runs on a server and communicates with switches through the standard Python RPC library.
+Switches agents are Python processes who run in the switch OS. Some P4 \cite{p4} drawbacks were already discussed in \cref{p4_drawbacks}.\par
 The out-of-order UDP delivery problem is resolved by adding sequence numbers to write queries, hence serializing those operations, while the loss of packets is coped by \textit{client-side retries} based on timeouts.
 
 \subsubsection{Minimum system requirements}
