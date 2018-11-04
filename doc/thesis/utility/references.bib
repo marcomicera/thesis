@@ -63,25 +63,6 @@
  keywords = {application, availability, bandwidth, cloud, datacenter, virtual network},
 }
 
-@article{boolesim,
-  title={BooleSim: an interactive Boolean network simulator},
-  author={Matthias Bock and Till Scharp and Chaitanya Talnikar and Edda Klipp},
-  journal={Bioinformatics},
-  year={2014},
-  volume={30 1},
-  pages={131-2}
-}
-
-@inproceedings{omega,
-title	= {Omega: flexible, scalable schedulers for large compute clusters},
-author	= {Malte Schwarzkopf and Andy Konwinski and Michael Abd-El-Malek and John Wilkes},
-year	= {2013},
-URL	= {http://eurosys2013.tudos.org/wp-content/uploads/2013/paper/Schwarzkopf.pdf},
-booktitle	= {SIGOPS European Conference on Computer Systems (EuroSys)},
-pages	= {351--364},
-address	= {Prague, Czech Republic}
-}
-
 @inproceedings{mapreduce,
 title	= {MapReduce: Simplified Data Processing on Large Clusters},
 author	= {Jeffrey Dean and Sanjay Ghemawat},
@@ -90,43 +71,6 @@ booktitle	= {OSDI'04: Sixth Symposium on Operating System Design and Implementat
 pages	= {137--150},
 address	= {San Francisco, CA}
 }
-
-@inproceedings{yarn,
- author = {Vavilapalli, Vinod Kumar and Murthy, Arun C. and Douglas, Chris and Agarwal, Sharad and Konar, Mahadev and Evans, Robert and Graves, Thomas and Lowe, Jason and Shah, Hitesh and Seth, Siddharth and Saha, Bikas and Curino, Carlo and O'Malley, Owen and Radia, Sanjay and Reed, Benjamin and Baldeschwieler, Eric},
- title = {Apache Hadoop YARN: Yet Another Resource Negotiator},
- booktitle = {Proceedings of the 4th Annual Symposium on Cloud Computing},
- series = {SOCC '13},
- year = {2013},
- isbn = {978-1-4503-2428-1},
- location = {Santa Clara, California},
- pages = {5:1--5:16},
- articleno = {5},
- numpages = {16},
- url = {http://doi.acm.org/10.1145/2523616.2523633},
- doi = {10.1145/2523616.2523633},
- acmid = {2523633},
- publisher = {ACM},
- address = {New York, NY, USA},
-} 
-
-@inproceedings{bazaar,
- author = {Jalaparti, Virajith and Ballani, Hitesh and Costa, Paolo and Karagiannis, Thomas and Rowstron, Ant},
- title = {Bridging the Tenant-provider Gap in Cloud Services},
- booktitle = {Proceedings of the Third ACM Symposium on Cloud Computing},
- series = {SoCC '12},
- year = {2012},
- isbn = {978-1-4503-1761-0},
- location = {San Jose, California},
- pages = {10:1--10:14},
- articleno = {10},
- numpages = {14},
- url = {http://doi.acm.org/10.1145/2391229.2391239},
- doi = {10.1145/2391229.2391239},
- acmid = {2391239},
- publisher = {ACM},
- address = {New York, NY, USA},
- keywords = {cloud, cloud pricing, job-centric, provider interface, resource malleability, resource selection},
-} 
 
 @inproceedings{oktopus,
  author = {Ballani, Hitesh and Costa, Paolo and Karagiannis, Thomas and Rowstron, Ant},
@@ -257,12 +201,102 @@ address	= {San Francisco, CA}
   organization={Springer}
 }
 
+@COMMENT Resource managers
+
+@inproceedings{yarn,
+ author = {Vavilapalli, Vinod Kumar and Murthy, Arun C. and Douglas, Chris and Agarwal, Sharad and Konar, Mahadev and Evans, Robert and Graves, Thomas and Lowe, Jason and Shah, Hitesh and Seth, Siddharth and Saha, Bikas and Curino, Carlo and O'Malley, Owen and Radia, Sanjay and Reed, Benjamin and Baldeschwieler, Eric},
+ title = {Apache Hadoop YARN: Yet Another Resource Negotiator},
+ booktitle = {Proceedings of the 4th Annual Symposium on Cloud Computing},
+ series = {SOCC '13},
+ year = {2013},
+ isbn = {978-1-4503-2428-1},
+ location = {Santa Clara, California},
+ pages = {5:1--5:16},
+ articleno = {5},
+ numpages = {16},
+ url = {http://doi.acm.org/10.1145/2523616.2523633},
+ doi = {10.1145/2523616.2523633},
+ acmid = {2523633},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+} 
+
 @inproceedings{mesos,
   title={Mesos: A Platform for Fine-Grained Resource Sharing in the Data Center.},
   author={Hindman, Benjamin and Konwinski, Andy and Zaharia, Matei and Ghodsi, Ali and Joseph, Anthony D and Katz, Randy H and Shenker, Scott and Stoica, Ion},
   booktitle={NSDI},
   volume={11},
-  number={2011},
   pages={22--22},
   year={2011}
+}
+
+@inproceedings{bazaar,
+ author = {Jalaparti, Virajith and Ballani, Hitesh and Costa, Paolo and Karagiannis, Thomas and Rowstron, Ant},
+ title = {Bridging the Tenant-provider Gap in Cloud Services},
+ booktitle = {Proceedings of the Third ACM Symposium on Cloud Computing},
+ series = {SoCC '12},
+ year = {2012},
+ isbn = {978-1-4503-1761-0},
+ location = {San Jose, California},
+ pages = {10:1--10:14},
+ articleno = {10},
+ numpages = {14},
+ url = {http://doi.acm.org/10.1145/2391229.2391239},
+ doi = {10.1145/2391229.2391239},
+ acmid = {2391239},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {cloud, cloud pricing, job-centric, provider interface, resource malleability, resource selection},
+}
+
+@COMMENT Google schedulers
+
+@inproceedings{borg,
+title	= {Large-scale cluster management at {Google} with {Borg}},
+author	= {Abhishek Verma and Luis Pedrosa and Madhukar R. Korupolu and David Oppenheimer and Eric Tune and John Wilkes},
+year	= {2015},
+booktitle	= {Proceedings of the European Conference on Computer Systems (EuroSys)},
+address	= {Bordeaux, France}
+}
+
+@inproceedings{omega,
+title	= {Omega: flexible, scalable schedulers for large compute clusters},
+author	= {Malte Schwarzkopf and Andy Konwinski and Michael Abd-El-Malek and John Wilkes},
+year	= {2013},
+URL	= {http://eurosys2013.tudos.org/wp-content/uploads/2013/paper/Schwarzkopf.pdf},
+booktitle	= {SIGOPS European Conference on Computer Systems (EuroSys)},
+pages	= {351--364},
+address	= {Prague, Czech Republic}
+}
+
+@book{kubernetes,
+title	= {Kubernetes - Scheduling the Future at Cloud Scale},
+author	= {David K. Rensin},
+publisher   = {O’Reilly Media, Inc.},
+year	= {2015},
+URL	= {http://www.oreilly.com/webops-perf/free/kubernetes.csp},
+booktitle	= {OSCON 2015},
+pages	= {All},
+address	= {1005 Gravenstein Highway North Sebastopol, CA 95472}
+}
+
+@article{borgomegakubernetes,
+title	= {Borg, Omega, and   Kubernetes},
+author	= {Brendan Burns and Brian Grant and David Oppenheimer and Eric Brewer and John Wilkes},
+year	= {2016},
+URL	= {http://queue.acm.org/detail.cfm?id=2898444},
+journal	= {ACM Queue},
+pages	= {70--93},
+volume	= {14}
+}
+
+@COMMENT Simulators
+
+@article{boolesim,
+  title={BooleSim: an interactive Boolean network simulator},
+  author={Matthias Bock and Till Scharp and Chaitanya Talnikar and Edda Klipp},
+  journal={Bioinformatics},
+  year={2014},
+  volume={30 1},
+  pages={131-2}
 }

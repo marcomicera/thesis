@@ -1,0 +1,43 @@
+Borg \cite{borg} is the first container-management system developed by Google.
+Jobs are divided in two groups depending on their workload type (long-running and batch) and they were initially scheduled by a logically centralized controller called \textit{Borgmaster}.
+After Google developed the shared-state Omega \cite{omega} scheduler (analyzed in \autoref{omega}), Borg \cite{borg} adopted the shared-state architecture as well, hence being no more a monolithic solution.
+
+\subsubsection{Scheduling}
+Each cell has its own logically centralized controller called \textit{Borgmaster}, which is essentially split in two parts:
+\begin{mylist}
+    \item the scheduling part, consisting in one or more schedulers differentiated by the workload type they handle and
+    \item a management unit in charge of handling client \glspl{rpc} and communicating with all other Borg \cite{borg} agents
+\end{mylist}.
+Schedulers mainly work on tasks rather than jobs.
+Tasks are scanned in a round-robin fashion and their priority is also taken into account.
+Schedulers must first find all available machines for the task to be scheduled (also considering those currently acquired by a task with lower priority) and then find the best machine amongst them all.
+This second part is done by taking into consideration not only user-specified preferences, but also data center global goals like minimizing of preempted tasks and allocating tasks on machines which already have the needed packages installed in order to reduce the installation time, which usually takes about 80\% of the total start-up latency.
+
+\subsubsection{Details}
+\paragraph{Jobs}
+Jobs in Borg \cite{borg} are split into multiple tasks which run within a single cell: tasks belonging to one job cannot be spread amongst multiple cells in the same cluster.
+In fact, Borg \cite{borg} only operates on cells.
+Each job has some properties such as a name, an owner, and most importantly, constraints about \textit{machines} (e.g., processor architecture, etc.) which will determine where its tasks will be scheduled.
+Tasks instead have \textit{resource} requirements (e.g., CPU cores, RAM, etc.) expressed in terms of \textit{quotas} (an array of resource quantities).
+Task properties can be modified at run-time by the job owner: this is done by pushing a new job configuration file to Borg \cite{borg} and ordering the scheduler to update the involved tasks via a non-atomic transaction.
+Most of the workload in Borg \cite{borg} run in containers rather than \glspl{vm} to avoid the virtualization overhead.
+\paragraph{Fairness}
+Jobs have a priority expressed as an integer.
+Workload types are even more differentiated with the definition of non-overlapping priority bands, one for a different kind of workload.
+Borg \cite{borg} schedulers are preemptive, and in order to contain the negative effects of preemption cascades the system does not allow internal preemption for certain priority bands.
+\paragraph{Resource reclamation}
+Tasks do not fully use their resources for their entire lifespan.
+This is why the \textit{Borgmaster} estimates every few seconds what is the actual amount of resources that each task needs and reclaims the unused resources to make them available for other tasks.
+This is done by periodically contacting Borg \cite{borg} agents running on each cluster machine, requesting for fine-grained resource consumption information.
+The initial estimated amount of resources actually needed by a task corresponds with its maximum limit, and it then slows according to the actual consumption.
+If the actual resource usage exceeds the estimation, than the latter is rapidly increased.
+This technique justifies why Borg \cite{borg} inventors have noticed that dedicating clusters for different workload types is inconvenient.
+They showed how segregating long-running and batch jobs in different specialized clusters requires 20\% to 30\% more machines than having clusters who run both type of jobs using resource reclamation.
+
+% \subsubsection{Characteristics}
+    % Architecture:
+    % Scheduling work partitioning:
+    % Interference:
+    % Choice of resources:
+    % Preemption:
+    % Allocation granularity:

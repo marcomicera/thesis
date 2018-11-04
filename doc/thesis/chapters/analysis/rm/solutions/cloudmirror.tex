@@ -2,8 +2,9 @@ CloudMirror \cite{cloudmirror} allows client applications to specify bandwidth a
 
 \subsubsection{Motivation}
 Prior models are not suitable to represent interactive non-batch applications with very stringent bandwidth requirements.
-Both the hose and the \gls{voc} models are inefficient as they over-allocate bandwidth.
-The main reason of why this happens is that both models \textit{aggregate} bandwidth requirements between different application components into a single hose: as a consequence, the \gls{vm} scheduler does not get to know the actual bandwidth needed between application components. At the opposite extreme is the pipe model which, besides not exploiting statistical multiplexing, is not scalable since it requires a list of all bandwidth guarantees between pairs of \glspl{vm}.\par
+Both the hose and the \gls{voc} model are inefficient as they over-allocate bandwidth.
+The main reason of why this happens is that both models \textit{aggregate} bandwidth requirements between different application components into a single hose: as a consequence, the \gls{vm} scheduler does not get to know the actual bandwidth needed between application components.
+At the opposite extreme there is the pipe model which, besides not exploiting statistical multiplexing, is not scalable since it requires a list of all bandwidth guarantees between pairs of \glspl{vm}.
 This led CloudMirror \cite{cloudmirror} inventors to come up with a new model.
 
 \subsubsection{Tenant Application Graph}
@@ -20,3 +21,11 @@ The edge label format $<S, R>$ allows the model to exploit statistical multiplex
 \textbf{\textit{TO BE CONTINUED}} ...
 
 % An heuristic \gls{vm} placement algorithm then tries to solve this NP-hard allocation problem.
+
+% \subsubsection{Characteristics}
+    % Architecture:
+    % Scheduling work partitioning:
+    % Interference:
+    % Choice of resources:
+    % Preemption:
+    % Allocation granularity:

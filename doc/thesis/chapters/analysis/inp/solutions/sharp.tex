@@ -24,7 +24,7 @@ The detection of faults and errors cannot be done using timeouts since \gls{hpc}
 
 \paragraph{Data flow}
 Eventually, an host program will need to execute a job on multiple nodes.
-When the job is launched and all host processes have been created (e.g., a communicator in MPI \cite{mpi}), either the cluster resource manager (like Slurm \cite{slurm} or IBM\textsuperscript{\textregistered} Spectrum LSF) or an MPI \cite{mpi} launcher like \texttt{mpirun} will contact the \gls{am}, which will dedicate SHArP \cite{sharp} resources to the job and return back the list of these allocated resources.
+When the job is launched and all host processes have been created (e.g., a communicator in MPI \cite{mpi}), either the cluster resource manager (like Slurm \cite{slurm} or \glsdesc{ibm} Spectrum LSF) or an MPI \cite{mpi} launcher like \texttt{mpirun} will contact the \gls{am}, which will dedicate SHArP \cite{sharp} resources to the job and return back the list of these allocated resources.
 At this point, a SHArP \cite{sharp} group has been created.
 Each SHArP \cite{sharp} daemon \texttt{sharpd} running on every group member will establish a reliable connection to the dedicated leaf switch.
 The \gls{am} informs the \glspl{an} about the switch resources allocated to the application, not allowing it to exceed the allocation.\par
@@ -39,7 +39,7 @@ As soon as the tree root node receives data from all its children, it performs t
 In the former case, the aggregation tree is used to redistribute the result.
 
 \subsubsection{Implementation}
-SHArP \cite{sharp} has been implemented using InfiniBand \cite{infiniband} as communication standard with Mellanox's SwitchIB-2 devices, which provide support for data reduce operations and for barriers.
+SHArP \cite{sharp} has been implemented using InfiniBand \cite{infiniband} as communication standard with \glsdesc{switchib2} devices, which provide support for data reduce operations and for barriers.
 Nodes in the SHArP \cite{sharp} tree are InfiniBand \cite{infiniband} end nodes, and links are implemented using InfiniBand's \cite{infiniband} \textit{Reliable Connection}s.
 When distributing a result using a multicast address, though, an unreliable delivery mechanism is used.
 One \gls{an} can participate to at most 64 different aggregation trees.
