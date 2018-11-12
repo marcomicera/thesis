@@ -14,6 +14,6 @@ The same entity is in charge of dynamically divide clusters into sub-clusters: t
 Schedulers are not mapped to sub-clusters anymore.
 Multiple schedulers have access to the entire cluster and there is no centralized resource allocator assigning resources to schedulers.
 In this architecture, schedulers will try to acquire resources (\textit{optimistic concurrency}), having not only the possibility of choosing between all the resources in the cluster, but also to ask for those who have been already acquired by another scheduler.
-To do this, a centralized data structure called \textit{cell state} maintains all the resource allocation information in the cluster, providing in fact a \textit{shared-state} of it.
+In order to achieve this, a centralized data structure called \textit{cell state} maintains all the resource allocation information in the cluster, providing in fact a \textit{shared-state} of it.
 Schedulers will try to acquire resources by atomically modifying this cell state, that will actually be modified only if the request does not cause any conflict.
 Each scheduler makes its own resource-allocation decision on a private copy of the cell state, which is updated every time the scheduler tries to acquire some resource, no matter what the outcome of the attempt is.

@@ -1,0 +1,5 @@
+Bazaar \cite{bazaar} is a cloud framework that allows client applications to specify high-level goals regarding their jobs and applications besides expressing requirements in terms of needed resources. For instance, a tenant can specify a maximum completion time of its MapReduce \cite{mapreduce} job and let Bazaar \cite{bazaar} determine the best resource combination to satisfy the request. This translation is done by two components:
+\begin{mylist}
+    \item a \textit{performance prediction} component that predicts a set of \textit{resource tuples} (each comprising the number of VMs and the network bandwidth between the VMs) and
+    \item a \textit{resource selection} component that selects the best (less costly) resource tuple to be used to complete the task
+\end{mylist}.

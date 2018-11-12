@@ -1,0 +1,29 @@
+\glsreset{vc}
+\glsreset{voc}
+\glsreset{tivc}
+
+\subsubsection{Description}
+Proposed in the Oktopus \cite{oktopus} paper, a \gls{vc} is a logical one-level tree in which $N$ \glspl{vm} are connected to a single \textit{virtual switch} by a bidirectional link of bandwidth $B$.
+The virtual switch has a bandwidth of $N \cdot B$, hence the \gls{vc} has no oversubscription, unlike the \gls{voc} model described in \autoref{voc}.
+Authors say that the absence of oversubscription makes it suitable for data-intensive applications.
+
+\subsubsection{Describing INP solutions}
+Expressing just one bandwidth value $B$ for all connections is obviously a big limitation which would cause a waste of bandwidth for those applications having nodes that require different amounts of bandwidth.
+The \gls{tivc} model introduced in Proteus \cite{proteus} overcomes this limitation since bandwidth constraints are expressed by time-varying functions instead of a constant fixed value.
+Both models though rely on a single virtual switch that is not suitable for tenant applications which require a more complex logical switch topology such as a chain or a tree.
+
+\subsubsection{Usage}
+\paragraph{Kraken \texorpdfstring{\cite{kraken}}{}}
+The \gls{vc} is the only resource model used by Kraken \cite{kraken}.
+The system allows tenants to update their minimum guarantees in terms of bandwidth and the amount server resources.
+However, tenants can only express the number of needed computing resources (called \textit{computing units}) and not their internal requirements (like CPU cores, memory, etc.).
+The assumption that all resources are the same is not acceptable in an INP scenario.
+
+\paragraph{Oktopus \texorpdfstring{\cite{oktopus}}{}}
+Tenant applications can choose one of the three following options to express their request: they can either
+\begin{mylist}
+    \item stick with the classic resource request by listing individual server resource demands without expressing bandwidth guarantees, accepting to simply get some share of the network resources,
+    \item choose a \gls{vc}, most likely used to request resources for data-intensive applications which do not tolerate oversubscribed networks or
+    \item specify a \gls{voc} for those applications having more intra-component communication than an inter-component one
+\end{mylist}.\par
+Yet, when the Oktopus \cite{oktopus} system receives a request expressed with a \gls{vc}, it assumes that \glspl{vm} can be allocated on any server with enough \textit{free \gls{vm} slots}, exactly like Kraken \cite{kraken} with its \textit{computing units}.

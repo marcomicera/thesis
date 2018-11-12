@@ -10,6 +10,9 @@ According to the optimistic concurrency technique, once a scheduler makes a plac
 Whether or not the transaction succeeds, a scheduler re-syncs its local copy of cell state afterwards and, if necessary, re-runs its scheduling algorithm and tries again.
 Omega \cite{omega} supports specialized schedulers: authors have showed the advantages of a MapReduce \cite{mapreduce} specialized scheduler in \cite{omega}.
 
+\subsubsection{Conclusions}
+Since schedulers do not have access to all cluster resources, Mesos \cite{mesos} cannot support preemption across different sub-clusters and it cannot apply policies that make use of the complete cluster state.
+
 % \subsubsection{Characteristics}
     % Architecture:
     % Scheduling work partitioning:

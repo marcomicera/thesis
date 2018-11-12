@@ -1,0 +1,19 @@
+\glsreset{tag}
+
+\subsubsection{Description}
+As described in \autoref{tag_description}, the \gls{tag} model is a directed graph where each vertex represents an application component and links' weights represent the minimum requested bandwidth.
+The model has been introduced and used by CloudMirror \cite{cloudmirror} since the previously-mentioned models are inefficient as they over-allocate bandwidth (\autoref{why_tag}).
+This model is decoupled from any network topology, allowing \glspl{rm} to be more flexible during resource allocation.
+
+\subsubsection{Describing INP solutions}
+The model cannot describe any network resource except for bandwidth since
+\begin{mylist}
+    \item graph vertexes exclusively represent \textit{application components} or \textit{tiers}, i.e., the set of \glspl{vm} performing the same function, and
+    \item links' weights exclusively represent bandwidth guarantees between tiers
+\end{mylist}.
+
+\subsubsection{Usage}
+\paragraph{CloudMirror \texorpdfstring{\cite{cloudmirror}}{}}
+The CloudMirror \cite{cloudmirror} placement algorithm just considers \textit{\gls{vm} slots}, assuming that all server resources have the same requirements.
+This is not true for \gls{inp} applications since different \gls{inp} resources require different network devices specifications.
+The placement algorithm tries to find lowest sub-tree in the physical topology that can host the number of requested \glspl{vm} taking into account the bandwidth requested between those: this means that the scheduler is aware of the residual bandwidth on links, but it considers all network devices to be the same.

@@ -1,0 +1,7 @@
+This system maps tenant virtual networks to the physical network while respecting minimum bandwidth constrains. Client applications can request two kinds of network:
+\begin{mylist}
+    \item a \textit{virtual cluster}, consisting in $N$ VMs connected to a virtual switch by a bidirectional link of capacity $B$ (switch bandwidth $= N \cdot B$), resulting in a one-level tree topology; or a
+    \item \textit{virtual oversubscribed cluster}, composed of a total number of $N$ VMs in groups of size $S$, with each group connected connected by a virtual switch of bandwidth $S \cdot B$ and groups connected by a root virtual switch of bandwidth $N \cdot B / O$
+\end{mylist}.
+The latter abstraction allows provider to fit more tenants on the physical network and limits tenant costs.\\
+The mapping is made possible by a logically centralized network manager that is aware of the network topology, residual bandwidth on links (via SNMP), etc.

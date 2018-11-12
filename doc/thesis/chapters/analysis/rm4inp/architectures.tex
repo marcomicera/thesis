@@ -1,0 +1,20 @@
+Different \gls{rm} scheduling architectures were introduced in \autoref{rm_architectures}.
+This section tries to analyze how can different scheduling architectures manage \gls{inp} resources and what are the drawbacks brought by each one of them.\par
+This brief analysis does not make any assumption regarding the \gls{inp} resource model since its format is out of the scope of this specific section.
+
+\paragraph{Monolithic}
+In this architecture, resource requests cannot be concurrent by definition since there is just one logically centralized scheduler.
+However, this architecture does not scale due to its intrinsic nature.
+Such a scheduling architecture could be used later on to build up a simple dummy \gls{inp}-aware scheduler that might act as the standard baseline used to compare the actual scheduler developed in \autoref{design}.
+
+\paragraph{Two-level}
+In the two-level architecture a centralized node master (or \textit{allocator}) proposes resources to the schedulers.
+Let us suppose that the allocator not only proposes server resources, but also \gls{inp} ones: during the period of time which lasts from the instant in which resources are offered until the scheduler accepts or denies the offer, all resources must be locked.
+Locking \gls{inp} resources though means locking either network devices' resources (to perform computation) or links' bandwidth (for guarantees), which can heavily affect the performance of all nodes using these shared network resources.\par
+One could think of not locking \gls{inp} resources during the delay introduced by the scheduler when accepting or denying the request, but the allocator would need to repeat the whole resource offering process if a scheduler accepts some \gls{inp} resources that have been acquired by some other scheduler during this period of time.
+
+\paragraph{Shared-state}
+A shared-state scheduler could include the \gls{inp} resources state in the \textit{cell state} data structure.
+Supposing that tenant applications can request for both server and \gls{inp} resources, schedulers will try to acquire those by modifying the cell state through an atomic commit.
+Schedulers that will have to satisfy requests containing supposedly-longer resource request lists are more likely to cause an higher amount of conflicts when attempting to write the share cell state data structure.
+This could heavily affect the whole \gls{rm} performance.
