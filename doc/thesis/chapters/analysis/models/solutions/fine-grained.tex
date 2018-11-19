@@ -1,10 +1,4 @@
-\subsubsection{Description}
 Most of state-of-the-art \glspl{rm} \cite{mesos, borg, omega, kubernetes, yarn} deal with resources in the simplest yet most descriptive way: a list of server-only resources demands (e.g., CPU cores, memory, etc.).
-
-\subsubsection{Describing INP solutions}
-This model has always been used to describe server resources only.
-Unless the request contains additional data like high-level goals (\autoref{high-level_goals}), \glspl{rm} using this model will not handle network resources.
-For instance, even though Oktopus \cite{oktopus} supports bandwidth reservation when the request is expressed by means of the \gls{vc} or \gls{voc} model, it will not provide any bandwidth guarantees to those tenants who do not use a virtual network model.
 
 \subsubsection{Usage}
 \paragraph{Mesos \texorpdfstring{\cite{mesos}}{}}

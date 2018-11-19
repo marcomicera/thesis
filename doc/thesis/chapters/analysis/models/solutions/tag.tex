@@ -1,16 +1,15 @@
 \glsreset{tag}
 
-\subsubsection{Description}
 As described in \autoref{tag_description}, the \gls{tag} model is a directed graph where each vertex represents an application component and links' weights represent the minimum requested bandwidth.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\tagfigure}
+    \caption{A \gls{tag} example}
+\end{figure}
+
 The model has been introduced and used by CloudMirror \cite{cloudmirror} since the previously-mentioned models are inefficient as they over-allocate bandwidth (\autoref{why_tag}).
 This model is decoupled from any network topology, allowing \glspl{rm} to be more flexible during resource allocation.
-
-\subsubsection{Describing INP solutions}
-The model cannot describe any network resource except for bandwidth since
-\begin{mylist}
-    \item graph vertexes exclusively represent \textit{application components} or \textit{tiers}, i.e., the set of \glspl{vm} performing the same function, and
-    \item links' weights exclusively represent bandwidth guarantees between tiers
-\end{mylist}.
 
 \subsubsection{Usage}
 \paragraph{CloudMirror \texorpdfstring{\cite{cloudmirror}}{}}

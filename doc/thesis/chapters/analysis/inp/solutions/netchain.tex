@@ -7,13 +7,45 @@ NetChain \cite{netchain} can process queries entirely in the network data plane,
 \paragraph{Packets}
 Custom UDP packets are used for queries, containing fields like \textit{operation}, \textit{key} and \textit{value}.
 Read and write queries only involve the network data plane, while insert and delete queries involve the network controller to set up entries in switch tables and to perform garbage collection, respectively.
+
+\begin{figure}[!htb]
+    \centering
+        % trim = left, bottom, right, top
+        \includegraphics[page=5, clip, trim=3.6cm 0.7cm 10cm 4.15cm, width=0.8\textwidth]{figures/analysis/inp/presentation.pdf}
+    \caption{NetChain's \texorpdfstring{\cite{netchain}}{} basic topology and entities}
+\end{figure}
+
 This is acceptable since coordination services usually perform read and write queries on already-existing objects, e.g., locks.
 Each switch has its own IP address, and packet headers contain the list of addresses of switches to be traversed, allowing those to properly forward packets to the their successors (from head to tail for write queries and the opposite for read queries).
+\begin{figure}[!htb]
+    \centering
+        % trim = left, bottom, right, top
+        \includegraphics[page=8, clip, trim=6.5cm 0.1cm 6.4cm 0.1cm, width=1.00\textwidth]{figures/analysis/inp/presentation.pdf}
+    \caption{Messages exchanged during a NetChain \texorpdfstring{\cite{netchain}}{} instance execution}
+\end{figure}
 This list of IP addresses is inserted by the client (a NetChain \cite{netchain} agent).
+
 \paragraph{Consistency}
 A variant of Chain Replication \cite{chainreplication} is used in the data plane to handle read and write queries and to ensure strong consistency, while switches reconfiguration is handled by the network control plane.
 The main difference with the standard Chain Replication \cite{chainreplication} protocol is that objects are stored on programmable switches instead of servers.
-Switches are logically connected together in order to form an oriented chain: read queries are processed by the \textit{tail} switch while write queries are sent to the \textit{head} switch, which will forward the updated state to the rest of the chain.
+Switches are logically connected together in order to form an oriented chain.
+
+\begin{figure}[!htb]
+    \centering
+        % trim = left, bottom, right, top
+        \includegraphics[page=6, clip, trim=3.6cm 0.7cm 3.2cm 4.15cm, width=1.00\textwidth]{figures/analysis/inp/presentation.pdf}
+    \caption{NetChain's \texorpdfstring{\cite{netchain}}{} extended topology}
+\end{figure}
+
+Read queries are processed by the \textit{tail} switch while write queries are sent to the \textit{head} switch, which will forward the updated state to the rest of the chain.
+
+\begin{figure}[!htb]
+    \centering
+        % trim = left, bottom, right, top
+        \includegraphics[page=7, clip, trim=3.6cm 0.7cm 3.6cm 4.15cm, width=1.00\textwidth]{figures/analysis/inp/presentation.pdf}
+    \caption{NetChain's \texorpdfstring{\cite{netchain}}{} logical communication pattern}
+\end{figure}
+
 The key-value store is partitioned amongst \textit{virtual nodes} using consistent hashing, mapping keys to a hash ring.
 Each ring segment is stored by $f + 1$ virtual nodes allocated on different physical switches, hence tolerating faults involving up to $f$ switches.
 

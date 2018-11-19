@@ -9,7 +9,23 @@ IncBricks \cite{incbricks} is composed by two components:
     \item IncCache, a software system for coherent key-value storage
 \end{mylist}.
 Packets arriving to an IncBox device are first managed by the switch, which forwards the packet to the network accelerator only if it is labeled as an in-network cache one.
+
+\begin{figure}[!htb]
+    \centering
+        % trim = left, bottom, right, top
+        \includegraphics[page=3, clip, trim=3.6cm 0.7cm 2.5cm 4.15cm, width=1.00\textwidth]{figures/analysis/inp/presentation.pdf}
+    \caption{IncBricks' \texorpdfstring{\cite{incbricks}}{} logical communication pattern}
+\end{figure}
+
 If there is a match, the programmable switch will check whether the packet has been already cached by the network accelerator or not, and will forward the packet to the right network accelerator attached to it in the former case.
+
+\begin{figure}[!htb]
+    \centering
+        % trim = left, bottom, right, top
+        \includegraphics[page=4, clip, trim=4.1cm 0.1cm 4.3cm 0.1cm, width=1.00\textwidth]{figures/analysis/inp/presentation.pdf}
+    \caption{Messages exchanged during an IncBricks \texorpdfstring{\cite{incbricks}}{} instance execution}
+\end{figure}
+
 \paragraph{Logic}
 The system has been designed having a multi-rooted tree topology in mind.
 For each key the centralized \gls{sdn} controller comes up with a set of \textit{designated} IncBox units allowed to cache that key.
@@ -31,7 +47,23 @@ The storage has been implemented using a bucket spilling hash table plus a hash 
 \subsubsection{Minimum system requirements}
 Communicating nodes (\glspl{vm}) represent the leaves of the tree.
 Each path must include exactly one root switch.
+
+\begin{figure}[!htb]
+    \centering
+        % trim = left, bottom, right, top
+        \includegraphics[page=1, clip, trim=3.6cm 0.7cm 2.5cm 4.15cm, width=1.00\textwidth]{figures/analysis/inp/presentation.pdf}
+    \caption{IncBricks' \texorpdfstring{\cite{incbricks}}{} basic topology and entities}
+\end{figure}
+
 All things considered, it seems reasonable to state that the actual required topology is a chain starting from a leaf, passing through a root node and ending on another leaf.
+
+\begin{figure}[!htb]
+    \centering
+        % trim = left, bottom, right, top
+        \includegraphics[page=2, clip, trim=3.6cm 0.7cm 2.5cm 4.15cm, width=1.00\textwidth]{figures/analysis/inp/presentation.pdf}
+    \caption{IncBricks' \texorpdfstring{\cite{incbricks}}{} extended topology}
+\end{figure}
+
 IncBox units must dedicate some local storage to realize the caching system.
 The solution requires that the system has a centralized \gls{sdn} controller connected to all switches.
 The \gls{sdn} controller must set configure network devices in order for them to forward IncBricks \cite{incbricks} packets accordingly.

@@ -8,13 +8,20 @@ At the opposite extreme there is the pipe model which, besides not exploiting st
 This led CloudMirror \cite{cloudmirror} inventors to come up with a new model.
 
 \subsubsection{Tenant Application Graph} \label{tag_description}
-The \gls{tag} is a directed graph where each vertex represents an application component and links' weights represent the minimum requested bandwidth. Each vertex can have an optional \textit{size}, denoting the number of \glspl{vm} belonging to the component.\par
+The \gls{tag} is a directed graph where each vertex represents an application component and links' weights represent the minimum requested bandwidth. Each vertex can have an optional \textit{size}, denoting the number of \glspl{vm} belonging to the component.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\tagfigure}
+    \caption{A \gls{tag} example}
+\end{figure}
+
 There are two types of edges:
 \begin{mylist}
     \item self-loop edges, that are equivalent a hose model and
     \item standard vertex-to-vertex edges
 \end{mylist}.
-A standard edge from vertex $a$ to vertex $b$ is labeled with an ordered pair of numbers $<S, R>$, indicating respectively the guaranteed bandwidth with which \glspl{vm} in $a$ can send traffic to \glspl{vm} in $b$ and the guaranteed bandwidth with which \glspl{vm} in $b$ can receive traffic from \glspl{vm} in $a$.
+A standard edge from $Tier 1$ to $Tier 2$ is labeled with an ordered pair of numbers $<SB_12, RB_12>$, indicating respectively the guaranteed bandwidth with which \glspl{vm} in $Tier 1$ can send traffic to \glspl{vm} in $Tier 2$ and the guaranteed bandwidth with which \glspl{vm} in $Tier 2$ can receive traffic from \glspl{vm} in $Tier 1$.
 
 \subsubsection{Model advantages}
 The edge label format $<S, R>$ allows the model to exploit statistical multiplexing, since $S$ can represent the peak of the sum of \gls{vm}-to-\gls{vm} demands instead of the (typically larger) sum of peak demands needed by the pipe model.

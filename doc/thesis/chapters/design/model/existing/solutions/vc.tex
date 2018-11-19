@@ -1,0 +1,25 @@
+%\paragraph{Quick recap}
+%The \gls{vc} model consists in $N$ \glspl{vm} connected to a single \textit{virtual switch} by a link of bandwidth $B$.
+%
+%\begin{figure}[!htb]
+%    \centering
+%    \usebox{\vcfigure}
+%    \caption{A graphical representation of the \gls{vc} model}
+%\end{figure}
+%
+\paragraph{Its role in \texorpdfstring{\gls{inp}}{INP}}
+Expressing just one bandwidth value $B$ for all connections is obviously a big limitation which would cause a waste of bandwidth for those applications having nodes that require different amounts of bandwidth.
+The \gls{tivc} model introduced in Proteus \cite{proteus} overcomes this limitation since bandwidth constraints are expressed by time-varying functions instead of a constant fixed value.
+Both models though rely on a single virtual switch that is not suitable for tenant applications which require a more complex logical switch topology such as a chain or a tree.
+
+\paragraph{A possible modification}
+Since specifying the same bandwidth demand $B$ for all \glspl{vm} is restrictive, one trivial solution could consist in allowing the model to specify different values of $B$, like depicted in \autoref{fig:vcmod}.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\vcmodfigure}
+    \caption{A possible \gls{vc} variant}
+    \label{fig:vcmod}
+\end{figure}
+
+Still, the one-level tree topology remains a problem for those applications which require a more complex logical switch topology: regarding this, a natural \gls{vc} extension is the \gls{voc} model, hence leaving aside the former model in favor of the latter one.

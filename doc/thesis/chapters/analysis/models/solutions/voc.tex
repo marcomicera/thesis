@@ -1,24 +1,18 @@
 \glsreset{voc}
 
-\subsubsection{Description}
 Also proposed by Oktopus \cite{oktopus} authors, the \gls{voc} model consists in $N$ \glspl{vm} arranged in groups of size $S$.
 Similarly to the \gls{vc} model, \glspl{vm} belonging to the same group are connected to a single virtual switch by a bidirectional link of bandwidth $B$.
 Therefore, every virtual switch connecting groups of $S$ \glspl{vm} has total bandwidth of $N \cdot B$.
 All groups are then connected together by a unique \textit{root virtual switch}, making this model's topology a two-level logical tree.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\vocfigure}
+    \caption{A graphical representation of the \gls{voc} model}
+\end{figure}
+
 Links connecting all virtual switches to the root one have an oversubscription factor of $O$, meaning that each of those links has a bandwidth of $S \cdot B / O$.
 The \gls{voc} model aims to relax the dense connectivity requirement between all \glspl{vm}, having oversubscription just for inter-group communication.
-
-\subsubsection{Describing INP solutions}
-The \gls{voc} model has the advantage of not requiring a virtual switch of bandwidth $N \cdot B$, that could be unpractical when $N$ is particularly large.
-When a tenant application issues a resource request using a \gls{voc}, it just requests for the $<N, B, S, O>$ tuple, being respectively
-\begin{mylist}
-    \item the number of \glspl{vm},
-    \item the bandwidth needed for intra-group communication,
-    \item the group size and
-    \item the oversubscription factor
-\end{mylist}.
-Still, certain kinds of applications might need different values of $B$ for different groups.
-Furthermore, the two-layer logical tree topology might not suit perfectly for applications that require a chain having more than 2 network devices or a tree topology with more than 2 layers.
 
 \subsubsection{Usage}
 \paragraph{Oktopus \texorpdfstring{\cite{oktopus}}{}}

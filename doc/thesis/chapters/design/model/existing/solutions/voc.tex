@@ -1,0 +1,41 @@
+%\paragraph{Quick recap}
+%The \gls{voc} model is the oversubscribed extension of the \gls{vc} one.
+%
+%\begin{figure}[!htb]
+%    \centering
+%    \usebox{\vocfigure}
+%    \caption{A graphical representation of the \gls{voc} model}
+%\end{figure}
+%
+\paragraph{Its role in \texorpdfstring{\gls{inp}}{INP}}
+The \gls{voc} model has the advantage of not requiring a virtual switch of bandwidth $N \cdot B$, that could be unpractical when $N$ is particularly large.
+When a tenant application issues a resource request using a \gls{voc}, it just requests for the $<N, B, S, O>$ tuple, being respectively
+\begin{mylist}
+    \item the number of \glspl{vm},
+    \item the bandwidth needed for intra-group communication,
+    \item the group size and
+    \item the oversubscription factor
+\end{mylist}.
+Still, certain kinds of applications might need different values of $B$ for different groups.
+Furthermore, the two-layer logical tree topology might not suit perfectly for applications that require a chain having more than 2 network devices or a tree topology with more than 2 layers.
+
+\paragraph{A possible modification}
+The two limitations previously mentioned can obviously be overcome by allowing to specify
+\begin{mylist}
+    \item a different bandwidth demand $B_i$ for each different group $i$ and
+    \item an arbitrary tree height
+\end{mylist}.
+The corresponding variant is shown in \autoref{fig:vocmod}.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\vocmodfigure}
+    \caption{A possible \gls{voc} variant with an arbitrary tree height}
+    \label{fig:vocmod}
+\end{figure}
+
+There are currently two open problems in this variant:
+\begin{mylist}
+    \item the number of oversubscription factors to be specified grows exponentially with the tree height ($2^h-1$ factors with a tree of height $h$) and
+    \item \textbf{\textit{TO BE CONTINUED}} ...
+\end{mylist}.

@@ -11,19 +11,53 @@ Then, the network controller pushes a set of rules to network devices in order t
     \item perform per-tree aggregation
 \end{mylist}.
 An aggregation tree is a spanning tree from all the mappers to the reducer.
+
+\begin{figure}[!htb]
+    \centering
+        % trim = left, bottom, right, top
+        \includegraphics[page=9, clip, trim=0.25cm 1.1cm 0.25cm 4.7cm, width=1.00\textwidth]{figures/analysis/inp/presentation.pdf}
+    \caption{Daiet's \texorpdfstring{\cite{daiet}}{} basic topology and entities}
+\end{figure}
+
 \paragraph{Packets}
 Since every reducer has its own aggregation tree associated with it, network devices should know how to correctly forward traffic according to the corresponding tree: to achieve this, a special \textit{tree ID} (that could coincide with the \textit{reducer ID}) packet field allows network devices to distinguish different packets belonging to different aggregation trees.
+
+\begin{figure}[!htb]
+    \centering
+        % trim = left, bottom, right, top
+        \includegraphics[page=10, clip, trim=0.5cm 0.7cm 1.2cm 2.7cm, width=1.00\textwidth]{figures/analysis/inp/presentation.pdf}
+    \caption{Daiet's \texorpdfstring{\cite{daiet}}{} extended topology}
+\end{figure}
+
 Obviously, they must also know the output port towards the next network device in the tree and the aggregation function to be performed on the data.
+
+\begin{figure}[!htb]
+    \centering
+        % trim = left, bottom, right, top
+        \includegraphics[page=11, clip, trim=0.35cm 0.6cm 0.3cm 2.7cm, width=1.00\textwidth]{figures/analysis/inp/presentation.pdf}
+    \caption{Daiet's \texorpdfstring{\cite{daiet}}{} logical communication pattern}
+\end{figure}
+
 Packets are sent via UDP (therefore communication is not reliable) with a small preamble that specifies
 \begin{mylist}
     \item the number of key-value pairs contained in the packet and
     \item the \textit{tree ID} whose packet belongs to
-\end{mylist}. They payload is not serialized to achieve a faster computation by network devices.
+\end{mylist}.
+They payload is not serialized to achieve a faster computation by network devices.
 
 \subsubsection{Algorithm} \label{daiet_algorithm}
 To store the key-value map, network devices use two hash tables for each tree: one for the keys and one for the values.
 Upon a collision, the algorithm checks whether the key is matching or just the hash is.
-In the former case, data aggregation is performed. In the latter case, the conflicting pair will end up in a \textit{spillover bucket} that will be flushed to the next node as soon as it becomes full: this is done since this data is more likely to be aggregated by the next network device if it has spare memory.
+In the former case, data aggregation is performed.
+In the latter case, the conflicting pair will end up in a \textit{spillover bucket} that will be flushed to the next node as soon as it becomes full: this is done since this data is more likely to be aggregated by the next network device if it has spare memory.
+
+\begin{figure}[!htb]
+    \centering
+        % trim = left, bottom, right, top
+        \includegraphics[page=12, clip, trim=2.1cm 0.3cm 2cm 0.25cm, width=1.00\textwidth]{figures/analysis/inp/presentation.pdf}
+    \caption{Messages exchanged during a Daiet \texorpdfstring{\cite{daiet}}{} instance execution}
+\end{figure}
+
 A network device will also flush its data as soon as all its children (according to the aggregation tree) have sent their data: this is made possible by forcing network devices to send a special \textit{END} packet after transmitting all key-value pairs to their successor.\par
 Used indexes are stored in a \textit{index stack} to avoid scanning the whole hash table when flushing.
 
