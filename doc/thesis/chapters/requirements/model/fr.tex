@@ -1,0 +1,26 @@
+\begin{enumerate}[
+    label=\textbf{FR\arabic*},
+    leftmargin=*,
+    labelindent=1em
+]
+    \item \label{model:requirements:tenant-side_model_composite_expressiveness}
+    The tenant-side model must be able to describe server and \gls{inp} composites.
+    
+    \item \label{model:requirements:tenant-side_model_logical_resources_expressiveness}
+    The tenant-side model must be able to describe all kinds of logical resources.
+    
+    \item \label{model:requirements:rm-side_model_expressiveness}
+    The \gls{rm}-side model must be able to describe all kinds of logical resources.
+
+    \item \label{model:requirements:bandwidth}
+    The tenant-side model must allow the tenant to specify different bandwidth demands for different composites and logical resources.
+    
+    \item \label{model:requirements:topology}
+    The model must be able to describe any kind of network topology.
+
+    \item \label{model:requirements:invariance}
+    The tenant-side model (and the corresponding \glspl{api}) must not change upon the release of new \gls{inp} solution or version.
+    
+    \item \label{model:requirements:translation}
+    The translation from composite requirements to logical resource requirements must be done by the \gls{rm} and not by the tenant application.
+\end{enumerate}
