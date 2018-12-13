@@ -31,12 +31,13 @@
 \chapter{Conclusions} \label{conclusions}
 \input{chapters/conclusions/main.tex}
 
-% Abbreviations
-\printacronyms
+% Acronyms and glossaries
+\printglossary[type=\acronymtype,title=Abbreviations] \label{acronyms}
+\printglossary[type=resources,style=tree] \label{resources_glossary}
 
 % References
 \bibliographystyle{abbrv}
-\bibliography{utility/references}
+\bibliography{utility/references} \glsaddallunused
 
 % Document end
 \end{document}

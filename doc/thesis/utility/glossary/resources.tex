@@ -1,0 +1,104 @@
+% Glossary definition
+\newglossary*{resources}{Resources glossary}
+
+\newglossaryentry{resource:physical}{
+    type=resources,
+    name=Physical resource,
+    text=physical resource,
+    description={physical hardware component of limited availability within a physical machine}
+}
+
+    \newglossaryentry{resource:physical:server}{
+        type=resources,
+        name=Physical server resource,
+        text=physical server resource,
+        parent=resource:physical,
+        description={resource of a physical server machine}
+    }
+    
+    \newglossaryentry{resource:physical:switch}{
+        type=resources,
+        name=Physical switch resources,
+        text=physical switch resources,
+        parent=resource:physical,
+        description={resource of a physical switche, network accelerator, middle-box and of every kind of network device originally intended to forward packets}
+    }
+    
+\newglossaryentry{resource:logical}{
+    type=resources,
+    name=Logical resource,
+    text=logical resource,
+    description={logical representation of a physical resource}
+}
+
+    \newglossaryentry{resource:logical:server}{
+        type=resources,
+        name=Logical server resource,
+        text=logical server resource,
+        parent=resource:logical,
+        description={virtualized server physical resource, often implemented by means of a \gls{vm}, container or an entire physical server}
+    }
+    
+    \newglossaryentry{resource:logical:switch}{
+        type=resources,
+        name=Logical switch resource,
+        text=logical switch resource,
+        parent=resource:logical,
+        description={logical representation of a physical switch resource not mapped to any physical switch device}
+    }
+    
+    \newglossaryentry{resource:logical:edge}{
+        type=resources,
+        name=Logical edge resource,
+        text=logical edge resource,
+        parent=resource:logical,
+        description={properties of virtual connections between two logical resources, e.g., bandwidth, latency, etc}
+    }
+    
+\newglossaryentry{resource:composite}{
+    type=resources,
+    name=Composite,
+    text=composite,
+    description={template describing a high-level logical component.
+        It can be made out of other composites and/or logical resources.}
+}
+
+    \newglossaryentry{resource:composite:server}{
+        type=resources,
+        name=Server composite,
+        text=server composite,
+        parent=resource:composite,
+        description={composite describing a high-level server component, e.g., \textit{web server}, \textit{databases}, etc}
+    }
+    
+    \newglossaryentry{resource:composite:inp}{
+        type=resources,
+        name=\gls{inp} composite,
+        text=\texorpdfstring{\gls{inp}}{INP} composite,
+        parent=resource:composite,
+        description={composite describing a high-level \gls{inp} application, e.g., \textit{IncBricks} \cite{incbricks}, \textit{NetChain} \cite{netchain}, etc}
+    }
+    
+\newglossaryentry{model}{
+    type=resources,
+    name=Resource model,
+    text=resource model,
+    description={model capable of describing composites and logical resources.
+        The model exposed to tenants and the one internally used by the \gls{rm} could be different}
+}
+
+    \newglossaryentry{model:tenant}{
+        type=resources,
+        name=Tenant-side model,
+        text=tenant-side model,
+        parent=model,
+        description={resource model exposed to tenants by the system \gls{api}}
+    }
+    
+    \newglossaryentry{model:rm}{
+        type=resources,
+        name=\gls{rm}-side model,
+        text=\texorpdfstring{\gls{rm}}{RM}-side model,
+        parent=model,
+        description={resource model internally used by the placement algorithm in order to allocate logical resources}
+    }

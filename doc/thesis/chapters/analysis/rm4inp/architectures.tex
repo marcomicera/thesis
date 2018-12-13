@@ -1,11 +1,11 @@
 Different \gls{rm} scheduling architectures were introduced in \autoref{rm_architectures}.
-This section tries to analyze how can different scheduling architectures manage \gls{inp} resources and what are the drawbacks brought by each one of them.\par
+This section tries to analyze how can different scheduling architectures manage \gls{inp} resources, highlighting all the drawbacks brought by each one of them.
 This brief analysis does not make any assumption regarding the \gls{inp} resource model since its format is out of the scope of this specific section.
 
 \paragraph{Monolithic}
 In this architecture, resource requests cannot be concurrent by definition since there is just one logically centralized scheduler.
 However, this architecture does not scale due to its intrinsic nature.
-Such a scheduling architecture could be used later on to build up a simple dummy \gls{inp}-aware scheduler that might act as the standard baseline used to compare the actual scheduler developed in \autoref{design}.
+Such a scheduling architecture could be used later on to build up a simple dummy \gls{inp}-aware scheduler that might act as the standard baseline used to compare the actual scheduler developed in \autoref{design}, but it will be not considered during the design phase of the latter since it is not scalable.
 
 \paragraph{Two-level}
 In the two-level architecture a centralized node master (or \textit{allocator}) proposes resources to the schedulers.

@@ -1,6 +1,8 @@
 ## Windows desktop.ini files
 **/desktop.ini
 
+traces/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

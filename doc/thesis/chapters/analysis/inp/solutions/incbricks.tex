@@ -12,24 +12,29 @@ Packets arriving to an IncBox device are first managed by the switch, which forw
 
 \begin{figure}[!htb]
     \centering
-        % trim = left, bottom, right, top
-        \includegraphics[page=3, clip, trim=3.6cm 0.7cm 2.5cm 4.15cm, width=1.00\textwidth]{figures/analysis/inp/solutions.pdf}
-    \caption{IncBricks' \texorpdfstring{\cite{incbricks}}{} logical communication pattern}
+    \usebox{\incbricksbasic}
+    \caption{IncBricks' \texorpdfstring{\cite{incbricks}}{} basic topology and entities}
 \end{figure}
 
 If there is a match, the programmable switch will check whether the packet has been already cached by the network accelerator or not, and will forward the packet to the right network accelerator attached to it in the former case.
 
 \begin{figure}[!htb]
     \centering
-        % trim = left, bottom, right, top
-        \includegraphics[page=4, clip, trim=4.1cm 0.1cm 4.3cm 0.1cm, width=1.00\textwidth]{figures/analysis/inp/solutions.pdf}
-    \caption{Messages exchanged during an IncBricks \texorpdfstring{\cite{incbricks}}{} instance execution}
+    \usebox{\incbrickscommunication}
+    \caption{IncBricks' \texorpdfstring{\cite{incbricks}}{} logical communication pattern}
 \end{figure}
 
 \paragraph{Logic}
 The system has been designed having a multi-rooted tree topology in mind.
 For each key the centralized \gls{sdn} controller comes up with a set of \textit{designated} IncBox units allowed to cache that key.
 Any other IncBox unit placed between these designated units won't cache data with that specific key.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\incbrickssd}
+    \caption{Messages exchanged during an IncBricks \texorpdfstring{\cite{incbricks}}{} instance execution}
+\end{figure}
+
 Then, for a given key and a given destination node, the \gls{sdn} controller establishes a unique path of designated IncBox units.
 Every IncBox unit in the system will get to know
 \begin{mylist}
@@ -48,19 +53,13 @@ The storage has been implemented using a bucket spilling hash table plus a hash 
 Communicating nodes (\glspl{vm}) represent the leaves of the tree.
 Each path must include exactly one root switch.
 
-\begin{figure}[!htb]
-    \centering
-        % trim = left, bottom, right, top
-        \includegraphics[page=1, clip, trim=3.6cm 0.7cm 2.5cm 4.15cm, width=1.00\textwidth]{figures/analysis/inp/solutions.pdf}
-    \caption{IncBricks' \texorpdfstring{\cite{incbricks}}{} basic topology and entities}
-\end{figure}
+
 
 All things considered, it seems reasonable to state that the actual required topology is a chain starting from a leaf, passing through a root node and ending on another leaf.
 
 \begin{figure}[!htb]
     \centering
-        % trim = left, bottom, right, top
-        \includegraphics[page=2, clip, trim=3.6cm 0.7cm 2.5cm 4.15cm, width=1.00\textwidth]{figures/analysis/inp/solutions.pdf}
+    \usebox{\incbricksextended}
     \caption{IncBricks' \texorpdfstring{\cite{incbricks}}{} extended topology}
 \end{figure}
 

@@ -1,5 +1,5 @@
 # Documentation section
-This section contains all the documentation produced during this thesis' development.
+This section contains all the documentation produced during this thesis' development.\
 You can download the thesis document [here](thesis/rm4inp.pdf).
 
 #### Presentations

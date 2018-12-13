@@ -1,40 +1,28 @@
-Examples:
+Example:
 \begin{itemize}
-    \item NetChain \cite{netchain} for coordination services
-    \item IncBricks \cite{incbricks} for in-network caching
+    \item IncBricks \cite{incbricks}
 \end{itemize}
 Network devices must:
 \begin{itemize}
-    \item form a chain
-    \begin{itemize}
-        \item NetChain \cite{netchain}: the NetChain \cite{netchain} agent must explicitly specify the list of IP addresses of all switches belonging to the chain, since its order depends on the query type (read or write).
-        \item IncBricks \cite{incbricks}: the chain must connect the two communicating nodes, having just one switch connected per node (the \gls{tor} switch).
-    \end{itemize}
-    \item dedicate part of their local memory to store a key-value map
-    \begin{itemize}
-        \item NetChain \cite{netchain}: distributed map, hash segments are repeated across multiple physical switches. Servers are never involved.
-        \item IncBricks \cite{incbricks}: cache, zero or more switches can store the pair. Servers may be involved in case no switch has cached the pair.
-    \end{itemize}
+    \item form a chain that connects the two communicating nodes
+    \item dedicate part of their local memory to store a key-value cache
 \end{itemize}
-Data consumers:
+The query issuer:
 \begin{itemize}
-    \item execute queries
-    \item are \glspl{vm}
+    \item executes queries
+    \item is a logical server resource
+    \item must be connected to the head switch
 \end{itemize}
-Data producers:
+The data owner:
 \begin{itemize}
-    \item own data
-    \item are \glspl{vm}
-    \begin{itemize}
-        \item NetChain \cite{netchain}: are data consumers
-        \item IncBricks \cite{incbricks}: are not data consumers
-    \end{itemize}
+    \item owns data
+    \item is a server logical resource
+    \item must be connected to the tail switch
+    \item is not the query issuer
+    \item can reply to queries in case no switch has cached the data
 \end{itemize}
-The \gls{sdn} controller:
+The \gls{sdn} controller must:
 \begin{itemize}
-    \item must be connected to all the network devices
-    \begin{itemize}
-        \item NetChain \cite{netchain}: must form the chain and handle switches reconfigurations
-        \item IncBricks \cite{incbricks}: must configure network devices in order for them to forward IncBricks \cite{incbricks} packets accordingly
-    \end{itemize}
+    \item be connected to all the network devices
+    \item configure network devices in order for them to forward IncBricks \cite{incbricks} packets along the switch chain
 \end{itemize}

@@ -12,15 +12,26 @@
 \usepackage{hyperref} % links
 \usepackage[binary-units=true]{siunitx} % MB, GB, etc.
 \usepackage{pdfpages} % import PDFs
+\usepackage{verbatim} % multi-line comments
+
+% Checkmarks and xmarks
+\usepackage{amssymb}
+\usepackage{pifont}
+\definecolor{green}{RGB}{0,176,80}
+\newcommand{\cmark}{{\color{green}\textbf{\ding{51}}} }
+\definecolor{red}{RGB}{222,0,0}
+\newcommand{\xmark}{{\color{red}\textbf{\ding{55}}} }
 
 % Adding a dot at the end of paragraph titles
 \let\originalparagraph\paragraph
 \renewcommand{\paragraph}[2][.]{\originalparagraph{#2#1}}
 
-% Acronyms
-\usepackage[acronym,toc]{glossaries}
-\input{utility/acronyms.tex} % acronyms list
-\makeglossaries % computing acronyms
+% Glossaries and acronyms
+% section,numberedsection=autolabel
+\usepackage[acronym,toc]{glossaries} % package
+\input{utility/glossary/acronyms.tex} % acronyms
+\input{utility/glossary/resources.tex} % resources glossary
+\makeglossaries % computing the glossary and acronyms list
 
 % In-line lists
 \usepackage[inline]{enumitem}
