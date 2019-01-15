@@ -1,0 +1,22 @@
+Omega \cite{omega} is a parallel, lock-free and optimistic cluster scheduler by Google.
+As said in \cite{borgomegakubernetes}, it was born after Borg \cite{borg} with the aim of improving its software engineering.
+There is no central resource allocator: all of the resource-allocation decisions take place in the schedulers.
+Multiple schedulers were first introduced in Omega \cite{omega} and then in Borg \cite{borg}, making the latter scheduler no more monolithic.
+
+\subsubsection{Scheduling}
+This solution makes use of a data structure called \textit{cell state} containing information about all the resource allocation in the cluster.
+Each cell has a shared copy of this data structure, and each scheduler is given a private, local, frequently-updated copy of cell state that it uses for making scheduling decisions.
+According to the optimistic concurrency technique, once a scheduler makes a placement decision, it updates the shared copy of cell state with a transaction.
+Whether or not the transaction succeeds, a scheduler re-syncs its local copy of cell state afterwards and, if necessary, re-runs its scheduling algorithm and tries again.
+Omega \cite{omega} supports specialized schedulers: authors have showed the advantages of a MapReduce \cite{mapreduce} specialized scheduler in \cite{omega}.
+
+\subsubsection{Conclusions}
+Since schedulers do not have access to all cluster resources, Mesos \cite{mesos} cannot support preemption across different sub-clusters and it cannot apply policies that make use of the complete cluster state.
+
+% \subsubsection{Characteristics}
+    % Architecture:
+    % Scheduling work partitioning:
+    % Interference:
+    % Choice of resources:
+    % Preemption:
+    % Allocation granularity:

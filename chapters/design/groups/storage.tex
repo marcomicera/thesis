@@ -1,0 +1,28 @@
+Example:
+\begin{itemize}
+    \item IncBricks \cite{incbricks}
+\end{itemize}
+Network devices must:
+\begin{itemize}
+    \item form a chain that connects the two communicating nodes
+    \item dedicate part of their local memory to store a key-value cache
+\end{itemize}
+The query issuer:
+\begin{itemize}
+    \item executes queries
+    \item is a logical server resource
+    \item must be connected to the head switch
+\end{itemize}
+The data owner:
+\begin{itemize}
+    \item owns data
+    \item is a server logical resource
+    \item must be connected to the tail switch
+    \item is not the query issuer
+    \item can reply to queries in case no switch has cached the data
+\end{itemize}
+The \gls{sdn} controller must:
+\begin{itemize}
+    \item be connected to all the network devices
+    \item configure network devices in order for them to forward IncBricks \cite{incbricks} packets along the switch chain
+\end{itemize}

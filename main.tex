@@ -1,0 +1,43 @@
+% Commands
+\input{utility/commands.tex}
+
+% Document start
+\begin{document}
+\noindent
+
+% Importing images definitions
+\input{figures/import.tex}
+
+% Cover
+\input{cover/title.tex}
+
+% Table of contents
+\tableofcontents
+\glsresetall
+
+% Chapters
+\chapter{Introduction} \label{introduction}
+\input{chapters/introduction/main.tex}
+\chapter{Background} \label{background}
+\input{chapters/background/main.tex}
+\chapter{Analysis} \label{analysis}
+\input{chapters/analysis/main.tex}
+\chapter{Requirements} \label{requirements}
+\input{chapters/requirements/main.tex}
+\chapter{Design} \label{design}
+\input{chapters/design/main.tex}
+\chapter{Evaluation} \label{evaluation}
+\input{chapters/evaluation/main.tex}
+\chapter{Conclusions} \label{conclusions}
+\input{chapters/conclusions/main.tex}
+
+% Acronyms and glossaries
+\printglossary[type=\acronymtype,title=Abbreviations] \label{acronyms}
+\printglossary[type=resources,style=tree] \label{resources_glossary}
+
+% References
+\bibliographystyle{abbrv}
+\bibliography{utility/references} \glsaddallunused
+
+% Document end
+\end{document}

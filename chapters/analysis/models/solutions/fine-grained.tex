@@ -1,0 +1,34 @@
+Most of state-of-the-art \glspl{rm} \cite{mesos, borg, omega, kubernetes, yarn} deal with resources in the simplest yet most descriptive way: a list of server-only resources demands (e.g., CPU cores, memory, etc.).
+
+\subsubsection{Usage}
+\paragraph{Mesos \texorpdfstring{\cite{mesos}}{}}
+% Figure 3
+First, the Mesos \cite{mesos} logically centralized resource allocator offers different fine-grained server resources to different schedulers.
+Schedulers will then reply to the allocator with the information about the tasks to be run on servers.
+The allocator is completely network-unaware and hence it cannot neither offer any other kind of resource types nor accept tasks to be run on network devices.
+
+\paragraph{Oktopus \texorpdfstring{\cite{oktopus}}{}}
+% Paragraph 4.3, 2nd paragraph
+In Oktopus \cite{oktopus}, tenant applications can use
+\begin{mylist}
+    \item the \gls{vc} model to express virtual networks characterized by a dense connectivity,
+    \item the \gls{voc} model for oversubscribed virtual networks and
+    \item a fine-grained resource list to request server resources only
+\end{mylist}.
+The system makes a distinction between requests expressed by a \textit{virtual network} (the first two options) and those that are not (fine-grained list).
+The latter kind of requests has the lowest priority, meaning that the bandwidth not used by virtual networks is equally distributed amongst applications that did not request for any bandwidth guarantee.
+In conclusion, when sending a resource request to Oktopus \cite{oktopus} expressed by means of a resource demand list, the \gls{rm} will not take care of bandwidth guarantees since there is no way for tenant applications to specify these demands.
+
+\paragraph{Borg \texorpdfstring{\cite{borg}}{}}
+% Paragraphs 3.2 and 5.4
+Borg \cite{borg} does not support any network abstraction and it only allows tenants to request resources by listing them explicitly.
+A scheduler first step's consists in finding the subset of machines on which the task could run, and while doing this, it does not consider any kind of aspect regarding the network.
+During the second step, namely \text{scoring}, which consists in finding the best subset of machines on which the task can be allocated, the only network aspect taken into consideration is the failure domain: tasks are allocated across failure domains (e.g., machines, racks, power domains) for fault-tolerance.
+
+% \paragraph{Omega \texorpdfstring{\cite{omega}}{}}
+
+% \paragraph{Kubernetes \texorpdfstring{\cite{kubernetes}}{}}
+
+\paragraph{\glsdesc{yarn}}
+Besides containers properties, tenant applications issuing requests can include locality preferences (e.g., node-level, rack-level and global locality preferences).
+Exactly like Borg \cite{borg}, this is the only network aspect taken into consideration during a job placement.

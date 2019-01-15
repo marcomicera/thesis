@@ -1,0 +1,20 @@
+\glsreset{voc}
+
+Also proposed by Oktopus \cite{oktopus} authors, the \gls{voc} model consists in $N$ \glspl{vm} arranged in groups of size $S$.
+Similarly to the \gls{vc} model, \glspl{vm} belonging to the same group are connected to a single virtual switch by a bidirectional link of bandwidth $B$.
+Therefore, every virtual switch connecting groups of $S$ \glspl{vm} has total bandwidth of $N \cdot B$.
+All groups are then connected together by a unique \textit{root virtual switch}, making this model's topology a two-level logical tree.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\vocfigure}
+    \caption{A graphical representation of the \gls{voc} model}
+\end{figure}
+
+Links connecting all virtual switches to the root one have an oversubscription factor of $O$, meaning that each of those links has a bandwidth of $S \cdot B / O$.
+The \gls{voc} model aims to relax the dense connectivity requirement between all \glspl{vm}, having oversubscription just for inter-group communication.
+
+\subsubsection{Usage}
+\paragraph{Oktopus \texorpdfstring{\cite{oktopus}}{}}
+Tenants who use a \gls{voc} model for their requests are aware of the bandwidth oversubscription for inter-group communications as they explicitly have to specify the oversubscription factor $O$ in the reuqest.
+Oktopus \cite{oktopus} though still does not make any distinction between server resources, making it an unpractical solution for handling \gls{inp} resources.

@@ -1,0 +1,16 @@
+The proposed model is based on \gls{tag} and it allows tenant applications to specify
+\begin{mylist}
+    \item all \glspl{resource:composite} (\cmark \ref{requirements:model:tenant:composites}) and \glspl{resource:logical} (\cmark \ref{requirements:model:tenant:logical})
+    \item different bandwidth demands (\cmark \ref{requirements:model:bandwidth}) for different entities
+    \item any kind of network topology (\cmark \ref{requirements:model:topology})
+\end{mylist}.
+An example of proposed model is depicted in \autoref{tagmodfigure}.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\tagmodfigure}
+    \caption{The proposed model based on \gls{tag}}
+    \label{tagmodfigure}
+\end{figure}
+
+It is worth noticing that with the introduction of \glspl{resource:composite} in the model, the translation to \glspl{resource:logical} must be done by the \gls{rm} and not by the tenant application (\cmark \ref{requirements:model:translation}).

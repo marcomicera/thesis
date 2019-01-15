@@ -1,0 +1,73 @@
+In this thesis, resources are divided by
+\begin{mylist}
+    \item their level of abstraction and
+    \item their type
+\end{mylist}.
+The glossary reported at the end of this thesis follows a bottom-up approach, starting from those terms belonging to the lowest level of abstraction.
+
+% Glossary made with a simple labeled list
+\begin{comment}
+    \begin{itemize}
+        \item \textbf{Physical resources}:
+        \label{gls:resource:physical}
+        set of physical hardware component of limited availability within a computer system. 
+        
+        \begin{itemize}
+            \item \textbf{Physical server resources}:
+            \label{gls:resource:physical:server}
+            resources of physical server machines.
+            
+            \item \textbf{Physical switch resources}:
+            \label{gls:resource:physical:switch}
+            resources of physical switches, network accelerators, middle-boxes and of every kind of network device originally intended to forward packets.
+        \end{itemize}
+        
+        \item \textbf{Logical resources}:
+        \label{gls:resource:logical}
+        logical representation of physical resources.
+        
+        \begin{itemize}
+            \item \textbf{Logical server resources}:
+            \label{gls:resource:logical:server}
+            virtualized server physical resources, often implemented by means of \glspl{vm}, containers or entire physical servers.
+            
+            \item \textbf{Logical switch resources}:
+            \label{gls:resource:logical:switch}
+            logical representation of physical switch resources not mapped to any physical switch device.
+            
+            \item \textbf{Logical edge resources}:
+            \label{gls:resource:logical:edge}
+            properties of virtual connections between logical resources, e.g., bandwidth, latency, etc.
+        \end{itemize}
+        
+        \item \textbf{Composites}:
+        \label{gls:resource:composite}
+        templates describing high-level logical components.
+        They can be made out of other composites and logical resources.
+        
+        \begin{itemize}
+            \item \textbf{Server composites}:
+            \label{gls:resource:composite:server}
+            composites describing high-level server components, e.g., \textit{web server}, \textit{databases}, etc.
+            
+            \item \textbf{\gls{inp} composites}:
+            \label{gls:resource:composite:inp}
+            composites describing high-level \gls{inp} applications, e.g., \textit{IncBricks} \cite{incbricks}, \textit{NetChain} \cite{netchain}, etc.
+        \end{itemize}
+        
+        \item \textbf{Resource model}:
+        \label{gls:model}
+        model capable of describing composites and logical resources.
+        The model exposed to tenants and the one internally used by the \gls{rm} could be different.
+        
+        \begin{itemize}
+            \item \textbf{Tenant-side model}:
+            \label{gls:model:tenant}
+            resource model exposed to tenants by the system \gls{api}.
+            
+            \item \textbf{\gls{rm}-side model}:
+            \label{gls:model:rm}
+            resource model internally used by the placement algorithm in order to allocate logical resources.
+        \end{itemize}
+    \end{itemize}
+\end{comment}

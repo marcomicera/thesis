@@ -1,0 +1,84 @@
+Existing \glspl{rm} have a different awareness level of switch and link resources.
+This is one possible division that groups \glspl{rm} in three groups.
+
+\paragraph{\glspl{vm} proximity-aware}
+Most of the \glspl{rm} out there can spread \glspl{vm} across different failure domains like machines, racks and power domains.
+This group is not worth discussing since this kind of \glspl{rm} do not consider any kind of resources rather than server ones.
+Some examples of \glspl{vm} proximity-aware \glspl{rm} are Omega \cite{omega}, \glsdesc{yarn} and Mesos \cite{mesos}.
+
+\paragraph{Bandwidth-aware}
+\glsreset{vc} \glsreset{tivc} \glsreset{voc} \glsreset{tag}
+Some \glspl{rm} like CloudMirror \cite{cloudmirror}, Oktopus \cite{oktopus}, Kraken \cite{kraken} and Proteus \cite{proteus} allow tenants to specify bandwidth demands.
+These \glspl{rm} let tenants express their requests by using "virtual network" models like \glspl{vc}, \glspl{tivc}, \glspl{voc} and \glspl{tag}.
+
+Oktopus \cite{oktopus} and Kraken \cite{kraken} assume that every \gls{vm} can be placed on every physical server, completely ignoring server-local resource requirements.
+This is not acceptable in a real-world scenario in which different logical server resources have different resource requirements.
+Also, it is worth to notice that Kraken \cite{kraken} allows tenants to \textit{upgrade} their bandwidth requirements, placing again those \glspl{vm} that have been placed in parts of the data center in which the new bandwidth requirements cannot be satisfied anymore.
+
+Still, none of these \glspl{rm} is able to manage any kind of switch resources.
+
+\paragraph{Network resources-aware}
+The most interesting group consists in those \glspl{rm} that are actually aware of network resources.
+To the best of my knowledge, there is only one embedding solution that belongs to this group, namely the one introduced in "On tackling virtual data center embedding problem" \cite{ontackling} by Rabbani, Md Golam, et al. presented in the \textit{IM 2013: IFIP/IEEE International Symposium on Integrated Network Management} conference.
+This solution allows tenants to explicitly specify
+\begin{mylist}
+    \item logical server resources,
+    \item logical switch resources and
+    \item bandwidth demands as logical edge resources
+\end{mylist}.
+
+Tenants use a graph to express their resource requests.
+The graph is expressed as a key-value map that includes
+\begin{mylist}
+    \item a set of \gls{vm} resources,
+    \item a set of logical switches resources and
+    \item a set of logical links connecting the above entities (and their minimum required bandwidth)
+\end{mylist}.
+
+Its placement algorithm is interesting for the scope of this thesis since it is the only one that takes into account all three types of resources mentioned before.
+The placement phase is divided in three parts:
+\begin{mylist}
+    \item the \glspl{vm} placement,
+    \item the logical switches placement and
+    \item the logical links placement
+\end{mylist}.
+The problem of placing \glspl{vm} is reduced to a min-cost flow one like showed in \autoref{ontacklingfirststep}.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\ontacklingfirststep}
+    \caption{\gls{vm} placement in \cite{ontackling}}
+    \label{ontacklingfirststep}
+\end{figure}
+
+The graph shown in \autoref{ontacklingfirststep} is built in the following way: \glspl{vm} are sorted according to a requested resource capacity in a descending order and placed in the left side of the image.
+Physical server are instead placed in the right side.
+\glspl{vm} are connected to physical servers only if they can be allocated on them.
+In order to reduce this placement problem to a min-cost flow one, a dummy source and destination node are added like shown in \autoref{ontacklingfirststep} so that an instance of a min-cost flow problem solver can be run.
+The outcome of this phase provides the allocation of \glspl{vm} on physical servers.
+
+It is important to notice how \glspl{vm} are sorted based on just one resource dimension.
+Even though the model used in \cite{ontackling} supports an infinite number of resource dimensions, the placement algorithm only supports one dimension and extending it to support multiple dimensions is not trivial.
+
+Same thing is done for the placement of logical switches, as shown in \autoref{ontacklingsecondstep}.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\ontacklingsecondstep}
+    \caption{Logical switches placement in \cite{ontackling}}
+    \label{ontacklingsecondstep}
+\end{figure}
+
+The mapping of logical switches to physical ones is done independently of the outcome of the previous phase (i.e., \gls{vm} placement).
+\autoref{ontacklinginefficientswitchplacement} shows how this could lead to a bandwidth waste in case a logical switch connecting two \glspl{vm} is mapped to a physical switch that is far away from the physical servers on which the \glspl{vm} have been previously placed.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\ontacklinginefficientswitchplacement}
+    \caption{An example of an inefficient logical switch placement in \cite{ontackling}}
+    \label{ontacklinginefficientswitchplacement}
+\end{figure}
+
+The third and last step simply consists in mapping logical links between two logical entities (\glspl{vm} or switches) to the shortest physical path connecting the physical devices on which the logical entities have been allocated.
+
+The placement algorithm is not fault tolerant since it tries to map as many \glspl{vm} as possible to the same physical server in order to minimize server resource fragmentation.

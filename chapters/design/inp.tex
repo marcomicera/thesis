@@ -1,0 +1,13 @@
+\begin{itemize}
+    \item (Aggregation) Tree
+    \begin{itemize}
+        \item \textbf{Leaf aggregator switches fan}: since aggregator switches in Daiet \cite{daiet} need to wait data from all its children, the higher the fan is, the more time a switch will need to wait, the slower the system will perform
+        \item \textbf{Tree height} and the \textbf{number of switches}: the higher, the more messages, the smaller messages are; the shorter, the less messages, the bigger messages are
+        \item \textbf{Data producers distribution}: data producers sending data with the same key should be connected to "close" leaves in order for them to perform data aggregation lower in the tree
+        \item \textbf{Tree balance}: an extremely unbalanced tree could cause some parts of it to wait for data to be aggregated in the deepest parts
+    \end{itemize}
+    \item Chain
+    \begin{itemize}
+        \item \textbf{Chain length}: the longer, the more reliable the system is, the higher the latency for write queries in NetChain \cite{netchain}
+    \end{itemize}
+\end{itemize}

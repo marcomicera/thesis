@@ -1,0 +1,45 @@
+\paragraph{Quick recap}
+The \gls{voc} model is the oversubscribed extension of the \gls{vc} one.
+\autoref{vocfigurerecap} shows an example.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\vocfigure}
+    \caption{A graphical representation of the \gls{voc} model}
+    \label{vocfigurerecap}
+\end{figure}
+
+\paragraph{Requirements check}
+The \gls{voc} model has the advantage of not requiring a virtual switch of bandwidth $N \cdot B$, that could be unpractical when $N$ is particularly large.
+When a tenant application issues a resource request using a \gls{voc}, it just requests for the $<N, B, S, O>$ tuple, being respectively
+\begin{mylist}
+    \item the number of \glspl{vm},
+    \item the bandwidth needed for intra-group communication,
+    \item the group size and
+    \item the oversubscription factor
+\end{mylist}.
+Still, certain kinds of applications might need different values of $B$ for different groups (\xmark \ref{requirements:model:bandwidth}).
+Furthermore, the two-layer logical tree topology might not suit perfectly for applications that require a chain having more than 2 network devices or a tree topology with more than 2 layers (\xmark \ref{requirements:model:topology}).
+The \gls{voc} model still does not support \gls{resource:logical:switch} requests (\xmark \ref{requirements:model:tenant:logical}).
+
+\paragraph{A possible variant}
+The two limitations previously mentioned can obviously be overcome by allowing to specify
+\begin{mylist}
+    \item \glspl{resource:logical:switch} (satisfying \cmark \ref{requirements:model:tenant:logical})
+    \item different bandwidth demands for different groups (satisfying \cmark \ref{requirements:model:bandwidth}) and
+    \item an arbitrary tree height
+\end{mylist}.
+The corresponding variant is shown in \autoref{fig:vocmod}.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\vocmodfigure}
+    \caption{A possible \gls{voc} variant with an arbitrary tree height}
+    \label{fig:vocmod}
+\end{figure}
+
+However though, tenant applications still
+\begin{mylist}
+    \item cannot express any kind of switch topology (e.g., a switch loop for an in-network \gls{dht} chord), violating \xmark \ref{requirements:model:topology}, and
+    \item convert \gls{inp} high-level requirements (e.g., in-network total cache size, lock requests per second, …) into switch resource requirements (\xmark \ref{requirements:model:translation})
+\end{mylist}.

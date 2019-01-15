@@ -1,0 +1,37 @@
+This section tries to underline the different scheduling design issues that \glspl{rm} must face by building a simple short taxonomy, following the guidelines provided by Google in their Omega \cite{omega} paper.
+
+\paragraph{Scheduling work partitioning}
+The workload can be distributed across schedulers basically in three different ways:
+\begin{mylist}
+    \item workload-type unaware load balancing,
+    \item workload partitioning to specialized clusters and,
+    \item a combination of the two
+\end{mylist}.
+
+\paragraph{Interference}
+Schedulers can concurrently ask for the same resources.
+In the pessimistic approach different resources are offered to different schedulers, making it impossible for them to compete for the same resource: this of course represents a lack of parallelism, since resource offers are made by a logically centralized entity.
+The optimistic approach instead lets every scheduler claim the desired resources and just conflicting requests are denied, which of course introduces an overhead.
+Of course, there could be no interference in case there is only one scheduler.
+
+\paragraph{Choice of resources}
+Schedulers can pick amongst
+\begin{mylist}
+    \item all cluster resources or 
+    \item a subset of those
+\end{mylist}.
+When resources are divided into disjoint sets there will be no concurrency by definition.
+Making all resources available to all scheduler will make it easier for schedulers to place jobs with particularly stringent needs, and it is also useful when the scheduling decision must be taken based on overall state (e.g., the amount of free resources in the cluster).
+
+\paragraph{Preemption}
+Schedulers can be either allowed to preempt other schedulers' job assignments or not.
+Allowing preemption brings a greater flexibility at the cost of interrupting an already-running job.
+
+\paragraph{Allocation granularity}
+Considering that jobs contain multiple tasks that can be scheduled on different resources, schedulers can either
+\begin{mylist}
+    \item incrementally schedule tasks as soon as new resources become free or
+    \item schedule a job only when all tasks can be scheduled on the spot
+\end{mylist}.
+Not all job types can exploit the incremental resource acquisition.
+This technique can also bring the system to a deadlock if there is no back-off mechanism that releases resources once a job cannot acquire all resources in a reasonable amount of time.

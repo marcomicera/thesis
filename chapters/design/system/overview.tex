@@ -1,0 +1,28 @@
+As required by \ref{requirements:model:tenant:composites} and \ref{requirements:model:tenant:logical}, tenant applications must be able to express their requests in terms of \glspl{resource:logical} and \glspl{resource:composite}.
+The latter are just a simplification for tenant applications, and they need to be translated into a set of \glspl{resource:logical} so that the placement algorithm could allocate those.
+This translation can be done by the \gls{rm} by means of a \textit{template database}, that maps pre-determined known \glspl{resource:composite} into their equivalent made out of just \glspl{resource:logical}, as shown in \autoref{compositestological}.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\compositestological}
+    \caption{Translating \glspl{resource:composite} to \glspl{resource:logical}}
+    \label{compositestological}
+\end{figure}
+
+\Glspl{resource:logical} represent the input of the placement algorithm that maps those into \glspl{resource:physical}, as shown in \autoref{logicaltophysical}.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\logicaltophysical}
+    \caption{Placement of \glspl{resource:logical} to \glspl{resource:physical}}
+    \label{logicaltophysical}
+\end{figure}
+
+The whole system design is depicted in \autoref{compositestophysical}.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\compositestophysical}
+    \caption{From the \gls{model:tenant} to \glspl{resource:physical}}
+    \label{compositestophysical}
+\end{figure}

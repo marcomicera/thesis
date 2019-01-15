@@ -1,0 +1,30 @@
+% Mesos, on the other hand, is a widely-deployed production cluster manager which supports multi-dimensional resource requirements [GZH+11], but does not explicitly consider co-location interference.
+
+Mesos \cite{mesos} is a two-level cluster scheduler based on \textit{resource offers}.
+It has multiple schedulers since Mesos \cite{mesos} has been conceived to share clusters between different cluster computing frameworks since the beginning of its development.
+By contrast, \glsdesc{yarn} was initially embedded in the first version of MapReduce \cite{mapreduce} and subsequently became independent out of the necessity to scale \glsdesc{hadoop}.
+
+\subsubsection{Entities}
+This scheduler has a logically centralized resource \textit{allocator} in charge of offering resources to different schedulers.
+It is called \textit{Mesos master} and it is replicated for fault tolerance.
+A scheduler with its \textit{executor} (worker) node are together called \textit{framework}.
+Nodes running on cluster nodes are called \textit{Mesos slaves}.
+
+\subsubsection{Scheduling}
+Initially, every cluster node reports to the master node its own available resources.
+Based on this data, the master node can then offer resources to application frameworks based on a particular policy.
+The master node does not offer the same subset of resources to each scheduler.
+Obviously resource conflicts can be avoided by not offering the same resource to multiple schedulers at the time.
+Upon receiving resources offers, application frameworks can either reject the offer (in case it does not satisfy all framework's constraints) or tell the master which tasks need to be run on the dedicated resources.
+Mesos \cite{mesos} already knows that certain types of frameworks always reject certain resource offers characterized by some factors, so frameworks can specify \textit{filters} in order for the master to automatically avoid proposing certain kind of resources.\par
+The resource allocation logic can be customized, and Mesos \cite{mesos} includes an allocation module based on priority and one based one fairness.
+Tasks can be preempted, however frameworks can be offered \textit{guaranteed} resources on which tasks cannot be preempted.
+
+
+% \subsubsection{Characteristics}
+    % Architecture:
+    % Scheduling work partitioning:
+    % Interference:
+    % Choice of resources:
+    % Preemption:
+    % Allocation granularity:

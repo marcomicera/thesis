@@ -1,0 +1,14 @@
+\paragraph{Quick recap}
+A \gls{tag} is a graph where vertexes represent \glspl{resource:composite:server}, connected by \glspl{resource:logical:edge}.
+\autoref{tagfigurerecap} shows an example.
+
+\begin{figure}[!htb]
+    \centering
+    \usebox{\tagfigure}
+    \caption{A \gls{tag} example}
+    \label{tagfigurerecap}
+\end{figure}
+
+\paragraph{Requirements check}
+The model does not allow tenant applications to request for \glspl{resource:composite:inp} (\xmark \ref{requirements:model:tenant:composites}) and for \glspl{resource:logical:switch} (\xmark \ref{requirements:model:tenant:logical}).
+Since this model satisfies all other requirements, it will be used as a starting point for the \gls{model} proposed in \autoref{model_proposal}.
