@@ -1,0 +1,25 @@
+Firmament \cite{firmament} is a centralized cluster scheduler capable of supporting multi-dimensional resource requirements (\autoref{firmament:multi-dimensions}).
+The scheduler finds an embedding solution by solving a min-cost max-flow optimization problem over a graph called \textit{flow network} (\autoref{firmament:flow_network}).
+
+\subsubsection{Flow network} \label{firmament:flow_network}
+The flow network is a directed weighted graph that contains both \glslink{resource:physical}{physical} and \glspl{resource:logical}.
+Similarly to any other graph-based scheduler (e.g., \cite{ontackling}), a \gls{resource:physical} is connected to a \gls{resource:logical} anytime the former can be allocated on the latter.
+In order to reduce the overall amount of arcs, the flow network makes use of \textit{equivalence class aggregates} which group nodes with similar characteristics (e.g., tasks within a job, physical machines with the same micro-architectural topology, etc.).
+An aggregate receives arcs from all entities belonging to it.
+Physical aggregates can also receive arcs from those logical nodes that can be allocated on any of the physical entity represented by the aggregate.\par
+The physical network is faithfully recreated in the graph thanks to aggregates: for instance, different machines belonging to the same rack are connected to the same \textit{rack aggregate}, all racks are connected to the cluster aggregate and so on.
+The description does not either stop at the machine level, since also sockets and cores are represented in the graph.
+Again, inclusion relationships are expressed in terms of arcs.
+Special \textit{unscheduled aggregates} (one for each job) receive an arc from every task.\par
+The embedding solution is found by running an instance of a min-cost max-flow optimization algorithm over the network flow.
+If a task cannot be allocated on any of the physical machines, its flow will be directed to its corresponding unscheduled aggregate.
+Arcs' costs are determined by a given scheduling policy (or "cost model"): at the time of writing, Firmament \cite{firmament} supports 9 different scheduling policies.
+Intuitively, arcs connecting tasks to unscheduled aggregates will have an higher cost with respect to the ones ending in a physical entity.
+
+\subsubsection{Multi-dimensional resource fitting} \label{firmament:multi-dimensions}
+Firmament's \cite{firmament} creator Malte Schwarzkopf introduced the coordinated co-location (CoCo) cost model in his PhD dissertation - Schwarzkopf, M. (2018). \textit{Operating system support for warehouse-scale computing} (Doctoral thesis). \href{https://doi.org/10.17863/CAM.26443}{https://doi.org/10.17863/CAM.26443}.\par
+This scheduling policy has an interesting feature: \textit{admission control}.
+Basically a task can be allocated on a physical machine only when it satisfies all task's resource requirements (strict resource fit).
+If a task cannot be allocated on any of the physical machines, it cannot be even connected to the cluster aggregate.
+Given a \gls{resource:logical} in the network flow, CoCo is able to efficiently determine all subtrees in the physical topology in which it can be allocated.
+This is done by storing in each physical aggregate the minimum and maximum amount of available resources across its children.

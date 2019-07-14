@@ -16,6 +16,7 @@ traces/
 *.cb
 *.cb2
 .*.lb
+*.resources-glo
 
 ## Intermediate documents:
 *.dvi

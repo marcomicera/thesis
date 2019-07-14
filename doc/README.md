@@ -1,6 +1,6 @@
 # Documentation section
 This section contains all the documentation produced during this thesis' development.\
-You can download the thesis document [here](thesis/rm4inp.pdf).
+You can download the thesis document [here](thesis/main.pdf).
 
 #### Presentations
 1. [INP solutions](thesis/figures/analysis/inp/solutions.pdf)
