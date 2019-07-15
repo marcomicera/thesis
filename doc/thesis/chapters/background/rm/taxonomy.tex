@@ -1,7 +1,7 @@
 This section tries to underline the different scheduling design issues that \glspl{rm} must face by building a simple short taxonomy, following the guidelines provided by Google in their Omega \cite{omega} paper.
 
 \paragraph{Scheduling work partitioning}
-The workload can be distributed across schedulers basically in three different ways:
+The workload can be distributed across schedulers in three different ways:
 \begin{mylist}
     \item workload-type unaware load balancing,
     \item workload partitioning to specialized clusters and,
@@ -10,9 +10,8 @@ The workload can be distributed across schedulers basically in three different w
 
 \paragraph{Interference}
 Schedulers can concurrently ask for the same resources.
-In the pessimistic approach different resources are offered to different schedulers, making it impossible for them to compete for the same resource: this of course represents a lack of parallelism, since resource offers are made by a logically centralized entity.
-The optimistic approach instead lets every scheduler claim the desired resources and just conflicting requests are denied, which of course introduces an overhead.
-Of course, there could be no interference in case there is only one scheduler.
+In the pessimistic approach, different resources are offered to different schedulers, making it impossible for them to compete for the same resource: this of course represents a lack of parallelism, since resource offers are made by a logically centralized entity.
+Instead, the optimistic approach lets every scheduler claim the desired resources and only conflicting requests are denied, which of course introduces an overhead.
 
 \paragraph{Choice of resources}
 Schedulers can pick amongst

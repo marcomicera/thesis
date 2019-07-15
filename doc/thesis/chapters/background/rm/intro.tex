@@ -1,8 +1,6 @@
-In a data center, resources of any kind are being virtualized in order to achieve higher flexibility, portability and availability.
-Usually both compute and storage resources are virtualized by means of \glspl{vm} and/or containers.
-Flexibility and portability are both automatically achieved thanks to this resource virtualization, resulting in software that can be deployed dynamically, run by multiple platforms and even live migrated; availability is usually simply achieved by not co-locating \glspl{vm} in a single server or rack.
+In a data center, resources of any kind are being virtualized in order to achieve higher flexibility, portability, and availability.
+Usually, both compute and storage resources are virtualized by means of \glspl{vm} and/or containers.
+Flexibility and portability are both automatically achieved thanks to this resource virtualization, resulting in software that can be deployed dynamically, run by multiple platforms and even live migrated; availability is usually simply achieved by not co-locating \glspl{vm} and/or containers within a single power domain.
 
-Furthermore, a Resource Manager's aim is to manage all resources in a cluster and to schedule applications (sometimes referred as \textit{jobs}) assigning the corresponding \glspl{vm}/containers to the \textit{best} subset of servers.
-
-Today there are multiple Resource Managers that are using different approaches to solve different design issues.
-This section examines these existing \glspl{rm}, trying to categorize them based on how they face different scheduling problems.
+Nowadays, multiple \glspl{rm} are using different approaches to solve different design issues.
+This section examines these existing \glspl{rm} while trying to categorize them based on how they face different scheduling problems.

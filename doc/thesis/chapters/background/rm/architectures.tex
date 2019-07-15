@@ -1,19 +1,19 @@
 \paragraph{Monolithic}
-Probably the most simple scheduler architecture out there: a monolithic scheduler consists in a single instance scheduler applying the same scheduling algorithm for every incoming job (so there is no concurrency between resource requesters).
-A centralized scheduling logic can support a more refined job placement.
-On the other hand, the absence of parallelism causes an higher latency with respect to other architectures.
-Although the single instance could distinguish among different job types hence treating those differently, its maintenance is not trivial, due to its single instance (and code base) nature.
+Probably the most simple scheduler architecture out there: a monolithic scheduler consists of a single instance scheduler applying the same scheduling algorithm for every incoming job (so there is no concurrency between resource requesters).
+A centralized scheduling logic can support more refined job placement.
+On the other hand, the absence of parallelism causes a higher latency with respect to other architectures.
+Although the single instance could distinguish among different job types hence treating those differently, its maintenance is not trivial, due to its single instance (and codebase) nature.
 
 \paragraph{Two-level}
 This architecture requires computer clusters to be dynamically partitioned in sub-clusters, each having a dedicated scheduler.
-A centralized resource allocator determines which and how many resources should made be available to each scheduler: this is done by sending \textit{offers} to schedulers (\textit{pessimistic concurrency}).
-Obviously conflicts can be avoided by not offering the same resource to multiple schedulers at the time.
+A centralized resource allocator determines which and how many resources should be made available to each scheduler: this is done by sending \textit{offers} to schedulers (\textit{pessimistic concurrency}).
+Obviously, conflicts can be avoided by not offering the same resource to multiple schedulers at the time.
 The same entity is in charge of dynamically divide clusters into sub-clusters: this is done to avoid resource fragmentation.
 
 \paragraph{Shared-state}
-Schedulers are not mapped to sub-clusters anymore.
+Schedulers are not mapped to sub-clusters like in the previous case.
 Multiple schedulers have access to the entire cluster and there is no centralized resource allocator assigning resources to schedulers.
-In this architecture, schedulers will try to acquire resources (\textit{optimistic concurrency}), having not only the possibility of choosing between all the resources in the cluster, but also to ask for those who have been already acquired by another scheduler.
-In order to achieve this, a centralized data structure called \textit{cell state} maintains all the resource allocation information in the cluster, providing in fact a \textit{shared-state} of it.
+In this architecture, schedulers will try to acquire resources (\textit{optimistic concurrency}), having not only the possibility of choosing between all the resources in the cluster, but also to ask for those which have been already acquired by another scheduler.
+In order to achieve this, a centralized data structure called \textit{cell state} maintains the allocation information of all resources in the cluster, providing in fact a \textit{shared-state} of it.
 Schedulers will try to acquire resources by atomically modifying this cell state, that will actually be modified only if the request does not cause any conflict.
 Each scheduler makes its own resource-allocation decision on a private copy of the cell state, which is updated every time the scheduler tries to acquire some resource, no matter what the outcome of the attempt is.
