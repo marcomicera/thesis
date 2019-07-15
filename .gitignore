@@ -17,6 +17,9 @@ traces/
 *.cb2
 .*.lb
 *.resources-glo
+*.resources-glg
+*.resources-gls
+*.acronyms-glo
 
 ## Intermediate documents:
 *.dvi
