@@ -25,6 +25,7 @@ Making all resources available to all scheduler will make it easier for schedule
 \paragraph{Preemption}
 Schedulers can be either allowed to preempt other schedulers' job assignments or not.
 Allowing preemption brings a greater flexibility at the cost of interrupting an already-running job.
+Since all state-of-the-art \glspl{rm} support preemption, this design choice will be taken for granted and hence omitted when comparing different \glspl{rm} in \autoref{rm-comparison}.
 
 \paragraph{Allocation granularity}
 Considering that jobs contain multiple tasks that can be scheduled on different resources, schedulers can either
@@ -33,4 +34,4 @@ Considering that jobs contain multiple tasks that can be scheduled on different 
     \item schedule a job only when all tasks can be scheduled on the spot
 \end{mylist}.
 Not all job types can exploit the incremental resource acquisition.
-This technique can also bring the system to a deadlock if there is no back-off mechanism that releases resources once a job cannot acquire all resources in a reasonable amount of time.
+This technique can also bring the system to a deadlock in case there is no back-off mechanism that releases resources once a job cannot acquire all resources in a reasonable amount of time.
