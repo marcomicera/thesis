@@ -4,23 +4,23 @@
     labelindent=1em
 ]
     \item \label{requirements:model:tenant:composites}
-    The tenant-side model must be able to describe server and \gls{inp} composites.
+    The \gls{model:tenant} must be able to describe server and \glspl{resource:composite:inp}.
     
     \item \label{requirements:model:tenant:logical}
-    The tenant-side model must be able to describe all kinds of logical resources.
+    The \gls{model:tenant} must be able to describe all kinds of \glspl{resource:composite:inp}.
     
     \item \label{requirements:model:rm:logical}
-    The \gls{rm}-side model must be able to describe all kinds of logical resources.
+    The \gls{model:rm} must be able to describe all kinds of \glspl{resource:composite:inp}.
 
     \item \label{requirements:model:bandwidth}
-    The tenant-side model must allow the tenant to specify different bandwidth demands for different composites and logical resources.
+    The \gls{model:tenant} must allow the tenant to specify different bandwidth demands for different composites and \glspl{resource:composite:inp}.
     
     \item \label{requirements:model:topology}
-    The model must be able to describe any kind of network topology.
+    The \gls{model} must be able to describe any kind of network topology.
 
     \item \label{requirements:model:invariance}
-    The tenant-side model (and the corresponding \glspl{api}) must not change upon the release of new \gls{inp} solution or version.
+    The \gls{model:tenant} (and the corresponding \glspl{api}) must not change upon the release of new \gls{inp} solution or version.
     
     \item \label{requirements:model:translation}
-    The translation from composite requirements to logical resource requirements must be done by the \gls{rm} and not by the tenant application.
+    The translation from \gls{resource:composite} requirements to \gls{resource:logical} requirements must be done by the \gls{rm} and not by the tenant application.
 \end{enumerate}
