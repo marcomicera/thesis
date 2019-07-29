@@ -1,14 +1,16 @@
-CloudMirror \cite{cloudmirror} allows client applications to specify bandwidth and high availability guarantees.
+CloudMirror \cite{cloudmirror} is particularly interesting since it uses a very flexible and descriptive \gls{model} that will definitely influence the model proposed in \autoref{model_proposal}.
+It also allows client applications to specify bandwidth and high availability guarantees.
 
 \subsubsection{Motivation} \label{why_tag}
-Prior models are not suitable to represent interactive non-batch applications with very stringent bandwidth requirements.
+Prior \glspl{model} were not suitable to represent interactive non-batch applications with very stringent bandwidth requirements.
 Both the hose and the \gls{voc} model are inefficient as they over-allocate bandwidth.
 The main reason of why this happens is that both models \textit{aggregate} bandwidth requirements between different application components into a single hose: as a consequence, the \gls{vm} scheduler does not get to know the actual bandwidth needed between application components.
-At the opposite extreme there is the pipe model which, besides not exploiting statistical multiplexing, is not scalable since it requires a list of all bandwidth guarantees between pairs of \glspl{vm}.
+At the opposite extreme there is the pipe model, which specifies bandwidth guarantees between each and every pair of \glspl{vm}: besides not exploiting statistical multiplexing, it is clearly not scalable.
 This led CloudMirror \cite{cloudmirror} inventors to come up with a new model.
 
 \subsubsection{Tenant Application Graph} \label{tag_description}
-The \gls{tag} is a directed graph where each vertex represents an application component and links' weights represent the minimum requested bandwidth. Each vertex can have an optional \textit{size}, denoting the number of \glspl{vm} belonging to the component.
+The \gls{tag} is a directed graph where each vertex represents an application component and links' weights represent the minimum requested bandwidth.
+Each vertex can have an optional \textit{size}, denoting the number of \glspl{vm} belonging to the component.
 
 \begin{figure}[!htb]
     \centering
@@ -21,13 +23,11 @@ There are two types of edges:
     \item self-loop edges, that are equivalent a hose model and
     \item standard vertex-to-vertex edges
 \end{mylist}.
-A standard edge from $Tier 1$ to $Tier 2$ is labeled with an ordered pair of numbers $<SB_12, RB_12>$, indicating respectively the guaranteed bandwidth with which \glspl{vm} in $Tier 1$ can send traffic to \glspl{vm} in $Tier 2$ and the guaranteed bandwidth with which \glspl{vm} in $Tier 2$ can receive traffic from \glspl{vm} in $Tier 1$.
+A standard edge from $Tier 1$ to $Tier 2$ is labeled with an ordered pair of numbers $<SB_{12}, RB_{12}>$, indicating respectively the guaranteed bandwidth with which \glspl{vm} in $Tier 1$ can send traffic to \glspl{vm} in $Tier 2$ ($SB_{12}$) and the guaranteed bandwidth with which \glspl{vm} in $Tier 2$ can receive traffic from \glspl{vm} in $Tier 1$ ($RB_{12}$).
 
 \subsubsection{Model advantages}
-The edge label format $<S, R>$ allows the model to exploit statistical multiplexing, since $S$ can represent the peak of the sum of \gls{vm}-to-\gls{vm} demands instead of the (typically larger) sum of peak demands needed by the pipe model.
-\textbf{\textit{TO BE CONTINUED}} ... % TODO CloudMirror model
-
-% An heuristic \gls{vm} placement algorithm then tries to solve this NP-hard allocation problem.
+The edge label format $<SB, RB>$ allows the model to exploit statistical multiplexing, since $SB$ can represent the peak of the sum of \gls{vm}-to-\gls{vm} demands instead of the sum of peak demands needed by the pipe model.
+Also, since these values represent bandwidth demands between individual \glspl{vm}, there is no need to recompute those every time a \gls{tag} node (component) sees its number of \glspl{vm} change (i.e., scales up/down). 
 
 % \subsubsection{Characteristics}
     % Architecture:

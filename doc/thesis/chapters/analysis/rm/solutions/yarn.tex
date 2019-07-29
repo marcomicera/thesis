@@ -1,8 +1,9 @@
-\glsdesc{yarn_full} (for the sake of brevity: \glsdesc{yarn}) is the Resource Manager of \glsdesc{hadoop}, a framework for distributed processing across clusters.\par
+\glsdesc{yarn_full} (for the sake of brevity: \glsdesc{yarn}) is the \glsentrylong{rm} of \glsdesc{hadoop}, a framework for distributed processing across clusters.
+
 \glsdesc{hadoop} was initially an open source implementation of MapReduce \cite{mapreduce}, but then the programming model has been separated from the resource management function, resulting in an application-independent \gls{rm} known as \glsdesc{yarn}.
 
 \subsubsection{Entities}
-For each tenant application there is an \textit{Application Master} whose task is to
+Each tenant application has an \textit{Application Master} whose task is to
 \begin{mylist}
     \item manage the application life cycle and
     \item negotiate the resources that the application needs with the central \gls{rm}, making \glsdesc{yarn} a monolithic scheduler with no interference between tenant applications
