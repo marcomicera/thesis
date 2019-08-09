@@ -10,7 +10,7 @@ The workload can be distributed across schedulers in three different ways:
 
 \paragraph{Interference}
 Schedulers can concurrently ask for the same resources.
-In the pessimistic approach, different resources are offered to different schedulers, making it impossible for them to compete for the same resource: this of course represents a lack of parallelism, since resource offers are made by a logically centralized entity.
+In the pessimistic approach, different resources are offered to different schedulers, making it impossible for them to compete for the same resource: this, of course, represents a lack of parallelism, since resource offers are made by a logically centralized entity.
 Instead, the optimistic approach lets every scheduler claim the desired resources and only conflicting requests are denied, which of course introduces an overhead.
 
 \paragraph{Choice of resources}
@@ -20,11 +20,11 @@ Schedulers can pick amongst
     \item a subset of those
 \end{mylist}.
 When resources are divided into disjoint sets there will be no concurrency by definition.
-Making all resources available to all scheduler will make it easier for schedulers to place jobs with particularly stringent needs, and it is also useful when the scheduling decision must be taken based on overall state (e.g., the amount of free resources in the cluster).
+Making all resources available to all scheduler will make it easier for schedulers to place jobs with particularly stringent needs, and it is also useful when the scheduling decision must be taken based on overall state (e.g., the number of free resources in the cluster).
 
 \paragraph{Preemption}
 Schedulers can be either allowed to preempt other schedulers' job assignments or not.
-Allowing preemption brings a greater flexibility at the cost of interrupting an already-running job.
+Allowing preemption brings greater flexibility at the cost of interrupting an already-running job.
 Since all state-of-the-art \glspl{rm} support preemption, this design choice will be taken for granted and hence omitted when comparing different \glspl{rm} in \autoref{rm-comparison}.
 
 \paragraph{Allocation granularity}
@@ -33,5 +33,5 @@ Considering that jobs contain multiple tasks that can be scheduled on different 
     \item incrementally schedule tasks as soon as new resources become free or
     \item schedule a job only when all tasks can be scheduled on the spot
 \end{mylist}.
-Not all job types can exploit the incremental resource acquisition.
+Not all job types can exploit incremental resource acquisition.
 This technique can also bring the system to a deadlock in case there is no back-off mechanism that releases resources once a job cannot acquire all resources in a reasonable amount of time.

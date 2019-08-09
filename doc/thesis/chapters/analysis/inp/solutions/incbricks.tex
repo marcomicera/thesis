@@ -1,7 +1,7 @@
 IncBricks \cite{incbricks} is a hardware-software co-designed system for in-network caching: it makes use of network accelerators attached to programmable switches whenever complicated operations should be performed on payloads.
 Supporting multiple gigabytes of memory, network accelerators overcome the limited storage problem typical of programmable switches, which usually have a memory of tens of megabytes.
 
-\subsubsection{Details}
+\subsubsection{Details} \label{incbricks_details}
 \paragraph{Hardware}
 IncBricks \cite{incbricks} is composed by two components:
 \begin{mylist}
@@ -46,15 +46,15 @@ Storing the former information can be useful in case of failures since it is pos
 As soon as a failure is detected, the \gls{sdn} controller updates all the involved tables.
 
 \subsubsection{Implementation}
-The storage has been implemented using a bucket spilling hash table plus a hash index table
-\textbf{\textit{TO BE CONTINUED}} ... % IncBricks implementation
+Storage on network accelerators has been implemented as a fixed-size hash table (plus a hash index table) due to their limited memory space.
+As mentioned in \autoref{incbricks_details}, IncCache takes care of the storage system.\\
+A custom coherency protocol keeps track of all data owners in the network: every IncBox stores a \textit{global registration table} that maps a destination server for each possible key.
+This information is enough since IncBricks \cite{incbricks} ensures that there is a unique path of IncBox units for a given key.
+The \gls{sdn} controller will take care of updating those tables upon failures.
 
 \subsubsection{Minimum system requirements}
 Communicating nodes (\glspl{vm}) represent the leaves of the tree.
 Each path must include exactly one root switch.
-
-
-
 All things considered, it seems reasonable to state that the actual required topology is a chain starting from a leaf, passing through a root node and ending on another leaf.
 
 \begin{figure}[!htb]
@@ -68,4 +68,4 @@ The solution requires that the system has a centralized \gls{sdn} controller con
 The \gls{sdn} controller must set configure network devices in order for them to forward IncBricks \cite{incbricks} packets accordingly.
 
 \subsubsection{Conclusions}
-% TODO IncBricks conclusions
+Authors claim to be able to drop request latency by 30\% and to double throughput for 1024 byte values in a small-scale cluster with 24 servers, 2 switches and 4 network accelerators.

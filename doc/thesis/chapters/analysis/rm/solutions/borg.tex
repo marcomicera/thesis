@@ -1,9 +1,9 @@
 Borg \cite{borg} is the first container-management system developed by Google.
 Jobs are divided in two groups depending on their workload type (long-running and batch) and they were initially scheduled by a logically centralized controller called \textit{Borgmaster}.
-After Google developed the shared-state Omega \cite{omega} scheduler (analyzed in \autoref{omega}), Borg \cite{borg} adopted the shared-state architecture as well, hence being no more a monolithic solution.
+After Google developed the shared-state Omega \cite{omega} scheduler (analyzed in \autoref{omega}), Borg \cite{borg} adopted the shared-state architecture as well.
 
 \subsubsection{Scheduling}
-Each cell has its own logically centralized controller called \textit{Borgmaster}, which is essentially split in two parts:
+Each cell has its own logically centralized controller called \textit{Borgmaster}, which is essentially split into two parts:
 \begin{mylist}
     \item the scheduling part, consisting in one or more schedulers differentiated by the workload type they handle and
     \item a management unit in charge of handling client \glspl{rpc} and communicating with all other Borg \cite{borg} agents
@@ -11,7 +11,7 @@ Each cell has its own logically centralized controller called \textit{Borgmaster
 Schedulers mainly work on tasks rather than jobs.
 Tasks are scanned in a round-robin fashion and their priority is also taken into account.
 Schedulers must first find all available machines for the task to be scheduled (also considering those currently acquired by a task with lower priority) and then find the best machine amongst them all.
-This second part is done by taking into consideration not only user-specified preferences, but also data center global goals like minimizing the number of preempted tasks and allocating tasks on machines which already have the needed packages installed in order to reduce the installation time, which usually takes about 80\% of the total start-up latency.
+This second part is done by taking into consideration not only user-specified preferences but also data center global goals like minimizing the number of preempted tasks and allocating tasks on machines which already have the needed packages installed in order to reduce the installation time, which usually takes about 80\% of the total start-up latency.
 
 \subsubsection{Details}
 

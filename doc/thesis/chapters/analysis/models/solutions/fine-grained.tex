@@ -23,12 +23,12 @@ In conclusion, when sending a resource request to Oktopus \cite{oktopus} express
 % Paragraphs 3.2 and 5.4
 Borg \cite{borg} does not support any network abstraction and it only allows tenants to request resources by listing them explicitly.
 A scheduler first step's consists in finding the subset of machines on which the task could run, and while doing this, it does not consider any kind of aspect regarding the network.
-During the second step, namely \text{scoring}, which consists in finding the best subset of machines on which the task can be allocated, the only network aspect taken into consideration is the failure domain: tasks are allocated across failure domains (e.g., machines, racks, power domains) for fault-tolerance.
+During the second step, namely \text{scoring}, which consists in finding the best subset of machines on which the task can be allocated, the only network aspect that is taken into consideration is the failure domain: tasks are allocated across failure domains (e.g., machines, racks, power domains) for fault-tolerance.
 
 % \paragraph{Omega \texorpdfstring{\cite{omega}}{}}
 
 % \paragraph{Kubernetes \texorpdfstring{\cite{kubernetes}}{}}
 
 \paragraph{\glsdesc{yarn}}
-Besides containers properties, tenant applications issuing requests can include locality preferences (e.g., node-level, rack-level and global locality preferences).
-Exactly like Borg \cite{borg}, this is the only network aspect taken into consideration during a job placement.
+Besides containers properties, tenant applications issuing requests can include locality preferences (e.g., node-level, rack-level, and global locality preferences).
+Exactly like Borg \cite{borg}, this is the only network aspect taken into consideration during job placement.
