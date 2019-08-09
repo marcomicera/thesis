@@ -1,9 +1,9 @@
 Nowadays there exist several \gls{inp} solutions that allow tenants to improve their application performance in terms of different metrics: \textsc{Daiet} \cite{daiet} inventors claim to achieve an 86.9\%-89.3\% traffic reduction by performing data aggregation entirely in the network data plane.
-Other solutions like {NetChain \cite{netchain} and IncBricks \cite{incbricks} let programmable switches store data and process queries in order to cut end-to-end latency.
+Other solutions like {NetChain \cite{netchain} and IncBricks \cite{incbricks} let programmable switches store data and process queries to cut end-to-end latency.
 It is now even possible to provide guarantees to applications with specific requirements: for instance, CloudMirror \cite{cloudmirror} enables applications to reserve a minimum bandwidth.\par
 For the time being, it seems that there is still no valid resource allocation algorithm that takes into account the presence of a network having a data plane that supports (partially or completely) \gls{inp}.
 This thesis has mainly two goals:
 \begin{mylist}
     \item model and evaluate an \gls{api} through which applications can ask for \gls{inp} resources and % while providing guarantees (e.g., bandwidth). 
-    \item argue the importance of a scheduler which is able to reject \gls{inp} requests and propose their server-only equivalent when needed (e.g., high switch utilization) 
+    \item argue the importance of a scheduler which can reject \gls{inp} requests and propose their server-only equivalent when needed (e.g., high switch utilization) 
 \end{mylist}.
