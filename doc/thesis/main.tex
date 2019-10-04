@@ -10,6 +10,7 @@
 
 % Cover
 \input{cover/title.tex}
+% \afterpage{\blankpage}
 
 % Table of contents
 \tableofcontents
@@ -18,11 +19,11 @@
 % Chapters
 \chapter{Introduction} \label{introduction}
 \input{chapters/introduction/main.tex}
-\chapter{Background} \label{background}
+\chapter{Background} \label{background} % TODO background revision
 \input{chapters/background/main.tex}
 \chapter{Analysis} \label{analysis}
 \input{chapters/analysis/main.tex}
-\chapter{Requirements} \label{requirements}
+\chapter{Requirements} \label{requirements} % TODO 3.1 and 3.2 revision
 \input{chapters/requirements/main.tex}
 \chapter{Design} \label{design}
 \input{chapters/design/main.tex}
@@ -32,9 +33,9 @@
 \input{chapters/conclusions/main.tex}
 
 % Acronyms and glossaries
-% \setglossarypreamble[acronym]{Abbreviations section description.\\\par} % TODO
+% \setglossarypreamble[acronym]{Abbreviations section description.\\\par} % TODO abbr. desc.
 \printnoidxglossary[type=\acronymtype,title=Abbreviations,sort=word]
-% \setglossarypreamble[resources]{Resources glossary description.\\\par} % TODO
+% \setglossarypreamble[resources]{Resources glossary description.\\\par} % TODO glossary desc.
 \printnoidxglossary[type=resources,style=tree,sort=def] \label{resources_glossary}
 
 % References

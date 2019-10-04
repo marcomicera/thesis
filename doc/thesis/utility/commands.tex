@@ -50,3 +50,12 @@
 % Footnotes with symbols
 \usepackage[symbol]{footmisc}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% Blank pages
+\usepackage{afterpage}
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage
+}
