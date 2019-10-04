@@ -15,7 +15,7 @@
 \usepackage{pdfpages} % import PDFs
 \usepackage{verbatim} % multi-line comments
 
-% Checkmarks and xmarks
+% Checkmarks and x-marks
 \usepackage{amssymb}
 \usepackage{pifont}
 \definecolor{green}{RGB}{0,176,80}
@@ -28,11 +28,10 @@
 \renewcommand{\paragraph}[2][.]{\originalparagraph{#2#1}}
 
 % Glossaries and acronyms
-% section,numberedsection=autolabel
 \usepackage[acronym,toc]{glossaries} % package
 \input{utility/glossary/acronyms.tex} % acronyms
 \input{utility/glossary/resources.tex} % resources glossary
-\makeglossaries % computing the glossary and acronyms list
+\makenoidxglossaries % computing the glossary and acronyms list
 
 % In-line lists
 \usepackage[inline]{enumitem}

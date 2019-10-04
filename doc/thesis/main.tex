@@ -32,8 +32,10 @@
 \input{chapters/conclusions/main.tex}
 
 % Acronyms and glossaries
-\printglossary[type=\acronymtype,title=Abbreviations]
-\printglossary[type=resources,style=tree]
+% \setglossarypreamble[acronym]{Abbreviations section description.\\\par} % TODO
+\printnoidxglossary[type=\acronymtype,title=Abbreviations,sort=word]
+% \setglossarypreamble[resources]{Resources glossary description.\\\par} % TODO
+\printnoidxglossary[type=resources,style=tree,sort=def] \label{resources_glossary}
 
 % References
 \bibliographystyle{abbrv}

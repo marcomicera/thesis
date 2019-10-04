@@ -16,7 +16,7 @@ CloudMirror \cite{cloudmirror} requires a \gls{tag} as an input, which is a dire
 One possible model could be based on a \gls{tag}, describing network resources and \gls{inp} services as vertexes or links.
 Tenant applications could either use the same model used within the data center or a simplified one, adding another level of abstraction.
 
-\subsection{\texorpdfstring{\glsentryshort{inp}}{INP}-aware \texorpdfstring{\glsentrylongpl{rm}}{Resource Managers}}
+\subsection{\texorpdfstring{\glsentryshort{inp}}{INP}-aware \texorpdfstring{\glsentrylongpl{rm}}{Resource Managers}} \label{inp_aware_rms}
 \glsreset{rm}
-In order for everything to work, a network-aware placement algorithm in the \glsentrylong{rm} should be able to consider \gls{inp} and server resource conjunctly: this brings new challenges in the field of resource management as there are currently no \glspl{rm} which do this.
-One problem that could arise is due to the fact that \gls{inp} resources are typically very limited in a data center: chapter ? will discuss the importance of an \gls{rm} which is flexible enough to propose alternatives based on the current utilization of \gls{inp} and server resources, since one type can become a bottleneck for the other. % TODO
+In order for everything to work, a network-aware placement algorithm in the \glsentrylong{rm} should be able to consider \gls{inp} and server resource conjunctly: this brings new challenges in the field of resource management as there are currently no \glspl{rm} doing this.
+One problem that could arise is due to the fact that \gls{inp} resources are typically very limited in a data center: chapter ? will discuss the importance of an \gls{rm} which is flexible enough to propose alternatives based on the current utilization of \gls{inp} and server resources, since one kind of physical resource type can become the bottleneck for the other. % TODO
