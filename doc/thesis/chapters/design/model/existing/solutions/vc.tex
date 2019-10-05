@@ -1,4 +1,5 @@
 \paragraph{Quick recap}
+\glsreset{vc}
 The \gls{vc} model consists in $N$ \glspl{vm} connected to a single \textit{virtual switch} by a link of bandwidth $B$.
 \autoref{vcfigurerecap} shows an example.
 
@@ -10,8 +11,9 @@ The \gls{vc} model consists in $N$ \glspl{vm} connected to a single \textit{virt
 \end{figure}
 
 \paragraph{Requirements check}
-Expressing just one bandwidth value $B$ for all connections is obviously a big limitation which would cause a waste of bandwidth for those applications having nodes that require different amounts of bandwidth.
-This does not satisfy \xmark \ref{requirements:model:bandwidth}.
+Expressing just one value of bandwidth $B$ for all connections is indeed a big limitation.
+One could assign to $B$ the highest bandwidth demand in case different nodes require different amounts of bandwidth, but this is obviously a waste of resources.
+This does not completely satisfy \xmark \ref{requirements:model:bandwidth}.
 The \gls{tivc} model introduced in Proteus \cite{proteus} overcomes this limitation since bandwidth constraints are expressed by time-varying functions instead of a constant fixed value.
 Both models though 
 \begin{mylist}

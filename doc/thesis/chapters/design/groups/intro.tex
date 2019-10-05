@@ -1,0 +1,7 @@
+The \textit{template database} (\autoref{system_design_overview}) takes care of translating \glspl{resource:composite} into a set of \glspl{resource:logical} in order for the placement algorithm to work (\autoref{compositestological}).
+Ideally, the template database should map individual \gls{inp} solutions to their equivalent made out of \glspl{resource:logical} only, but this may be not feasible as the number of \gls{inp} solutions may increase in the future.
+That is to say, this approach is not scalable.
+
+\gls{inp} solutions may generally seem very different from each other as they pursue different goals, but grouping them based on common aspects might be a way to decrease the number of entries of a template database. % TODO explain this a bit better
+That said, there is no unique way of categorizing \gls{inp} solutions: for instance, one could group them based on their final purpose, on their logical architecture, and so on.
+This section tries to do this based on the latter aspect, using those \gls{inp} solutions described in \autoref{inp_solutions}.

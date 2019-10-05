@@ -11,7 +11,7 @@ The \gls{voc} model is the oversubscribed extension of the \gls{vc} one.
 
 \paragraph{Requirements check}
 The \gls{voc} model has the advantage of not requiring a virtual switch of bandwidth $N \cdot B$, that could be unpractical when $N$ is particularly large.
-When a tenant application issues a resource request using a \gls{voc}, it just requests for the $<N, B, S, O>$ tuple, being respectively
+When a tenant application issues a resource request using a \gls{voc}, it requests for a $<N, B, S, O>$ tuple, being respectively
 \begin{mylist}
     \item the number of \glspl{vm},
     \item the bandwidth needed for intra-group communication,
@@ -23,7 +23,7 @@ Furthermore, the two-layer logical tree topology might not suit perfectly for ap
 The \gls{voc} model still does not support \gls{resource:logical:switch} requests (\xmark \ref{requirements:model:tenant:logical}).
 
 \paragraph{A possible variant}
-The two limitations previously mentioned can obviously be overcome by allowing to specify
+The two limitations previously mentioned can be obviously overcome by allowing tenants to specify
 \begin{mylist}
     \item \glspl{resource:logical:switch} (satisfying \cmark \ref{requirements:model:tenant:logical})
     \item different bandwidth demands for different groups (satisfying \cmark \ref{requirements:model:bandwidth}) and
@@ -38,8 +38,8 @@ The corresponding variant is shown in \autoref{fig:vocmod}.
     \label{fig:vocmod}
 \end{figure}
 
-However though, tenant applications still
+However, tenant applications still
 \begin{mylist}
     \item cannot express any kind of switch topology (e.g., a switch loop for an in-network \gls{dht} chord), violating \xmark \ref{requirements:model:topology}, and
-    \item convert \gls{inp} high-level requirements (e.g., in-network total cache size, lock requests per second, …) into switch resource requirements (\xmark \ref{requirements:model:translation})
+    \item convert \gls{inp} high-level requirements (e.g., in-network total cache size, lock requests per second, etc.) into switch resource requirements (\xmark \ref{requirements:model:translation})
 \end{mylist}.

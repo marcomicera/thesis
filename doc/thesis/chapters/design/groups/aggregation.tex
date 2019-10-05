@@ -1,29 +1,15 @@
-Examples:
-\begin{itemize}
-    \item Daiet \cite{daiet}
-    \item SHArP \cite{sharp}
-\end{itemize}
-Network devices must:
-\begin{itemize}
+Two key examples of \gls{inp} solutions that might belong to such a group are Daiet \cite{daiet} and SHArP \cite{sharp}.
+Usually \glslink{resource:physical:switch}{network devices} must
+\begin{mylist}
     \item form a tree whose root is connected to data consumers and whose leaves are connected to data producers
-    \begin{itemize}
-        \item Daiet \cite{daiet}: just one data consumer
-        \item SHArP \cite{sharp}: one or more data consumers
-    \end{itemize}
     \item dedicate part of their local memory to store a key-value map
     \item be able to perform basic operations on data, such as writing and hashing
     \item wait for all its children to send aggregated data
-\end{itemize}
-Data producers must:
-\begin{itemize}
-    \item be connected to exactly one tree leaf
-\end{itemize}
-Data consumer(s) must:
-\begin{itemize}
-    \item be connected to the tree root
-\end{itemize}
-A special unit:
-\begin{itemize}
-    \item Daiet \cite{daiet}: must push flow rules to all switches belonging to at least one tree. It is the \gls{sdn} controller.
-    \item SHArP \cite{sharp}: must act as a \gls{rm}, dedicating SHArP \cite{sharp} resources to those entities who request for them. It must not necessarily be the \gls{sdn} controller.
-\end{itemize}
+\end{mylist}.
+Then of course single \gls{inp} solutions may vary for different aspects: for instance, SHArP \cite{sharp} supports multiple data consumers, while Daiet \cite{daiet} expects only one.
+
+Data producers must be connected to exactly one tree leaf, and data consumer(s) must be connected to the tree root.
+
+Daiet \cite{daiet} and SHArP \cite{sharp} differ a lot when it comes to nodes management.
+In Daiet \cite{daiet}, the \gls{sdn} controller must push flow rules to all switches belonging to at least one tree.
+On the other hand, SHArP \cite{sharp} has a special unit (not necessarily be the \gls{sdn} controller) that acts like a sort of \gls{rm}, dedicating SHArP \cite{sharp} resources to those entities who request for them.
