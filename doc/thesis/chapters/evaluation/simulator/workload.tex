@@ -1,0 +1,31 @@
+The lack of workloads containing \gls{inp} requests (and furthermore, of \glspl{resource:composite}) represents indeed a big limitation.
+To keep things easy, \gls{inp} requests are randomly generated according to the generic groups described in \autoref{generic_groups}.
+The percentage of \gls{inp} request injected in the workload is kept as a parameter sweep, so it is possible to observe how simulations differ with different amount of \gls{inp} requests.
+
+\paragraph{Tweaks}
+\glsreset{stc}
+Many factors come into play when generating \gls{inp} requests from classic \glslink{resource:logical:server}{servers}-only workloads.
+One key aspect is the reduction of server tasks once an \gls{inp} solution is introduced: it will be called \textbf{\gls{stc}}.
+A formal definition could be the following:
+
+\begin{equation}
+\label{stc_formula}
+\gls{stc}=\dfrac{\#server\ tasks\ without\ \gls{inp}}{\#server\ tasks\ with\ \gls{inp}}
+\end{equation}
+
+% TODO STC sweep?
+Undoubtedly, the \gls{stc} value will heavily affect simulations and its value depends on the specific \gls{inp} solution being used.
+For simplicity, the \gls{stc} value will be fixed to $5$. % TODO fix STC value
+In real environments, tenant applications will directly include \gls{inp} solutions in their request.
+The \gls{stc} might only be useful in case the scheduler is smart enough to propose alternatives to \glslink{resource:logical:server}{servers}-only requests, in which case it will have to compute its value based on all the \gls{inp} solutions included in the offer as well as other factors.
+
+Another aspect to take into consideration is the number of switch tasks to generate when creating \gls{inp} requests.
+This also depends on the specific \gls{inp} solutions being used, but for simplicity, is it logarithmically proportional to the number of server tasks to which it is directly connected to in the \gls{etag}. % TODO include details?
+
+\paragraph{Template database}
+Some of the \glslink{resource:logical:server}{servers}-only requests are enhanced with \glspl{resource:composite:inp}.
+More specifically, \gls{resource:logical:server} requirements will see their number of server tasks reduced by \gls{stc}.
+Then, a simple \gls{resource:composite:inp} will be inserted in the \gls{etag} and connected to these server task groups.
+According to the \gls{inp} solutions analysis \autoref{inp_solutions}, NetChain \cite{netchain} and Daiet \cite{daiet} \glspl{resource:composite} expect a single "data producer and consumer" node, while IncBricks \cite{incbricks} and SHArP \cite{sharp} \glspl{resource:composite} stay in between two distinct producer and consumer nodes.
+Therefore, the simulator splits the server task group in two in case the randomly-generated \gls{inp} solution belongs to the latter group.
+% TODO composites figures?
