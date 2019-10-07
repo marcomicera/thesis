@@ -1,6 +1,7 @@
 ## Windows desktop.ini files
 **/desktop.ini
 
+.~lock.*
 traces/
 
 ## Core latex/pdflatex auxiliary files:
