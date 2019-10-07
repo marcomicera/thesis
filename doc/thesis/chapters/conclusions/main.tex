@@ -1,9 +1,33 @@
-% TODO thesis conclusion
+Based on the results achieved in \autoref{results} and on the analysis of network-aware \glspl{rm} in \autoref{rm_network_awereness}, this chapter aims to foresee some features that an ideal fully-\gls{inp} aware should have, as well as some open problems in the \gls{inp} resource management field.
 
-% 1. "On Tackling" has the con of not placing server and switches conjunctly, during the same MCMF round
-% 2. RMs should propose server-only alternatives
-% 3. Too many factors to be considered: 
-    % STC value
-    % actual number of needed switch tasks
-    % INP workload is missing
-    % INP has service (NetChain) and batch jobs as well
+\section{Fully \texorpdfstring{\glsentryshort{inp}}{INP}-aware \texorpdfstring{\glsentryshort{rm}}{RM} features}
+
+% "On Tackling" has the con of not placing server and switches conjunctly, during the same round
+\paragraph{Conjunct placement}
+As mentioned in \autoref{network_resources-aware_rms}, \cite{ontackling} considers both \glslink{resource:logical:switch}{server} and \glspl{resource:logical:switch} during allocation, but it does not place them during the same scheduling round.
+The drawback of not scheduling these two kinds of resources conjunctly bring the placement algorithm to derive a sub-optimal placement, as explained in \autoref{network_resources-aware_rms}.
+
+Ideally, a \gls{rm} should allocate a job considering its \glslink{resource:logical:switch}{server} and \glspl{resource:logical:switch} at the same time, i.e., during the same placement round.
+
+% RMs should propose server-only alternatives
+\paragraph{\gls{inp} alternatives}
+The results reported in \autoref{results} show an underutilization of \glspl{resource:physical} depending on the amount of tenant requests containing \glspl{resource:composite:inp}.
+
+To maximize the relative minimum \gls{resource:physical} utilization, the \gls{rm} would need to adjust the ratio of \gls{inp} requests over \glslink{resource:logical:server}{servers}-only ones.
+It is expected that \glspl{resource:physical:switch} will become the bottleneck of the system more easily, due to their limited amount compared to \glslink{resource:physical:server}{server} ones.
+For this reason, \glspl{rm} should be able to propose alternatives to \glspl{resource:composite:inp} made out of \glspl{resource:logical:server} or \glspl{resource:composite:server} only, as soon as \glspl{resource:physical:switch} become heavily utilized.
+Those alternatives could be stored, for instance, in the same \textit{template database} (\autoref{system_design_overview}) used to translate \glspl{resource:composite:inp} into a set of \glspl{resource:logical:switch}.
+
+\section{Open problems}
+\glsreset{stc}
+% STC
+Some of the important metrics used in \autoref{evaluation} are still unknown due to the lack of operational \glspl{rm} that handle \gls{inp} requests.
+In order for the system designed in \autoref{design} to work, the performance improvement of all \gls{inp} solutions in the \textit{template database} must be reduced to a single number that represents the reduction of \glslink{resource:logical:server}{server} tasks after the introduction of the \gls{resource:composite:inp}: the \gls{stc}.
+
+% Number of needed switch tasks
+Moreover, there should be a precise way of determining the amount of \glslink{resource:logical:switch}{switch} tasks needed to implement an \gls{resource:composite:inp}, and this could depend on a lot of factors like the set nodes to which the \gls{resource:composite:inp} is connected to in the \gls{etag}, its high-level properties, etc.
+
+% INP service and batch composites
+Another key aspect to consider is the type of life cycle that different \gls{inp} solutions might have.
+Similarly to \glslink{resource:logical:server}{server} requests, batch (short-term) and service (long-term) jobs may need different scheduling policies.
+\gls{inp} solutions should also be categorized on the same basis, e.g., NetChain \cite{netchain} as a service \gls{resource:composite:inp} (since most likely it will be running for a long time, serving multiple \glslink{resource:logical:server}{server} tasks) and Daiet \cite{daiet} or SHArP \cite{sharp} as batch.

@@ -6,13 +6,13 @@ The taxonomy introduced in \autoref{rm_taxonomy} has been used for this categori
 \begin{tabular}{lll}
 
 \multicolumn{3}{c}{\textbf{Resource Managers: quick summary}} \\ \hline
-\multicolumn{1}{l|}{\textbf{Borg \cite{borg}}} 
-                                   & Scheduling architecture      & Shared-state            \\ \cline{2-3} 
+\multicolumn{1}{l|}{First \textbf{Borg \cite{borg}} version} 
+                                   & Scheduling architecture      & Monolithic              \\ \cline{2-3} 
 \multicolumn{1}{l|}{}              & Scheduling work partitioning & Specialized clusters    \\ \cline{2-3} 
-\multicolumn{1}{l|}{}              & Interference                 & Optimistic approach     \\ \cline{2-3} 
+\multicolumn{1}{l|}{}              & Interference                 & None                    \\ \cline{2-3} 
 \multicolumn{1}{l|}{}              & Choice of resources          & All cluster resources   \\ \cline{2-3}  
 % \multicolumn{1}{l|}{}              & Preemption                   & Yes                     \\ \cline{2-3} 
-\multicolumn{1}{l|}{}              & Allocation granularity       & ???                     \\ \cline{2-3}
+\multicolumn{1}{l|}{}              & Allocation granularity       & Incremental              \\ \cline{2-3}
 
 \multicolumn{3}{c}{} \\ \hline
 \multicolumn{1}{l|}{\textbf{Omega \cite{omega}}} 
@@ -26,16 +26,16 @@ The taxonomy introduced in \autoref{rm_taxonomy} has been used for this categori
 \multicolumn{3}{c}{} \\ \hline
 \multicolumn{1}{l|}{\textbf{\glsdesc*{yarn}}}
                                    & Scheduling architecture      & Monolithic              \\ \cline{2-3} 
-\multicolumn{1}{l|}{}              & Scheduling work partitioning & ---                     \\ \cline{2-3} 
+\multicolumn{1}{l|}{}              & Scheduling work partitioning & None                    \\ \cline{2-3} 
 \multicolumn{1}{l|}{}              & Interference                 & No interference         \\ \cline{2-3} 
 \multicolumn{1}{l|}{}              & Choice of resources          & All cluster resources   \\ \cline{2-3} 
 % \multicolumn{1}{l|}{}              & Preemption                   & Yes                     \\ \cline{2-3} 
-\multicolumn{1}{l|}{}              & Allocation granularity       & ???                     \\ \cline{2-3}
+\multicolumn{1}{l|}{}              & Allocation granularity       & Incremental              \\ \cline{2-3}
 
 \multicolumn{3}{c}{} \\ \hline
 \multicolumn{1}{l|}{\textbf{Mesos \cite{mesos}}} 
                                    & Scheduling architecture      & Two-level               \\ \cline{2-3} 
-\multicolumn{1}{l|}{}              & Scheduling work partitioning & ???                     \\ \cline{2-3} 
+\multicolumn{1}{l|}{}              & Scheduling work partitioning & Load balancing          \\ \cline{2-3} 
 \multicolumn{1}{l|}{}              & Interference                 & Pessimistic approach    \\ \cline{2-3} 
 \multicolumn{1}{l|}{}              & Choice of resources          & Subset of resources     \\ \cline{2-3} 
 % \multicolumn{1}{l|}{}              & Preemption                   & Yes                     \\ \cline{2-3} 
@@ -46,5 +46,3 @@ The taxonomy introduced in \autoref{rm_taxonomy} has been used for this categori
 \caption{Resource Managers comparison table using the taxonomy introduced in \autoref{rm_taxonomy}}
 \label{rm-comparison-table}
 \end{table}
-
-% TODO RMFs comparison

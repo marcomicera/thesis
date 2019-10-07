@@ -6,7 +6,7 @@ This simulator emulates \glspl{resource:physical:switch} besides \glslink{resour
 The simulator can support any kind of data center network architecture, but a \textit{fat-tree} has been used for this evaluation, which is a very common topology for data centers to use.
 % TODO fat-tree picture?
 
-This fat-tree has three layers of \glslink{resource:physical:switch}{switches}: \textit{core}, \textit{aggregation} and a last one which is usually called \textit{edge}, \textit{layer} or just simply \gls{tor} \glslink{resource:physical:switch}{switches}.
+This fat-tree has three layers of \glslink{resource:physical:switch}{switches}: \textit{core}, \textit{aggregation} and a last one which is usually called \textit{edge}, \textit{layer}, \textit{access} or just simply \gls{tor} \glslink{resource:physical:switch}{switches}.
 Being $k$ the number of \textit{pods} in the topology, a fat-tree contains $(k/2)^2$ core \glslink{resource:physical:switch}{switches}, $k^2/2$ aggregation \glslink{resource:physical:switch}{switches}, $k^2/2$ \gls{tor} \glslink{resource:physical:switch}{switches}, and supports up to $k^3/4$ \glslink{resource:physical:server}{servers}.
 
 \paragraph{\Glspl{resource:physical:switch}} \label{simulator_switch_resources}
@@ -14,7 +14,7 @@ Being $k$ the number of \textit{pods} in the topology, a fat-tree contains $(k/2
 For the sake of simplicity, \glslink{resource:physical:switch}{physical switches} have a single numerical dimension called \gls{cu}.
 This assumption does not affect this evaluation's results and it makes the scheduling algorithm a bit simpler.
 Increasing the number of \glslink{resource:physical:switch}{switch} dimensions is trivial since the simulator already supports multiple dimensions for \glslink{resource:physical:server}{servers}, namely CPU and memory.
-% TODO No edge resources as it would complicate...
+\Glspl{resource:logical:edge} have been ignored to simplify the placement algorithm.
 
 \glslink{resource:physical:switch}{Switches} are also characterized by a \textit{property map}, that ultimately suggests which kinds of \gls{inp} solutions they're able to run.
 In this evaluation, properties and \gls{inp} solutions coincide (e.g., \glslink{resource:physical:switch}{switch} $A$ supports \gls{inp} solutions $X$, $Y$ and $Z$), but these properties might be more appropriately extended to any other kind of hardware property that distinguish that \glslink{resource:physical:switch}{switch} in the data center (e.g., CPU architecture, supported data plane programming language, etc.).

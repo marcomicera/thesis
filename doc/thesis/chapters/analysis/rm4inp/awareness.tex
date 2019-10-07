@@ -10,14 +10,13 @@ Some examples of \glspl{vm} proximity-aware \glspl{rm} are Omega \cite{omega}, \
 Some \glspl{rm} like CloudMirror \cite{cloudmirror}, Oktopus \cite{oktopus}, Kraken \cite{kraken} and Proteus \cite{proteus} allow tenants to specify bandwidth demands.
 These \glspl{rm} let tenants express their requests by using "virtual network" \glslink{model:tenant}{models} like \glspl{vc}, \glspl{tivc}, \glspl{voc} and \glspl{tag}.
 
-% TODO What did I mean here?
-% Oktopus \cite{oktopus} and Kraken \cite{kraken} assume that every \gls{vm} can be placed on every physical server, completely ignoring server-local resource requirements.
-% This is not acceptable in a real-world scenario in which different logical server resources have different resource requirements.
-It is also worth to notice that Kraken \cite{kraken} allows tenants to \textit{upgrade} their bandwidth requirements, causing the migration of \glspl{vm} that have been previously allocated in parts of the data center in which the new bandwidth requirements could not be satisfied anymore.
+Oktopus \cite{oktopus} and Kraken \cite{kraken} assume that every \gls{vm} can be placed on every physical server (i.e., \textit{\gls{vm} slots} instead of dealing with \glslink{resource:physical}{resource} dimensions), completely ignoring server-local resource requirements.
+This is not acceptable in a real-world scenario in which different \glspl{resource:logical:server} have different \glslink{resource:physical}{resource} requirements.
 
+It is also worth to notice that Kraken \cite{kraken} allows tenants to \textit{upgrade} their bandwidth requirements, causing the migration of \glspl{vm} that have been previously allocated in parts of the data center in which the new bandwidth requirements could not be satisfied anymore.
 Still, none of these \glspl{rm} is able to manage any kind of switch resources.
 
-\paragraph{Network resources-aware}
+\paragraph{Network resources-aware} \label{network_resources-aware_rms}
 The most interesting group consists in those \glspl{rm} that are actually aware of \glslink{resource:physical:switch}{network resources}.
 At the time of writing, there seems to be only one embedding solution that belongs to this group, namely the one introduced in "On tackling virtual data center embedding problem" \cite{ontackling} by Rabbani, Md Golam, et al. presented in the \textit{IM 2013: IFIP/IEEE International Symposium on Integrated Network Management} conference.
 This solution allows tenants to explicitly specify
