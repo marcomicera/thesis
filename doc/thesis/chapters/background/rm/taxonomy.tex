@@ -11,7 +11,7 @@ The workload can be distributed across schedulers in three different ways:
 \paragraph{Interference}
 Schedulers can concurrently ask for the same resources.
 In the pessimistic approach, different resources are offered to different schedulers, making it impossible for them to compete for the same resource: this, of course, represents a lack of parallelism, since resource offers are made by a logically centralized entity.
-Instead, the optimistic approach lets every scheduler claim the desired resources and only conflicting requests are denied, which of course introduces an overhead.
+Instead, the optimistic approach lets every scheduler claim any desired resources and only conflicting requests are denied, which of course introduces an overhead.
 
 \paragraph{Choice of resources}
 Schedulers can pick amongst
