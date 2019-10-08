@@ -1,11 +1,11 @@
-Based on the results achieved in \autoref{results} and on the analysis of network-aware \glspl{rm} in \autoref{rm_network_awereness}, this chapter aims to foresee some features that an ideal fully-\gls{inp} aware should have, as well as some open problems in the \gls{inp} resource management field.
+Based on the results achieved in \autoref{results} and on the analysis of network-aware \glspl{rm} in \autoref{rm_network_awereness}, this chapter aims to foresee some features that an ideal fully-\gls{inp} aware \glsentrylong{rm} should have, as well as some open problems in the \gls{inp} resource management field.
 
 \section{Fully \texorpdfstring{\glsentryshort{inp}}{INP}-aware \texorpdfstring{\glsentryshort{rm}}{RM} features}
 
 % "On Tackling" has the con of not placing server and switches conjunctly, during the same round
 \paragraph{Conjunct placement}
 As mentioned in \autoref{network_resources-aware_rms}, \cite{ontackling} considers both \glslink{resource:logical:switch}{server} and \glspl{resource:logical:switch} during allocation, but it does not place them during the same scheduling round.
-The drawback of not scheduling these two kinds of resources conjunctly bring the placement algorithm to derive a sub-optimal placement, as explained in \autoref{network_resources-aware_rms}.
+The drawback of not scheduling these two kinds of resources conjunctly causes the placement algorithm to derive a sub-optimal placement, as explained in \autoref{network_resources-aware_rms}.
 
 Ideally, an \gls{rm} should allocate a job considering its \glslink{resource:logical:switch}{server} and \glspl{resource:logical:switch} at the same time, i.e., during the same placement round.
 
@@ -22,7 +22,7 @@ Those alternatives could be stored, for instance, in the same \textit{template d
 \glsreset{stc}
 % STC
 Some of the important metrics used in \autoref{evaluation} are still unknown due to the lack of operational \glspl{rm} that handle \gls{inp} requests.
-In order for the system designed in \autoref{design} to work, the performance improvement of all \gls{inp} solutions in the \textit{template database} must be reduced to a single number that represents the reduction of \glslink{resource:logical:server}{server} tasks after the introduction of the \gls{resource:composite:inp}: the \gls{stc}.
+In order for \glspl{rm} to be able to propose alternatives, the performance improvement of all \gls{inp} solutions in the \textit{template database} must be reduced to a single number that represents the reduction of \glslink{resource:logical:server}{server} tasks after the introduction of the \gls{resource:composite:inp}: the \gls{stc}.
 
 % Number of needed switch tasks
 Moreover, there should be a precise way of determining the number of \glslink{resource:logical:switch}{switch} tasks needed to implement an \gls{resource:composite:inp}, and this could depend on a lot of factors like the set nodes to which the \gls{resource:composite:inp} is connected to in the \gls{etag}, its high-level properties, etc.

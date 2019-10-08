@@ -16,11 +16,12 @@ A formal definition could be the following:
 % TODO STC sweep?
 Undoubtedly, the \gls{stc} value will heavily affect simulations and its value depends on the specific \gls{inp} solution being used.
 For simplicity, the \gls{stc} value will be fixed to $5$. % FIXME STC value
-In real environments, tenant applications will directly include \gls{inp} solutions in their request.
-The \gls{stc} might only be useful in case the scheduler is smart enough to propose alternatives to \glslink{resource:logical:server}{servers}-only requests, in which case it will have to compute its value based on all the \gls{inp} solutions included in the offer as well as other factors.
+
+In real environments, tenant applications will directly include \gls{inp} solutions in their requests.
+The \gls{stc} might only be useful in case the scheduler is smart enough to propose alternatives to \glslink{resource:logical:server}{servers}-only requests, in which case the scheduler will have to compute the \gls{stc} value of a job based on all the \gls{inp} solutions included in the offer as well as other factors.
 
 Another aspect to take into consideration is the number of switch tasks to generate when creating \gls{inp} requests.
-This also depends on the specific \gls{inp} solutions being used, but for simplicity, is it logarithmically proportional to the number of server tasks to which it is directly connected to in the \gls{etag}. % TODO include details?
+This also depends on the specific \gls{inp} solutions being used, but for simplicity, it is logarithmically proportional to the number of server tasks to which it is directly connected to in the \gls{etag}. % TODO include details?
 
 \paragraph{Template database}
 Some of the \glslink{resource:logical:server}{servers}-only requests are enhanced with \glspl{resource:composite:inp}.

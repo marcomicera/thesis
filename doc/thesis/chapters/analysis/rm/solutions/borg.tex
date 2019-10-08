@@ -18,7 +18,7 @@ This second part is done by taking into consideration not only user-specified pr
 \paragraph{Jobs}
 Jobs in Borg \cite{borg} are split into multiple tasks that run within a single cell: tasks belonging to one job cannot be spread amongst multiple cells in the same cluster.
 In fact, Borg \cite{borg} only operates on cells.
-Each job has some properties such as a name, an owner, and most importantly, constraints about \textit{machines} (e.g., processor architecture, etc.) which will determine where its tasks will be scheduled.
+Each job has some properties such as a name, an owner, and most importantly, constraints about \textit{machines} (e.g., processor architecture, etc.) which will affect its tasks placement.
 Tasks instead have \textit{resource} requirements (e.g., CPU cores, RAM, etc.) expressed in terms of \textit{quotas} (an array of resource quantities).
 Task properties can be modified at run-time by the job owner: this is done by pushing a new job configuration file to Borg \cite{borg} and ordering the scheduler to update the involved tasks via a non-atomic transaction.
 Most of the workload in Borg \cite{borg} run in containers rather than \glspl{vm} to avoid the virtualization overhead.

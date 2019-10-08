@@ -3,11 +3,12 @@
     % Also network resources
         % Uniform compute units (CU) and properties
 This simulator emulates \glspl{resource:physical:switch} besides \glslink{resource:physical:server}{server ones}.
-The simulator can support any kind of data center network architecture, but a \textit{fat-tree} has been used for this evaluation, which is a very common topology for data centers to use. An example of a fat-tree topology is depicted in \autoref{fig:fattree}.
+It can support any kind of data center network architecture.
+Specifically, a \textit{fat-tree} has been used for this evaluation, which is a very common topology for data centers to use. An example of a fat-tree topology is depicted in \autoref{fig:fattree}.
 \begin{figure}[!htb]
     \centering
     \usebox{\fattree}
-    \caption{The fat-tree topology}
+    \caption{A fat-tree topology with 4 \textit{pods}}
     \label{fig:fattree}
 \end{figure}
 
@@ -21,6 +22,6 @@ This assumption does not affect this evaluation's results and it makes the sched
 Increasing the number of \glslink{resource:physical:switch}{switch} dimensions is trivial since the simulator already supports multiple dimensions for \glslink{resource:physical:server}{servers}, namely CPU and memory.
 \Glspl{resource:logical:edge} have been ignored to simplify the placement algorithm.
 
-\glslink{resource:physical:switch}{Switches} are also characterized by a \textit{property map}, that ultimately suggests which kinds of \gls{inp} solutions they're able to run.
-In this evaluation, properties and \gls{inp} solutions coincide (e.g., \glslink{resource:physical:switch}{switch} $A$ supports \gls{inp} solutions $X$, $Y$, and $Z$), but these properties might be more appropriately extended to any other kind of hardware property that distinguishes that \glslink{resource:physical:switch}{switch} in the data center (e.g., CPU architecture, supported data plane programming language, etc.).
-In general, a switch task requesting for property $P$ will only be allocated on a \glslink{resource:physical:switch}{switch} if it supports that property $P$.
+\glslink{resource:physical:switch}{Switches} are also characterized by a \textit{property map}, that ultimately suggests which kinds of \gls{inp} solutions they are able to run.
+In this evaluation, properties and \gls{inp} solutions coincide (e.g., \glslink{resource:physical:switch}{switch} $A$ supports \gls{inp} solutions $X$, $Y$, and $Z$), but these properties might be more appropriately extended to any other kind of hardware property that distinguish \glslink{resource:physical:switch}{switches} in the data center (e.g., CPU architecture, supported data plane programming language, etc.).
+In general, a switch task requesting for property $P$ will only be allocated on a \glslink{resource:physical:switch}{switch} if it supports that same property $P$.
