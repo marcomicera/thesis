@@ -1,6 +1,6 @@
 \paragraph{Quick recap}
 \glsreset{vc}
-The \gls{vc} model consists in $N$ \glspl{vm} connected to a single \textit{virtual switch} by a link of bandwidth $B$.
+The \gls{vc} model consists of $N$ \glspl{vm} connected to a single \textit{virtual switch} by a link of bandwidth $B$.
 \autoref{vcfigurerecap} shows an example.
 
 \begin{figure}[!htb]
@@ -17,7 +17,7 @@ This does not completely satisfy \xmark \ref{requirements:model:bandwidth}.
 The \gls{tivc} model introduced in Proteus \cite{proteus} overcomes this limitation since bandwidth constraints are expressed by time-varying functions instead of a constant fixed value.
 Both models though 
 \begin{mylist}
-    \item rely on a single virtual switch that is not suitable for tenant applications which require a more complex logical switch topology such as a chain or a tree (\xmark \ref{requirements:model:topology}) and
+    \item rely on a single virtual switch that is not suitable for tenant applications that require a more complex logical switch topology such as a chain or a tree (\xmark \ref{requirements:model:topology}) and
     \item do not support \gls{resource:logical:switch} requests (\xmark \ref{requirements:model:tenant:logical})
 \end{mylist}.
 

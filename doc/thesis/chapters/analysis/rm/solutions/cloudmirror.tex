@@ -4,8 +4,8 @@ It also allows client applications to specify bandwidth and high availability gu
 \subsubsection{Motivation} \label{why_tag}
 Prior \glspl{model} were not suitable to represent interactive non-batch applications with very stringent bandwidth requirements.
 Both the hose and the \gls{voc} model are inefficient as they over-allocate bandwidth.
-The main reason of why this happens is that both models \textit{aggregate} bandwidth requirements between different application components into a single hose: as a consequence, the \gls{vm} scheduler does not get to know the actual bandwidth needed between application components.
-At the opposite extreme there is the pipe model, which specifies bandwidth guarantees between each and every pair of \glspl{vm}: besides not exploiting statistical multiplexing, it is clearly not scalable.
+The main reason why this happens is that both models \textit{aggregate} bandwidth requirements between different application components into a single hose: as a consequence, the \gls{vm} scheduler does not get to know the actual bandwidth needed between application components.
+At the opposite extreme there is the pipe model, which specifies bandwidth guarantees between each pair of \glspl{vm}: besides not exploiting statistical multiplexing, it is clearly not scalable.
 This led CloudMirror \cite{cloudmirror} inventors to come up with a new model.
 
 \subsubsection{Tenant Application Graph} \label{tag_description}
@@ -20,7 +20,7 @@ Each vertex can have an optional \textit{size}, denoting the number of \glspl{vm
 
 There are two types of edges:
 \begin{mylist}
-    \item self-loop edges, that are equivalent a hose model and
+    \item self-loop edges, that are equivalent to a hose model and
     \item standard vertex-to-vertex edges
 \end{mylist}.
 A standard edge from $Tier 1$ to $Tier 2$ is labeled with an ordered pair of numbers $<SB_{12}, RB_{12}>$, indicating respectively the guaranteed bandwidth with which \glspl{vm} in $Tier 1$ can send traffic to \glspl{vm} in $Tier 2$ ($SB_{12}$) and the guaranteed bandwidth with which \glspl{vm} in $Tier 2$ can receive traffic from \glspl{vm} in $Tier 1$ ($RB_{12}$).

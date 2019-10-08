@@ -1,5 +1,5 @@
 SHArP \cite{sharp} stands for \textit{Scalable Hierarchical Aggregation Protocol}, and it defines a protocol for reduction operations.
-This solutions aims to accelerate \gls{hpc} applications by offloading some operations to the network. SHArP \cite{sharp} is targeted to support the two most used \glspl{api} in the \gls{hpc} area today: MPI \cite{mpi} and OpenSHMEM \cite{openshmem}.
+This solution aims to accelerate \gls{hpc} applications by offloading some operations to the network. SHArP \cite{sharp} is targeted to support the two most used \glspl{api} in the \gls{hpc} area today: MPI \cite{mpi} and OpenSHMEM \cite{openshmem}.
 The kind of operations that can be offloaded to the network are:
 \begin{mylist}
     \item MPI \cite{mpi} barrier, reduce and allreduce,
@@ -10,7 +10,7 @@ The kind of operations that can be offloaded to the network are:
 \subsubsection{Details}
 \paragraph{Entities}
 \glspl{an} are logical entities performing reduction operations.
-Such a node can either execute on a network device or on a server, and it is implemented as a daemon, namely \texttt{sharpd}.
+Such a node can either execute on a network device or a server, and it is implemented as a daemon, namely \texttt{sharpd}.
 
 \begin{figure}[!htb]
     \centering
@@ -28,7 +28,7 @@ Similarly to other in-network aggregation solutions like Daiet \cite{daiet}, dat
     \caption{SHArP's \texorpdfstring{\cite{sharp}}{} logical communication pattern}
 \end{figure}
 
-The protocol also introduces the concept of \textit{group}, consisting in a subset of physical hosts that are connected to the tree leaves: for instance, in MPI \cite{mpi} a group coincides with a \textit{communicator}.
+The protocol also introduces the concept of \textit{group}, consisting of a subset of physical hosts that are connected to the tree leaves: for instance, in MPI \cite{mpi} a group coincides with a \textit{communicator}.
 One aggregation tree supports multiple groups.
 
 Resources are managed by a special management entity called \gls{am}.
@@ -36,13 +36,13 @@ Faults and errors are always notified to this node, that will also take care of 
 The detection of faults and errors cannot be done using timeouts since \gls{hpc} \glspl{api} do not bound the duration of aggregation operations: this is why faults must be necessarily detected by monitoring.
 
 \paragraph{Data flow}
-Eventually, an host program will need to execute a job on multiple nodes.
-When the job is launched and all host processes have been created (e.g., a communicator in MPI \cite{mpi}), either the cluster resource manager (like Slurm \cite{slurm} or \glsdesc{ibm} Spectrum LSF) or an MPI \cite{mpi} launcher like \texttt{mpirun} will contact the \gls{am}, which will dedicate SHArP \cite{sharp} resources to the job and return back the list of these allocated resources.
+Eventually, a host program will need to execute a job on multiple nodes.
+When the job is launched and all host processes have been created (e.g., a communicator in MPI \cite{mpi}), either the cluster resource manager (like Slurm \cite{slurm} or \glsdesc{ibm} Spectrum LSF) or an MPI \cite{mpi} launcher like \texttt{mpirun} will contact the \gls{am}, which will dedicate SHArP \cite{sharp} resources to the job and return the list of these allocated resources.
 At this point, a SHArP \cite{sharp} group has been created.
 Each SHArP \cite{sharp} daemon \texttt{sharpd} running on every group member will establish a reliable connection to the dedicated leaf switch.
 The \gls{am} informs the \glspl{an} about the switch resources allocated to the application, not allowing it to exceed the allocation.\par
 Once connections have been established, all group members send an aggregation request message to their parent \gls{an}.
-Each \gls{an} waits for all its children requests before sending the aggregated data piggybacked on another aggregation request to the parent node.
+Each \gls{an} waits for all its children's requests before sending the aggregated data piggybacked on another aggregation request to the parent node.
 \glspl{an} temporarily maintain a data structure to track an aggregation operation's progress.\par
 As soon as the tree root node receives data from all its children, it performs the final aggregation and it sends the result to a destination, that could be
 \begin{mylist}
@@ -52,7 +52,7 @@ As soon as the tree root node receives data from all its children, it performs t
 In the former case, the aggregation tree is used to redistribute the result.
 
 \subsubsection{Implementation}
-SHArP \cite{sharp} has been implemented using InfiniBand \cite{infiniband} as communication standard with \glsdesc{switchib2} devices, which provide support for data reduce operations and for barriers.
+SHArP \cite{sharp} has been implemented using InfiniBand \cite{infiniband} as a communication standard with \glsdesc{switchib2} devices, which provide support for data reduce operations and for barriers.
 Nodes in the SHArP \cite{sharp} tree are InfiniBand \cite{infiniband} end nodes, and links are implemented using InfiniBand's \cite{infiniband} \textit{Reliable Connection}s.
 When distributing a result using a multicast address, though, an unreliable delivery mechanism is used.
 One \gls{an} can participate to at most 64 different aggregation trees.

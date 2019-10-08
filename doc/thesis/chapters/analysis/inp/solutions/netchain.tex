@@ -5,7 +5,7 @@ NetChain \cite{netchain} can process queries entirely in the network data plane,
 
 \subsubsection{Details}
 \paragraph{Packets}
-Custom UDP packets are used for queries, containing fields like \textit{operation}, \textit{key} and \textit{value}.
+Custom UDP packets are used for queries, containing fields like \textit{operation}, \textit{key}, and \textit{value}.
 Read and write queries only involve the network data plane, while insert and delete queries involve the network controller to set up entries in switch tables and to perform garbage collection, respectively.
 
 \begin{figure}[!htb]
@@ -15,7 +15,7 @@ Read and write queries only involve the network data plane, while insert and del
 \end{figure}
 
 This is acceptable since coordination services usually perform read and write queries on already-existing objects, e.g., locks.
-Each switch has its own IP address, and packet headers contain the list of addresses of switches to be traversed, allowing those to properly forward packets to the their successors (from head to tail for write queries and the opposite for read queries).
+Each switch has its own IP address, and packet headers contain the list of addresses of switches to be traversed, allowing those to properly forward packets to their successors (from head to tail for write queries and the opposite for read queries).
 \begin{figure}[!htb]
     \centering
     \usebox{\netchainsd}
@@ -25,8 +25,8 @@ This list of IP addresses is inserted by the client (a NetChain \cite{netchain} 
 
 \paragraph{Consistency}
 A variant of Chain Replication \cite{chainreplication} is used in the data plane to handle read and write queries and to ensure strong consistency, while switches reconfiguration is handled by the network control plane.
-The main difference with the standard Chain Replication \cite{chainreplication} protocol is that objects are stored on programmable switches instead of servers.
-Switches are logically connected together in order to form an oriented chain.
+The main difference from the standard Chain Replication \cite{chainreplication} protocol is that objects are stored on programmable switches instead of servers.
+Switches are logically connected to form an oriented chain.
 
 \begin{figure}[!htb]
     \centering
@@ -47,7 +47,7 @@ Each ring segment is stored by $f + 1$ virtual nodes allocated on different phys
 
 \subsubsection{Implementation}
 The network data plane has been programmed in P4 \cite{p4} while the controller has been coded in Python, it runs on a server and communicates with switches through the standard Python RPC library.
-Switches agents are Python processes who run in the switch OS. Some P4 \cite{p4} drawbacks were already discussed in \cref{p4_drawbacks}.\par
+Switches agents are Python processes that run in the switch OS. Some P4 \cite{p4} drawbacks were already discussed in \cref{p4_drawbacks}.\par
 The out-of-order UDP delivery problem is resolved by adding sequence numbers to write queries, hence serializing those operations, while the loss of packets is coped by \textit{client-side retries} based on timeouts.
 
 \subsubsection{Minimum system requirements}

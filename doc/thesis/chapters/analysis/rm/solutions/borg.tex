@@ -1,5 +1,5 @@
 Borg \cite{borg} is the first container-management system developed by Google.
-Jobs are divided in two groups depending on their workload type (long-running and batch) and they were initially scheduled by a logically centralized controller called \textit{Borgmaster}.
+Jobs are divided into two groups depending on their workload type (long-running and batch) and they were initially scheduled by a logically centralized controller called \textit{Borgmaster}.
 After Google developed the shared-state Omega \cite{omega} scheduler (analyzed in \autoref{omega}), Borg \cite{borg} adopted the shared-state architecture as well.
 
 \subsubsection{Scheduling}
@@ -11,12 +11,12 @@ Each cell has its own logically centralized controller called \textit{Borgmaster
 Schedulers mainly work on tasks rather than jobs.
 Tasks are scanned in a round-robin fashion and their priority is also taken into account.
 Schedulers must first find all available machines for the task to be scheduled (also considering those currently acquired by a task with lower priority) and then find the best machine amongst them all.
-This second part is done by taking into consideration not only user-specified preferences but also data center global goals like minimizing the number of preempted tasks and allocating tasks on machines which already have the needed packages installed in order to reduce the installation time, which usually takes about 80\% of the total start-up latency.
+This second part is done by taking into consideration not only user-specified preferences but also data center global goals like minimizing the number of preempted tasks and allocating tasks on machines which already have the needed packages installed to reduce the installation time, which usually takes about 80\% of the total start-up latency.
 
 \subsubsection{Details}
 
 \paragraph{Jobs}
-Jobs in Borg \cite{borg} are split into multiple tasks which run within a single cell: tasks belonging to one job cannot be spread amongst multiple cells in the same cluster.
+Jobs in Borg \cite{borg} are split into multiple tasks that run within a single cell: tasks belonging to one job cannot be spread amongst multiple cells in the same cluster.
 In fact, Borg \cite{borg} only operates on cells.
 Each job has some properties such as a name, an owner, and most importantly, constraints about \textit{machines} (e.g., processor architecture, etc.) which will determine where its tasks will be scheduled.
 Tasks instead have \textit{resource} requirements (e.g., CPU cores, RAM, etc.) expressed in terms of \textit{quotas} (an array of resource quantities).
@@ -32,10 +32,10 @@ Borg \cite{borg} schedulers are preemptive, and in order to contain the negative
 Tasks do not fully use their resources for their entire lifespan.
 This is why the \textit{Borgmaster} estimates every few seconds what is the actual amount of resources that each task needs and reclaims the unused resources to make them available for other tasks.
 This is done by periodically contacting Borg \cite{borg} agents running on each cluster machine, requesting for fine-grained resource consumption information.
-The initial estimated amount of resources actually needed by a task corresponds with its maximum limit, and it then decreases towards the actual usage.
-If the actual resource usage exceeds the estimation, than the latter is rapidly increased.
+The initial estimated amount of resources needed by a task corresponds with its maximum limit, and it then decreases towards the actual usage.
+If the actual resource usage exceeds the estimation, then the latter is rapidly increased.
 This technique justifies why Borg \cite{borg} inventors have noticed that dedicating clusters for different workload types is inconvenient.
-They showed how segregating long-running and batch jobs in different specialized clusters requires 20\% to 30\% more machines than having clusters who run both type of jobs using resource reclamation.
+They showed how segregating long-running and batch jobs in different specialized clusters requires 20\% to 30\% more machines than having clusters who run both types of jobs using resource reclamation.
 
 % \subsubsection{Characteristics}
     % Architecture:

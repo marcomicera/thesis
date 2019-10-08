@@ -1,8 +1,8 @@
-Both NetChain \cite{netchain} and IncBricks \cite{incbricks} make use of an distributed key-value map across \glslink{resource:physical:switch}{physical switches}, even if for a different purpose.
+Both NetChain \cite{netchain} and IncBricks \cite{incbricks} make use of a distributed key-value map across \glslink{resource:physical:switch}{physical switches}, even if for a different purpose.
 NetChain \cite{netchain} in fact implements an in-network coordination service, while IncBricks \cite{incbricks} simply caches data.
 
 \glslink{resource:physical:switch}{Network devices} must dedicate part of their local memory to store a distributed map.
-They also must form a chain: in case of IncBricks \cite{incbricks}, the two communication endpoints must be connected through this chain, while in NetChain \cite{netchain} this is not a requirement since coordination can involve more than two nodes (but \glslink{resource:physical:switch}{switches} must support coordination primitives).
+They also must form a chain: in IncBricks \cite{incbricks}, the two communication endpoints must be connected through this chain, while in NetChain \cite{netchain} this is not a requirement since coordination can involve more than two nodes (but \glslink{resource:physical:switch}{switches} must support coordination primitives).
 
 A query issuer is a \gls{resource:logical:server} and must know how to contact at least the head \glslink{resource:physical:switch}{switch}.
 In NetChain \cite{netchain}, query issuers might also directly contact the tail \glslink{resource:physical:switch}{switch}, and they must include the list of IP addresses of all \glslink{resource:physical:switch}{switches} belonging to the chain in their packets.

@@ -3,12 +3,12 @@ Supporting multiple gigabytes of memory, network accelerators overcome the limit
 
 \subsubsection{Details} \label{incbricks_details}
 \paragraph{Hardware}
-IncBricks \cite{incbricks} is composed by two components:
+IncBricks \cite{incbricks} is composed of two components:
 \begin{mylist}
-    \item IncBox, an hardware unit consisting of a network accelerator and a programmable switch, and
+    \item IncBox, a hardware unit consisting of a network accelerator and a programmable switch, and
     \item IncCache, a software system for coherent key-value storage
 \end{mylist}.
-Packets arriving to an IncBox device are first managed by the switch, which forwards the packet to the network accelerator only if it is labeled as an in-network cache one.
+Packets arriving at an IncBox device are first managed by the switch, which forwards the packet to the network accelerator only if it is labeled as an in-network cache one.
 
 \begin{figure}[!htb]
     \centering
@@ -38,7 +38,7 @@ Any other IncBox unit placed between these designated units won't cache data wit
 Then, for a given key and a given destination node, the \gls{sdn} controller establishes a unique path of designated IncBox units.
 Every IncBox unit in the system will get to know
 \begin{mylist}
-    \item the set of immediate designated successors (according to the tree topology) for every key it is responsible of and
+    \item the set of immediate designated successors (according to the tree topology) for every key it is responsible for and
     \item the unique successor used for a given destination and a given key
 \end{mylist}.
 This data is stored in the so-called \textit{global registration table}.
@@ -68,4 +68,4 @@ The solution requires that the system has a centralized \gls{sdn} controller con
 The \gls{sdn} controller must set configure network devices in order for them to forward IncBricks \cite{incbricks} packets accordingly.
 
 \subsubsection{Conclusions}
-Authors claim to be able to drop request latency by 30\% and to double throughput for 1024 byte values in a small-scale cluster with 24 servers, 2 switches and 4 network accelerators.
+Authors claim to be able to drop request latency by 30\% and to double throughput for 1024 byte values in a small-scale cluster with 24 servers, 2 switches, and 4 network accelerators.

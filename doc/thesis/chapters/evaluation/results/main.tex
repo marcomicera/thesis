@@ -1,12 +1,12 @@
-\autoref{fig:utilmultigraphfigure} shows moving averages of \gls{resource:physical} utilization across all dimensions of four different simulations in which the ratio of \gls{inp} requests over classic \glslink{resource:logical:server}{servers}-only requests vary from $0\%$ up to $100\%$.
+\autoref{fig:utilmultigraphfigure} shows moving averages of \gls{resource:physical} utilization across all dimensions of four different simulations in which the ratio of \gls{inp} requests over classic \glslink{resource:logical:server}{servers}-only requests varies from $0\%$ up to $100\%$.
 \glsreset{cu}
 Predictably, the more \gls{inp} requests tenants ask for, the more \glspl{cu} will be used.
 \glsreset{stc}
-Depending on the \gls{stc} value (\autoref{workload_tweaks}) and by the amount of switch tasks required by different \gls{inp} solutions, \glslink{resource:logical:server}{server} and \glslink{resource:logical:switch}{switch} utilization may drop/increase at different rates.
+Depending on the \gls{stc} value (\autoref{workload_tweaks}) and by the number of switch tasks required by different \gls{inp} solutions, \glslink{resource:logical:server}{server} and \glslink{resource:logical:switch}{switch} utilization may drop/increase at different rates.
 \begin{figure}[!htb]
     \centering
     \usebox{\utilmultigraphfigure}
-    \caption{\Gls{resource:physical} utilizations for different amounts of \gls{inp} requests}
+    \caption{\Gls{resource:physical} utilization for different amounts of \gls{inp} requests}
     \label{fig:utilmultigraphfigure}
 \end{figure}
 

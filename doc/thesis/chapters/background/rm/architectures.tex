@@ -1,6 +1,6 @@
 \paragraph{Monolithic}
 Probably the most simple scheduler architecture out there: a monolithic scheduler consists of a single instance scheduler applying the same scheduling algorithm for every incoming job (so there is no concurrency between resource requesters).
-A centralized scheduling logic can support more refined job placement.
+A centralized scheduling logic can support a more refined job placement.
 On the other hand, the absence of parallelism causes a higher latency with respect to other architectures.
 Although the single instance could distinguish among different job types hence treating those differently, its maintenance is not trivial, due to its single instance (and codebase) nature.
 

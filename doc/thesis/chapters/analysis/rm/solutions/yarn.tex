@@ -14,22 +14,22 @@ The \textit{Node Manager} must also periodically monitor resource availability a
 \subsubsection{Scheduling}
 Application Masters issue resource request to the \gls{rm}, containing containers properties and locality preferences.
 Upon receiving a resource request, the centralized scheduler generates containers using available resources periodically advertised by the nodes themselves.
-The outcome of this procedure is reported to the Application Master corresponding to the tenant application who initiated the request.
+The outcome of this procedure is reported to the Application Master corresponding to the tenant application that initiated the request.
 Application Masters are also informed upon inserting new nodes into the system.
 
 \subsubsection{Details}
 \paragraph{Preemption}
-The \gls{rm} can also ask to Application Masters to revoke some resources in case of a shortage.
-The application will then have a few choices: for instance it can yield containers that are less important or checkpoint its current status.
+The \gls{rm} can also ask Application Masters to revoke some resources in case of a shortage.
+The application will then have a few choices: for instance, it can yield containers that are less important or checkpoint its current status.
 If an application does not collaborate with the \gls{rm} upon receiving a \textit{revoking request}, the \gls{rm} will forcibly terminate those targeted containers.
 \paragraph{Failures}
 The \gls{rm} represents a single point of failure for the system and its restart causes the termination of all containers in the cluster, including all their Application Masters.
 Node failures are detected by the \gls{rm} using timeouts (nodes have to periodically contact the \gls{rm}).
-The \gls{rm} will then inform all Application Masters who are responsible for responsible for the application life cycle.
+The \gls{rm} will then inform all Application Masters who are responsible for the application life cycle.
 
 \subsubsection{Conclusions}
-Undoubtedly, \glsdesc{yarn} dedicates less attention to scalability due to its de facto monolithic scheduler: there are multiple Application Masters who just take care of the application life cycle and do not perform scheduling, which is done instead by a single \gls{rm}.\par
-However, \glsdesc{yarn} authors state that the centralized \gls{rm} can assure fairness, capacity and locality thanks to the central and global view that it has on the system.
+Undoubtedly, \glsdesc{yarn} dedicates less attention to scalability due to its de facto monolithic scheduler: multiple Application Masters just take care of the application life cycle and do not perform scheduling, which is done instead by a single \gls{rm}.\par
+However, \glsdesc{yarn} authors state that the centralized \gls{rm} can assure fairness, capacity, and locality thanks to the central and global view that it has on the system.
 They justify this by pointing out that \glsdesc{hadoop} is an open platform which lets different independent sources share the same cluster, unlike other "\textit{closed-world}" schedulers like Google Omega \cite{omega}.
 
 % \subsubsection{Characteristics}

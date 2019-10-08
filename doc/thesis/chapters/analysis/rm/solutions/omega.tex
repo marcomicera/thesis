@@ -5,10 +5,10 @@ Multiple schedulers were first introduced in Omega \cite{omega} and then in Borg
 
 \subsubsection{Scheduling}
 Omega \cite{omega} makes use of a data structure called \textit{cell state}, containing information about all the resource allocation in the cluster.
-Each cell has a shared copy of this data structure, and each scheduler is given a private, local, frequently-updated copy of cell state that it uses for making scheduling decisions.
-According to optimistic concurrency, once a scheduler makes a placement decision, it updates the shared copy of cell state with a transaction.
-Whether or not the transaction succeeds, a scheduler re-syncs its local copy of cell state afterwards and, if necessary, re-runs its scheduling algorithm and tries again.
-Omega \cite{omega} supports specialized schedulers: authors have showed the advantages of a MapReduce \cite{mapreduce} specialized scheduler in \cite{omega}.
+Each cell has a shared copy of this data structure, and each scheduler is given a private, local, frequently-updated copy of the cell state that it uses for making scheduling decisions.
+According to optimistic concurrency, once a scheduler makes a placement decision, it updates the shared copy of the cell state with a transaction.
+Whether or not the transaction succeeds, a scheduler re-syncs its local copy of the cell state afterward and, if necessary, re-runs its scheduling algorithm and tries again.
+Omega \cite{omega} supports specialized schedulers: authors have shown the advantages of a MapReduce \cite{mapreduce} specialized scheduler in \cite{omega}.
 
 \subsubsection{Conclusions}
 Since schedulers do not have access to all cluster resources, Mesos \cite{mesos} cannot support preemption across different sub-clusters and it cannot apply policies that make use of the complete cluster state.

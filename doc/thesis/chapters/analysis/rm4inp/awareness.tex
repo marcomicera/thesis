@@ -1,8 +1,8 @@
-Existing \glspl{rm} have a different awareness level of switch and link resources: based on this, \glspl{rm} can be divided in three groups.
+Existing \glspl{rm} have a different awareness level of switch and link resources: based on this, \glspl{rm} can be divided into three groups.
 
 \paragraph{\glspl{vm} proximity-aware}
 Most of the \glspl{rm} out there can spread \glspl{vm} across different failure domains like machines, racks and power domains.
-This group is not worth discussing since this kind of \glspl{rm} do not consider any kind of resources rather than server ones.
+This group is not worth discussing since these kinds of \glspl{rm} do not consider any kind of resources rather than server ones.
 Some examples of \glspl{vm} proximity-aware \glspl{rm} are Omega \cite{omega}, \glsdesc{yarn} and Mesos \cite{mesos}.
 
 \paragraph{Bandwidth-aware}
@@ -17,12 +17,12 @@ It is also worth to notice that Kraken \cite{kraken} allows tenants to \textit{u
 Still, none of these \glspl{rm} is able to manage any kind of switch resources.
 
 \paragraph{Network resources-aware} \label{network_resources-aware_rms}
-The most interesting group consists in those \glspl{rm} that are actually aware of \glslink{resource:physical:switch}{network resources}.
-At the time of writing, there seems to be only one embedding solution that belongs to this group, namely the one introduced in "On tackling virtual data center embedding problem" \cite{ontackling} by Rabbani, Md Golam, et al. presented in the \textit{IM 2013: IFIP/IEEE International Symposium on Integrated Network Management} conference.
+The most interesting group consists of those \glspl{rm} that are actually aware of \glslink{resource:physical:switch}{network resources}.
+At the time of writing, there seems to be only one embedding solution that belongs to this group, namely, the one introduced in "On tackling virtual data center embedding problem" \cite{ontackling} by Rabbani, Md Golam, et al. presented in the \textit{IM 2013: IFIP/IEEE International Symposium on Integrated Network Management} conference.
 This solution allows tenants to explicitly specify
 \begin{mylist}
     \item \glspl{resource:logical:server},
-    \item \glspl{resource:logical:switch} and
+    \item \glspl{resource:logical:switch}, and
     \item bandwidth demands as \glspl{resource:logical:edge}
 \end{mylist}.
 
@@ -31,15 +31,15 @@ The graph is expressed as a key-value map that includes
 \begin{mylist}
     \item a set of \glslink{resource:logical:server}{\glsentryshort{vm} resources},
     \item a set of \glspl{resource:logical:switch} and
-    \item a set of logical links connecting the above entities (and their minimum required bandwidth)
+    \item a set of \glslink{resource:logical:edge}{logical links} connecting the above entities (and their minimum required bandwidth)
 \end{mylist}.
 
 Its placement algorithm is interesting for the scope of this thesis since it is the only one that takes into account all three types of resources mentioned before.
-The placement phase is divided in three parts:
+The placement phase is divided into three parts:
 \begin{mylist}
     \item the \glspl{vm} placement,
-    \item the logical switches placement and
-    \item the logical links placement
+    \item the \glslink{resource:logical:switch}{logical switches} placement, and
+    \item the \glslink{resource:logical:edge}{logical links} placement
 \end{mylist}.
 The problem of placing \glspl{vm} is reduced to a min-cost flow one like showed in \autoref{ontacklingfirststep}.
 
@@ -50,16 +50,15 @@ The problem of placing \glspl{vm} is reduced to a min-cost flow one like showed 
     \label{ontacklingfirststep}
 \end{figure}
 
-The graph shown in \autoref{ontacklingfirststep} is built in the following way: \glspl{vm} are sorted according to a requested resource capacity in a descending order and placed in the left side of the image.
-Physical servers are instead placed in the right side.
-\glspl{vm} are connected to physical servers only if they can be allocated on them.
+The graph shown in \autoref{ontacklingfirststep} is built in the following way: \glspl{vm} are sorted according to a requested resource capacity in descending order and placed on the left side of the image.
+Physical servers are instead placed on the right side.
+\glspl{vm} are connected to physical servers only if they can be placed on them.
 A dummy source and destination node are then added like shown in \autoref{ontacklingfirststep} so that an instance of a min-cost flow solver can be run on it.
 The outcome of this phase provides the allocation of \glspl{vm} on physical servers.
 
 It is important to notice how \glspl{vm} are sorted based on just one resource dimension.
 Even though the model used in \cite{ontackling} supports an infinite number of resource dimensions, the placement algorithm only supports one dimension and it does not seem to exist an easy way to extend it to support multiple dimensions.
-
-Same thing is done for the placement of logical switches, as shown in \autoref{ontacklingsecondstep}.
+The same thing is done for the placement of logical switches, as shown in \autoref{ontacklingsecondstep}.
 
 \begin{figure}[!htb]
     \centering
@@ -78,6 +77,6 @@ The mapping of logical switches to physical ones is done independently of the ou
     \label{ontacklinginefficientswitchplacement}
 \end{figure}
 
-The third and last step simply consists in mapping logical links between two logical entities (\glspl{vm} or switches) to the shortest physical path connecting the physical devices on which the logical entities have been allocated.
+The third and last step simply consists of mapping logical links between two logical entities (\glspl{vm} or switches) to the shortest physical path connecting the physical devices on which the logical entities have been allocated.
 
-The placement algorithm is not fault tolerant since it tries to map as many \glspl{vm} as possible to the same physical server in order to minimize server resource fragmentation.
+The placement algorithm is not fault-tolerant since it tries to map as many \glspl{vm} as possible to the same physical server to minimize server resource fragmentation.
