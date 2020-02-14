@@ -1,6 +1,20 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatex
+
 % Document class
-\documentclass[a4paper, 11pt]{report}
+\documentclass[%
+    corpo=12pt,
+    twoside,
+    %    stile=classica,
+    oldstyle,
+    %    autoretitolo,
+    tipotesi=magistrale,
+    greek,
+    evenboxes,
+]{toptesi}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % font encoding
+\usepackage{lmodern} % font
 \pdfminorversion=5
 
 % Table of contents
@@ -9,8 +23,17 @@
 \setcounter{secnumdepth}{3} % section numbering depth
 
 % Miscellaneous
-\usepackage{fullpage} % different margins
+% \usepackage{fullpage} % different margins
 \usepackage[hidelinks]{hyperref} % links
+% \hypersetup{
+%     pdfpagemode={UseOutlines},
+%     bookmarksopen,
+%     pdfstartview={FitH},
+%     colorlinks,
+%     linkcolor={blue},
+%     citecolor={blue},
+%     urlcolor={blue}
+% }
 \usepackage[binary-units=true]{siunitx} % MB, GB, etc.
 \usepackage{pdfpages} % import PDFs
 \usepackage{verbatim} % multi-line comments
