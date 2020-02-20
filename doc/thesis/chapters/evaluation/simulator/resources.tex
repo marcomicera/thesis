@@ -1,4 +1,4 @@
-\paragraph{Data center architecture}
+\paragraph{Data center architecture} \label{dc_architecture}
 % Data center fat-tree
     % Also network resources
         % Uniform compute units (CU) and properties
@@ -14,6 +14,7 @@ Specifically, a \textit{fat-tree} has been used for this evaluation, which is a 
 
 This fat-tree has three layers of \glslink{resource:physical:switch}{switches}: \textit{core}, \textit{aggregation} and the last one which is usually called \textit{edge}, \textit{layer}, \textit{access} or just simply \gls{tor} \glslink{resource:physical:switch}{switches}.
 Being $k$ the number of \textit{pods} in the topology, a fat-tree contains $(k/2)^2$ core \glslink{resource:physical:switch}{switches}, $k^2/2$ aggregation \glslink{resource:physical:switch}{switches}, $k^2/2$ \gls{tor} \glslink{resource:physical:switch}{switches}, and supports up to $k^3/4$ \glslink{resource:physical:server}{servers}.
+Being then $5k^2/4$ the total amount of \glslink{resource:physical:switch}{switches} in a fat-tree, \glslink{resource:physical:server}{servers} become more abundant when $k>5$.
 
 \paragraph{\Glspl{resource:physical:switch}} \label{simulator_switch_resources}
 \glsreset{cu}

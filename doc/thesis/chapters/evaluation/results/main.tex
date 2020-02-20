@@ -1,8 +1,10 @@
+% Utilization multi-graph
 \autoref{fig:utilmultigraphfigure} shows moving averages of \gls{resource:physical} utilization across all dimensions of four different simulations, in which the ratio of \gls{inp} requests over classic \glslink{resource:logical:server}{servers}-only requests varies from $0\%$ up to $100\%$.
 \glsreset{cu}
-Predictably, the more \gls{inp} requests tenants ask for, the more \glspl{cu} will be used.
-\glsreset{stc}
-Depending on the \gls{stc} value (\autoref{workload_tweaks}) and on the number of switch tasks required by different \gls{inp} solutions, \glslink{resource:logical:server}{server} and \glslink{resource:logical:switch}{switch} utilization may drop/increase at different rates.
+In general, it is expected that the more \gls{inp} requests tenants issue, the more \glspl{cu} will be utilized.
+As described in \autoref{workload}, job properties (e.g., number of tasks, \gls{resource:logical} demands, etc.) are randomly derived from an exponential distribution:
+for the sake of simplicity, \glslink{resource:logical:server}{server CPU and memory units} per task will be derived from the same distribution, so their utilization curve will follow a fairly similar trend.
+
 \begin{figure}[!htb]
     \centering
     \usebox{\utilmultigraphfigure}
@@ -10,7 +12,40 @@ Depending on the \gls{stc} value (\autoref{workload_tweaks}) and on the number o
     \label{fig:utilmultigraphfigure}
 \end{figure}
 
-\autoref{fig:avgutilfigure} shows this very same behavior in a different way, plotting the average (during the whole simulation) \glslink{resource:physical}{resource} utilization across all dimensions as a function of the amount of \gls{inp} requests.
+% 0% INP
+The upper-left graph depicts a fully-utilized data center in terms of \glspl{resource:physical:server}, with no \glslink{resource:logical:switch}{switch resources} being requested, hence used.
+The overall \glslink{resource:physical:server}{server} utilization does not reach $100\%$ as the greedy scheduler (\autoref{scheduler}) obtains \glslink{resource:physical}{resources} in an \textit{all-or-nothing} fashion (gang scheduling).
+
+% 33% INP
+\glsreset{stc}
+The upper-right graph shows the same data for an experiment in which the workload generator (\autoref{workload}) issues \glslink{resource:logical}{resource} requests containing \glspl{resource:composite:inp} with a probability of $33\%$.
+\glslink{resource:physical:switch}{Switches} are the first type of \gls{resource:physical} to become the bottleneck of the data center due to the scarceness of \glspl{cu} (in this simulation, \glslink{resource:physical:switch}{switches} have a tenth of \glslink{resource:logical}{resource} units compared to \glslink{resource:physical:server}{server} ones).
+Predictably, most of the tasks are offloaded to \glslink{resource:physical:switch}{physical switches} during the first part of simulation: this is due to a particularly high value of the \gls{stc} (\autoref{workload_tweaks}) used in the experiment.
+The higher the \gls{stc} value, the higher the reduction in terms of \glslink{resource:logical:server}{server tasks} due to the introduction of \gls{inp} in a \glslink{resource:logical}{request}.
+As soon as the scheduler does not manage to satisfy other \gls{inp} requests, the overall \glslink{resource:physical:server}{server} utilization inflates as more and more \glslink{resource:logical:server}{servers}-only requests get allocated -- plus, the number of \glslink{resource:logical:server}{server tasks} is no longer reduced by \gls{stc}.
+Besides the termination of previously-running \glspl{resource:composite:inp}, the overall \glslink{resource:physical:switch}{switch} utilization drops to $0\%$ since \glspl{resource:physical:server} now act as a bottleneck.
+In other terms, \gls{inp} requests will not be satisfied because
+\begin{mylist}
+    \item their \glslink{resource:logical:server}{server} counterpart cannot be scheduled as \glslink{resource:physical:server}{physical servers} are highly utilized, and
+    \item the greedy scheduler (\autoref{scheduler}) cannot acquire only \glspl{resource:physical:switch} as it adopts the gang scheduling policy for acquiring \glslink{resource:physical}{resources}
+\end{mylist}.
+
+% 66% INP
+The bottom-left graph shows the same behavior, but with more \gls{inp} requests than \glslink{resource:logical:server}{servers}-only ones:
+the overall \glslink{resource:physical:server}{server} utilization has the chance to increase at a later time because of this their lower arrival frequency.
+
+% 100% INP
+The last part of the graph depicts the extreme-case scenario in which all of the incoming \glslink{resource:logical}{resource requests} contain \glspl{resource:composite:inp}.
+In contrast with the first experiment with no \gls{inp} requests at all, the other kind of \glspl{resource:physical} (\glslink{resource:logical:server}{server CPU and memory units}, in this case) are not completely unutilized, as \gls{inp} requests contain \glspl{resource:logical:server} too.
+The higher the \gls{stc} value, the higher the overall \glslink{resource:physical:server}{server} utilization will be.
+
+% Conclusion on utilization
+With a more proper parameter calibration, this \glslink{resource:physical:server}{server} bottleneck effect can disappear, e.g., by reducing the number of \glslink{resource:logical:switch}{switch tasks} required by single \glspl{resource:composite:inp}.
+Finding the proper number of \glslink{resource:logical:switch}{switch tasks} to introduce whenever an INP solution is requested is out of the scope of this thesis, as it may not only depend on the number of \glslink{resource:logical:server}{server tasks} belonging to the same request but it surely also highly depends on the specific \gls{inp} solution itself.
+
+% Avg. utilization
+\autoref{fig:avgutilfigure} shows the average \gls{resource:physical} utilization across all dimensions as a function of the percentage of \gls{inp} requests.
+
 \begin{figure}[!htb]
     \centering
     \usebox{\avgutilfigure}
@@ -18,7 +53,14 @@ Depending on the \gls{stc} value (\autoref{workload_tweaks}) and on the number o
     \label{fig:avgutilfigure}
 \end{figure}
 
+As expected, the higher the percentage of \gls{inp} requests, the higher the average \glslink{resource:physical:switch}{physical switch} utilization.
+As the latter increases, the average \glslink{resource:physical:server}{physical server} utilization decreases due to the \gls{stc} effect.
+The higher the \gls{stc} value, the more rapidly the average \glslink{resource:physical:server}{physical server} utilization will decrease.
+On the other hand, the higher the number of \glslink{resource:logical:switch}{switch tasks} required by \glspl{resource:composite:inp}, the more rapidly the average \glslink{resource:physical:switch}{physical switch} utilization will increase.
+
+% Min. avg. utilization
 When plotting the less relatively-used \glslink{resource:physical}{resource} dimension as in \autoref{fig:minutilfigure}, a peak around a certain percentage of \gls{inp} requests appears.
+
 \begin{figure}[!htb]
     \centering
     \usebox{\minutilfigure}

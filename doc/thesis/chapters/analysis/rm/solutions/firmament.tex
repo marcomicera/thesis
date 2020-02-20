@@ -1,4 +1,4 @@
-Firmament \cite{firmament} is a centralized cluster scheduler capable of supporting multi-dimensional resource requirements (\autoref{firmament:multi-dimensions}).
+Firmament \cite{firmament} is a centralized cluster scheduler capable of supporting multi\hyp{}dimensional resource requirements (\autoref{firmament:multi-dimensions}).
 The scheduler finds an embedding solution by solving a min-cost max-flow optimization problem over a graph called \textit{flow network} (\autoref{firmament:flow_network}).
 
 \subsubsection{Flow network} \label{firmament:flow_network}
@@ -17,7 +17,7 @@ Arcs' costs are determined by a given scheduling policy (or "cost model"): at th
 Intuitively, arcs connecting tasks to unscheduled aggregates will have a higher cost with respect to the ones ending in a physical entity.
 
 \subsubsection{Multi-dimensional resource fitting} \label{firmament:multi-dimensions}
-Firmament's \cite{firmament} creator Malte Schwarzkopf introduced the coordinated co-location (CoCo) cost model in his Ph.D. dissertation - Schwarzkopf, M. (2018). \textit{Operating system support for warehouse-scale computing} (Doctoral thesis). \href{https://doi.org/10.17863/CAM.26443}{https://doi.org/10.17863/CAM.26443}.\par
+Firmament's \cite{firmament} creator Malte Schwarzkopf introduced the coordinated co-location (CoCo) cost model in his Ph.D. dissertation - Schwarzkopf, M. (2018). \textit{Operating system support for warehouse-scale computing} (Doctoral thesis)\footnote[2]{Available at \href{https://doi.org/10.17863/CAM.26443}{doi.org/10.17863/CAM.26443}}.\par
 This scheduling policy has an interesting feature: \textit{admission control}.
 Basically, a task can be allocated on a physical machine only when it satisfies all task's resource requirements (strict resource fit).
 If a task cannot be allocated on any of the physical machines, it cannot be even connected to the cluster aggregate.

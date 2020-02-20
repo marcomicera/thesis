@@ -1,6 +1,12 @@
 The lack of workloads containing \gls{inp} requests (and furthermore, of \glspl{resource:composite}) represents indeed a big limitation.
-To keep things easy, \gls{inp} requests are randomly generated according to the generic groups described in \autoref{generic_groups}.
-The percentage of \gls{inp} requests injected in the workload is kept as a parameter sweep, so it is possible to observe how simulations differ with different amounts of \gls{inp} requests.
+
+To keep things easy, \gls{resource:logical} requests are randomly generated.
+Every time a job needs to be created, its core characteristics (e.g., number of tasks, duration, arrival time, \gls{resource:logical} demands, etc.) are randomly generated from an exponential distribution.
+Next, the workload generator decides whether the job will consist of an \gls{inp} request (having both \glslink{resource:logical:server}{server} and \glslink{resource:logical:switch}{switch} tasks) or it will contain \glslink{resource:logical:server}{server} tasks only.
+\glsreset{vc}
+\gls{inp} requests are generated according to the generic groups listed in \autoref{generic_groups}, while classic \glslink{resource:logical:server}{servers}-only requests adopt the \gls{vc} model first introduced in \autoref{vc}.
+
+The percentage of \gls{inp} requests injected into the workload is kept as a parameter sweep so that it will then be possible to observe how simulations differ with different amounts of \gls{inp} requests.
 
 \paragraph{Tweaks} \label{workload_tweaks}
 \glsreset{stc}
@@ -18,7 +24,7 @@ Undoubtedly, the \gls{stc} value will heavily affect simulations and its value d
 For simplicity, the \gls{stc} value will be fixed to $5$. % FIXME STC value
 
 In real environments, tenant applications will directly include \gls{inp} solutions in their requests.
-The \gls{stc} might only be useful in case the scheduler is smart enough to propose alternatives to \glslink{resource:logical:server}{servers}-only requests, in which case the scheduler will have to compute the \gls{stc} value of a job based on all the \gls{inp} solutions included in the offer as well as other factors.
+The \gls{stc} might only be useful in case the scheduler is smart enough to propose alternatives to \glslink{resource:logical:server}{servers}-only requests, in which case the scheduler will have to compute the overall \gls{stc} value of a job based on all the \gls{inp} solutions included in the offer as well as other factors.
 
 Another aspect to take into consideration is the number of switch tasks to generate when creating \gls{inp} requests.
 This also depends on the specific \gls{inp} solutions being used, but for simplicity, it is logarithmically proportional to the number of server tasks to which it is directly connected to in the \gls{etag}. % TODO include details?
