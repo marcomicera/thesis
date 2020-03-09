@@ -1,0 +1,9 @@
+One of the two goals of this Master's thesis consists in investigating how to model \gls{inp} resources and how to integrate them into RMs.
+In order to offer \gls{inp} services to a tenant application, the latter should be able to ask for \gls{inp} resources through an \gls{api}.
+To do that, \gls{inp} resources must be modeled not only to support currently existing \gls{inp} solutions such as \cite{daiet} \cite{netchain} \cite{incbricks} \cite{sharp}, but also future ones. 
+It may also be convenient to derive a single model to describe both server and \gls{inp} resources.
+
+Classic tenant application requests can often be modeled as a key-value data structure.
+CloudMirror \cite{cloudmirror} requires a \gls{tag} as an input, which is a directed graph where each vertex represents an application component and links' weights represent the minimum requested bandwidth.
+One possible model could be based on a \gls{tag}, describing network resources and \gls{inp} services as vertexes or links.
+Tenant applications could either use the same model used within the data center or a simplified one, adding another level of abstraction.
