@@ -1,0 +1,22 @@
+% Document class
+\documentclass[a4paper, 11pt]{article}
+
+% Miscellaneous
+\usepackage{comment} % multi-line comments
+\usepackage{fullpage} % different margins
+\usepackage[hidelinks]{hyperref} % links
+
+% Glossaries and acronyms
+\usepackage[acronym,toc]{glossaries} % package
+\input{../thesis/utility/glossary/acronyms.tex} % acronyms
+\input{../thesis/utility/glossary/resources.tex} % resources glossary
+\makenoidxglossaries % computing the glossary and acronyms list
+
+% Footnotes with symbols
+\usepackage[symbol]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% In-line lists
+\usepackage[inline]{enumitem}
+\newlist{mylist}{enumerate*}{1}
+\setlist[mylist]{label=(\roman*)}

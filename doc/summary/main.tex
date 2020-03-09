@@ -1,0 +1,58 @@
+% Commands
+\input{utility/commands.tex}
+
+% Document start
+\begin{document}
+\noindent
+
+% Title
+\input{utility/title.tex}
+
+%
+% Compliant to the summary needed by the ICM/ETF board secretary
+%
+% 1. title, graduand name, supervisors names
+% 2. thesis purpose and brief description of the research area
+% 3. personal contribution and results obtained
+%
+
+% Sections
+\section{Info}
+\textbf{Title}: Data center resource management for in-network processing\\
+\textbf{Graduand}: Marco Micera\\
+\textbf{Supervisors}: Prof. Fulvio Risso  \footnote[2]{\label{polito} Computer Networks Group, Politecnico di Torino, Italy}, Prof. Patrick Eugster \footnote[3]{\label{tuda} Distributed Systems Programming Group, Technische Universit{\"a}t Darmstadt, Germany}, M.Sc. Marcel Bl{\"o}cher \footref{tuda}\\
+\textbf{Research areas}: cloud computing, distributed systems, in-network processing
+
+\section{Thesis purpose}
+\input{../thesis/chapters/introduction/abstract.tex}
+
+\subsection{Modeling \texorpdfstring{\glsentryshort{inp}}{INP} resources}
+\input{../thesis/chapters/introduction/probstat/model.tex}
+
+\subsection{\texorpdfstring{\glsentryshort{inp}}{INP}-aware \texorpdfstring{\glsentrylongpl{rm}}{Resource Managers}} \label{inp_aware_rms}
+\glsreset{rm}
+In order for everything to work, a network-aware placement algorithm in the \glsentrylong{rm} should be able to consider \gls{inp} and \glslink{resource:logical:server}{server} resources conjunctly: this brings new challenges in the field of resource management as there are currently no \glspl{rm} doing this.
+One problem that could arise is due to the fact that \gls{inp} resources are typically very limited in a data center: this thesis argues the importance of an \gls{rm} which is flexible enough to propose alternatives based on the current utilization of \gls{inp} and \glslink{resource:logical:server}{server} resources, since one kind of \glslink{resource:physical}{physical resource} type can become the bottleneck for the other.
+
+\section{Personal contribution and obtained results}
+
+\subsection{System design}
+
+\subsubsection{\texorpdfstring{\Glsentrytext{resource:composite}}{Composite}s translation methods}
+
+\subsection{Resource model}
+
+\subsection{Generic groups}
+
+\subsection{Simulation}
+
+\subsubsection{Results}
+
+\subsection{Conclusions}
+
+% References
+\bibliographystyle{abbrv}
+\bibliography{../thesis/utility/references}
+
+% Document end
+\end{document}
