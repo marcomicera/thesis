@@ -5,54 +5,98 @@
 \begin{document}
 \noindent
 
+% This is the thesis summary document
+\newcommand*\THESISSUMMARY{}
+
 % Title
 \input{utility/title.tex}
 
 %
-% Compliant to the summary needed by the ICM/ETF board secretary
+% Compliant to the thesis summary needed by the ICM/ETF board secretary
 %
 % 1. title, graduand name, supervisors names
 % 2. thesis purpose and brief description of the research area
 % 3. personal contribution and results obtained
 %
+% 3 pages max
+%
 
 % Sections
 \section{Info}
 \textbf{Title}: Data center resource management for in-network processing\\
-\textbf{Graduand}: Marco Micera\\
-\textbf{Supervisors}: Prof. Fulvio Risso  \footnote[2]{\label{polito} Computer Networks Group, Politecnico di Torino, Italy}, Prof. Patrick Eugster \footnote[3]{\label{tuda} Distributed Systems Programming Group, Technische Universit{\"a}t Darmstadt, Germany}, M.Sc. Marcel Bl{\"o}cher \footref{tuda}\\
-\textbf{Research areas}: cloud computing, distributed systems, in-network processing
+\textbf{Graduand name}: Marco Micera\\
+\textbf{Supervisors}: Prof. Fulvio Risso \footnote[2]{\label{polito} Computer Networks Group, Politecnico di Torino, Italy}, Prof. Patrick Eugster \footnote[3]{\label{tuda} Distributed Systems Programming Group, Technische Universit{\"a}t Darmstadt, Germany}, M.Sc. Marcel Bl{\"o}cher \footref{tuda}\\
+\textbf{Research areas}: cloud computing, distributed systems, data centers
 
 \section{Thesis purpose}
 \input{../thesis/chapters/introduction/abstract.tex}
 
-\subsection{Modeling \texorpdfstring{\glsentryshort{inp}}{INP} resources}
-\input{../thesis/chapters/introduction/probstat/model.tex}
+% \subsection{Modeling \texorpdfstring{\glsentryshort{inp}}{INP} resources}
+% \input{../thesis/chapters/introduction/probstat/model.tex}
 
-\subsection{\texorpdfstring{\glsentryshort{inp}}{INP}-aware \texorpdfstring{\glsentrylongpl{rm}}{Resource Managers}} \label{inp_aware_rms}
-\glsreset{rm}
-In order for everything to work, a network-aware placement algorithm in the \glsentrylong{rm} should be able to consider \gls{inp} and \glslink{resource:logical:server}{server} resources conjunctly: this brings new challenges in the field of resource management as there are currently no \glspl{rm} doing this.
-One problem that could arise is due to the fact that \gls{inp} resources are typically very limited in a data center: this thesis argues the importance of an \gls{rm} which is flexible enough to propose alternatives based on the current utilization of \gls{inp} and \glslink{resource:logical:server}{server} resources, since one kind of \glslink{resource:physical}{physical resource} type can become the bottleneck for the other.
+% \subsection{\texorpdfstring{\glsentryshort{inp}}{INP}-aware \texorpdfstring{\glsentrylongpl{rm}}{Resource Managers}} \label{inp_aware_rms}
+% \glsreset{rm}
+% \input{../thesis/chapters/introduction/probstat/inp-rms.tex}
 
-\section{Personal contribution and obtained results}
+\section{Personal contribution}
 
-\subsection{System design}
+\subsection{System design} \label{system_design}
+The thesis introduces an overall system design comprising all steps needed to translate \glslink{resource:logical}{resources} expressed using the \gls{model:tenant} to \glslink{resource:physical}{physical ones} so that they could eventually be placed.
+The whole system design is depicted in \autoref{compositestophysical}.
+The system also introduces the concept of \gls{resource:composite}:
+\say{\glsdesc{resource:composite}}
+\Glspl{resource:composite} can be translated into \glspl{resource:logical} by means of a \textit{template database}.
+
+\newsavebox\compositestophysical \savebox\compositestophysical{
+    % trim = left, bottom, right, top
+    \includegraphics[page=6, clip, trim=0.35cm 2.1cm 0.35cm 5cm, width=0.95\textwidth]{design/model/presentation.pdf}
+}
+\begin{figure}[!htb]
+    \centering
+    \usebox{\compositestophysical}
+    \caption{From the \gls{model:tenant} to \glspl{resource:physical}}
+    \label{compositestophysical}
+\end{figure}
 
 \subsubsection{\texorpdfstring{\Glsentrytext{resource:composite}}{Composite}s translation methods}
+\input{../thesis/chapters/design/system/translation.tex}
 
 \subsection{Resource model}
+Alongside the system previously described (\autoref{system_design}), the design chapter of this thesis introduces a resource model proposal that is capable of describing existing \gls{inp} solutions as well as future ones: the \gls{etag}.
+\newsavebox\tagmodfigure \savebox\tagmodfigure{
+    % trim = left, bottom, right, top
+    \includegraphics[page=3, clip, trim=0.6cm 0.6cm 0.6cm 0.6cm, width=0.95\textwidth]{design/model/variants.pdf}
+}
+\input{../thesis/chapters/design/model/proposal/main.tex}
 
 \subsection{Generic groups}
+\input{../thesis/chapters/design/groups/intro.tex}
+
+\section{Obtained results}
 
 \subsection{Simulation}
+\input{../thesis/chapters/evaluation/simulator/intro.tex}
+\input{../thesis/chapters/evaluation/simulator/scheduler.tex}
+\input{../thesis/chapters/evaluation/testbed.tex}
 
-\subsubsection{Results}
+\subsection{Results}
+Results show how easily one kind of \glslink{resource:physical}{physical resource} can become the bottleneck for the other, and that the ratio of incoming \gls{inp} requests is a key factor for the overall data center utilization.
+Ideally, all types of \glspl{resource:physical} in data center should be fully utilized.
+When plotting the less relatively-used \glslink{resource:physical}{resource} dimension as a function of the percentage on \gls{inp} requests, a peak around a certain percentage of \gls{inp} requests appears.
+This remarks the importance of a scheduler which can reject \gls{inp} requests and propose their server-only equivalent when needed (e.g., high switch utilization).
 
 \subsection{Conclusions}
+\input{../thesis/chapters/conclusions/intro.tex}
+
+\subsubsection{Fully \texorpdfstring{\glsentryshort{inp}}{INP}-aware \texorpdfstring{\glsentryshort{rm}}{RM} features}
+\input{../thesis/chapters/conclusions/fully-inp-aware-rms.tex}
+
+% \subsubsection{Open problems}
+% \input{../thesis/chapters/conclusions/openproblems.tex}
 
 % References
 \bibliographystyle{abbrv}
-\bibliography{../thesis/utility/references}
+{\footnotesize\bibliography{../thesis/utility/references}}
 
 % Document end
 \end{document}

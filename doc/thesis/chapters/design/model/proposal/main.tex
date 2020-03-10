@@ -1,9 +1,29 @@
+\ifdefined\THESISSUMMARY \else
 \glsreset{etag}
-The \textit{\gls{etag}} is based on a \gls{tag} and it allows tenant applications to specify
+\fi
+The
+\ifdefined\THESISSUMMARY 
+\gls{etag}
+\else
+\textit{\gls{etag}} is based on a \gls{tag} and it
+\fi
+allows tenant applications to specify
 \begin{mylist}
-    \item all types of \glspl{resource:composite} (\cmark \ref{requirements:model:tenant:composites}) and \glspl{resource:logical} (\cmark \ref{requirements:model:tenant:logical}),
-    \item different bandwidth demands (\cmark \ref{requirements:model:bandwidth}) for different entities and
-    \item any kind of network topology (\cmark \ref{requirements:model:topology})
+    \item all types of \glspl{resource:composite}
+    \ifdefined\THESISSUMMARY \else
+    (\cmark \ref{requirements:model:tenant:composites})
+    \fi
+    and \glspl{resource:logical}\ifdefined\THESISSUMMARY \else
+    (\cmark \ref{requirements:model:tenant:logical}) \fi,
+    \item different bandwidth demands
+    \ifdefined\THESISSUMMARY \else
+    (\cmark \ref{requirements:model:bandwidth})
+    \fi
+    for different entities and
+    \item any kind of network topology
+    \ifdefined\THESISSUMMARY \else
+    (\cmark \ref{requirements:model:topology})
+    \fi
 \end{mylist}.
 An example of an \gls{etag} is depicted in \autoref{tagmodfigure}.
 
@@ -14,5 +34,19 @@ An example of an \gls{etag} is depicted in \autoref{tagmodfigure}.
     \label{tagmodfigure}
 \end{figure}
 
-The introduction of \glspl{resource:composite} in the model delegates their translation to \glspl{resource:logical} to the \gls{rm} and not by the tenant application (\cmark \ref{requirements:model:translation}).
-The \textit{template database} (\autoref{system_design_overview}) allows tenants to express \gls{resource:composite:inp} requirements in terms of high-level properties (\cmark \ref{requirements:model:tenant:verbosity}).
+The introduction of \glspl{resource:composite} in the model delegates their translation to \glspl{resource:logical} to the \gls{rm} and not by the tenant
+\ifdefined\THESISSUMMARY
+application.
+\else
+application (\cmark \ref{requirements:model:translation}).
+\fi
+The \textit{template database}
+\ifdefined\THESISSUMMARY \else
+(\autoref{system_design_overview})
+\fi
+allows tenants to express \gls{resource:composite:inp} requirements in terms of high-level
+\ifdefined\THESISSUMMARY
+properties.
+\else
+properties (\cmark \ref{requirements:model:tenant:verbosity}).
+\fi

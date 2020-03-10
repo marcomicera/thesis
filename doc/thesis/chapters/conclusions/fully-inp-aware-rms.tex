@@ -1,0 +1,40 @@
+% "On Tackling" has the con of not placing server and switches conjunctly, during the same round
+\paragraph{Conjunct placement}
+\ifdefined\THESISSUMMARY \else
+As mentioned in \autoref{network_resources-aware_rms},
+\fi
+\cite{ontackling} considers both \glslink{resource:logical:switch}{server} and \glspl{resource:logical:switch} during allocation, but it does not place them during the same scheduling round.
+The drawback of not scheduling these two kinds of \glslink{resource:logical}{resources} conjunctly causes the placement algorithm to derive a sub-optimal
+\ifdefined\THESISSUMMARY
+placement.
+\else
+placement, as explained in \autoref{network_resources-aware_rms}.
+
+\fi
+Ideally, an \gls{rm} should allocate a job considering its \glslink{resource:logical:switch}{server} and \glspl{resource:logical:switch} at the same time, i.e., during the same placement round.
+
+% RMs should propose server-only alternatives
+\paragraph{\gls{inp} alternatives}
+\ifdefined\THESISSUMMARY
+Results showed
+\else
+The results reported in \autoref{results} show
+\fi
+an underutilization of \glspl{resource:physical} depending on the number of tenant requests containing \glspl{resource:composite:inp}.
+\ifdefined\THESISSUMMARY \else
+
+\fi
+To maximize the (relative) minimum \gls{resource:physical} utilization, the \gls{rm} would need to adjust the ratio of \gls{inp} requests over \glslink{resource:logical:server}{servers}-only ones.
+With the assumption that \glspl{resource:physical:switch} can become the bottleneck of whole the system more rapidly (e.g., less \glslink{resource:physical:switch}{switches} than \glslink{resource:physical:server}{servers} in a fat-tree with $k>5$ or for the scarceness of
+\ifdefined\THESISSUMMARY
+\glslink{resource:logical:switch}{switch resources}
+\else
+\glspl{cu}
+\fi
+in general),
+\glspl{rm} should be able to propose alternatives to \glspl{resource:composite:inp} made out of \glspl{resource:logical:server} or \glspl{resource:composite:server} only, as soon as \glspl{resource:physical:switch} become heavily utilized.
+Those alternatives could be stored, for instance, in the same \textit{template database}
+\ifdefined\THESISSUMMARY \else
+(\autoref{system_design_overview})
+\fi
+used to translate \glspl{resource:composite:inp} into a set of \glspl{resource:logical:switch}.

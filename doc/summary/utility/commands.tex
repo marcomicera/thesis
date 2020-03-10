@@ -1,9 +1,15 @@
 % Document class
-\documentclass[a4paper, 11pt]{article}
+\documentclass[a4paper, 10pt]{article}
 
 % Miscellaneous
 \usepackage{comment} % multi-line comments
-\usepackage{fullpage} % different margins
+% \usepackage{fullpage} % different margins
+\usepackage[
+  margin=2cm,
+  includefoot,
+  footskip=30pt,
+]{geometry}
+\usepackage{layout}
 \usepackage[hidelinks]{hyperref} % links
 
 % Glossaries and acronyms
@@ -20,3 +26,10 @@
 \usepackage[inline]{enumitem}
 \newlist{mylist}{enumerate*}{1}
 \setlist[mylist]{label=(\roman*)}
+
+% Images
+\usepackage{graphicx}
+\graphicspath{{../thesis/figures/}}
+
+% Quotes
+\usepackage{dirtytalk}

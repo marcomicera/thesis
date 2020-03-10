@@ -1,6 +1,13 @@
 Experiments ran on Dell C6420 servers on CloudLab \cite{cloudlab}, simulating a 3-days long workload. % FIXME sim time
-The simulated data center architecture is a fat-tree with $k=4$ (\autoref{dc_architecture}).
+The simulated data center architecture is a fat-tree with
+\ifdefined\THESISSUMMARY
+4 pods.
+\else
+$k=4$ (\autoref{dc_architecture}).
+\fi
 
+\ifdefined\THESISSUMMARY \else
 \subsection{Metrics}
+\fi
 These simulations focus on the average \glslink{resource:physical}{resource} utilization in the data center for all dimensions.
 Different simulations vary in the ratio between tenant requests including \gls{inp} composites over those requests including \glspl{resource:logical:server} only.

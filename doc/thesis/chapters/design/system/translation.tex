@@ -1,24 +1,45 @@
 \Glspl{resource:composite} can have multiple properties specifying some application's requirements or constrains.
+\ifdefined\THESISSUMMARY \else
 
+\fi
 A first approach called \textit{passive mapping} would require the tenant application to explicitly express internal \glspl{resource:composite}' properties that \textbf{directly} affect its equivalent expressed in terms of just \glspl{resource:logical}.
+\ifdefined\THESISSUMMARY \else
 \autoref{passivemapping} shows an example of a tenant application explicitly specifying the chain length of its IncBricks \cite{incbricks} \gls{resource:composite} and the bandwidth demands $B_1$ and $B_2$ towards and outwards it, respectively.
-This, of course, increases the expressiveness of the tenant application with the cost of making the interface more complex to use \xmark \ref{requirements:model:tenant:verbosity}.
-
+\fi
+This, of course, increases the expressiveness of the tenant application with the cost of making the interface more complex to
+\ifdefined\THESISSUMMARY
+use.
+\else
+use \xmark \ref{requirements:model:tenant:verbosity}.
+\fi
+\ifdefined\THESISSUMMARY \else
 \begin{figure}[!htb]
     \centering
     \usebox{\passivemapping}
     \caption{Passive template mapping}
     \label{passivemapping}
 \end{figure}
+\fi
+\ifdefined\THESISSUMMARY \else
 
+\fi
 With the opposite approach (\textit{active mapping}), tenant applications do not have to specify internal \glspl{resource:composite}' properties, but instead more abstract performance goals.
 These high-level \glspl{resource:composite}' goals will be then translated by the \gls{rm}.
+\ifdefined\THESISSUMMARY \else
 An example of this translation is showed in \autoref{passivemapping}, where the requested tuple rate is transformed accordingly into topology and bandwidth constraints.
-This approach simplifies the interface exposed to tenant applications by not letting them taking care of internal \glspl{resource:composite} properties that might be unknown to developers \cmark \ref{requirements:model:tenant:verbosity}.
+\fi
+This approach simplifies the interface exposed to tenant applications by not letting them taking care of internal \glspl{resource:composite} properties that might be unknown to
+\ifdefined\THESISSUMMARY
+developers.
+\else
+developers \cmark \ref{requirements:model:tenant:verbosity}.
+\fi
 
+\ifdefined\THESISSUMMARY \else
 \begin{figure}[!htb]
     \centering
     \usebox{\activemapping}
     \caption{Active template mapping}
     \label{activemapping}
 \end{figure}
+\fi

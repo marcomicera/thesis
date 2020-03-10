@@ -2,5 +2,10 @@ The scheduler used for this evaluation uses a simple greedy placement algorithm 
 It tries to allocate as many tasks as possible on the same \glslink{resource:physical}{physical machine} simply by
 \begin{mylist}
     \item checking the amount of available numerical resources and
-    \item performing the \textit{properties} check for switch tasks as described in \autoref{simulator_switch_resources}
+    \item performing the \textit{properties} check for switch tasks
+    \ifdefined\THESISSUMMARY
+    (i.e., whether a \gls{resource:physical:switch} supports a specific \gls{resource:composite:inp})
+    \else
+    as described in \autoref{simulator_switch_resources}
+    \fi
 \end{mylist}.

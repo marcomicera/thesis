@@ -1,3 +1,9 @@
 \glsreset{rm}
-In order for everything to work, a network-aware placement algorithm in the \glsentrylong{rm} should be able to consider \gls{inp} and \glslink{resource:logical:server}{server} resources conjunctly: this brings new challenges in the field of resource management as there are currently no \glspl{rm} doing this.
-One problem that could arise is due to the fact that \gls{inp} resources are typically very limited in a data center: \autoref{conclusions} will argue the importance of an \gls{rm} which is flexible enough to propose alternatives based on the current utilization of \gls{inp} and \glslink{resource:logical:server}{server} resources, since one kind of \glslink{resource:physical}{physical resource} type can become the bottleneck for the other.
+In order for everything to work, a network-aware placement algorithm in the \glsentrylong{rm} should be able to consider \gls{inp} and \glslink{resource:logical:server}{server} resources conjunctly: this brings new challenges in the field of resource management as there are currently no \glspl{rm} doing so.
+One problem that could arise is due to the fact that \gls{inp} resources are typically very limited in a data center:
+\ifdefined\THESISSUMMARY
+this thesis argues
+\else
+\autoref{conclusions} will argue
+\fi
+the importance of an \gls{rm} which is flexible enough to propose alternatives based on the current utilization of \gls{inp} and \glslink{resource:logical:server}{server} resources, since one kind of \glslink{resource:physical}{physical resource} can become the bottleneck for the other.
