@@ -1,0 +1,161 @@
+% Commands
+\input{utility/commands.tex}
+
+\title{Data center resource management for in-network processing}
+% \subtitle{A modern beamer theme}
+% \date{March 26th, 2020} % FIXME
+\author{Marco Micera}
+% \institute{Center for modern beamer themes}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Table of contents}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}[fragile]{\glsentryfull{inp}}
+  (2.4)
+\end{frame}
+\begin{frame}[fragile]{Problem statement}
+  ...RMs do not consider server and switch resources \textbf{conjunctly}...
+\end{frame}
+\begin{frame}[fragile]{Goals}
+  (abstract)
+  \begin{enumerate}
+    \item Model and evaluate an API through which applications can ask for INP resources
+    \item Discuss the importance of a scheduler which can reject INP requests and propose their server-only equivalent when needed (e.g., high switch utilization)
+  \end{enumerate}
+\end{frame}
+
+\section{Analysis}
+
+\begin{frame}{Currently existing \gls{inp} solutions}
+	\begin{itemize}
+		\item In-network data aggregation
+    \begin{itemize}
+      \item Properties (5.3.1)…
+      \item Daiet, SHArP
+    \end{itemize}
+		\item In-network storage
+    \begin{itemize}
+      \item Properties (5.3.1)…
+      \item NetChain, IncBricks
+    \end{itemize}
+	\end{itemize}
+\end{frame}
+\begin{frame}{In-network aggregation: Daiet}
+\end{frame}
+\begin{frame}{Aggregation protocol: SHArP}
+\end{frame}
+\begin{frame}{Coordination services: NetChain}
+\end{frame}
+\begin{frame}{In-network caching [fabric]: IncBricks}
+\end{frame}
+\begin{frame}{Resource models (3.4)}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.5\textwidth}
+      % Items
+      \begin{itemize}
+        \item VC
+        \begin{itemize}
+          \item Image
+        \end{itemize}
+        \item VOC
+        \begin{itemize}
+          \item Image
+        \end{itemize}
+        \item TAG
+        \begin{itemize}
+          \item Image
+        \end{itemize}
+      \end{itemize}
+
+    \column{0.5\textwidth}
+      % Enumerations
+      \begin{enumerate}
+        \item Fine-grained resource requests
+        \item High-level goals
+      \end{enumerate}
+  \end{columns}
+\end{frame}
+\begin{frame}{Intregrating INP resources in RMs}
+  (3.3)
+\end{frame}
+\begin{frame}{FIXME: the only “network-aware” RM + its problems}
+  (3.3.2)
+\end{frame}
+
+\section{FIXME Requirements? It is necessary?}
+
+\section{Design}
+\begin{frame}{Composites}
+  (Thesis repository \texttt{dock/thesis/figures/design/model/presentation.pdf})
+\end{frame}
+\begin{frame}{The extended-Tenant Application Graph (eTag)}
+  \begin{itemize}
+    \item (5.2.1 why existing resource models do not satisfy all requirements)
+    \item (5.2.2 eTag)
+  \end{itemize}
+\end{frame}
+\begin{frame}{The template database}
+  \begin{itemize}
+    \item (5.3 generic groups)
+    \item (5.1.2 template database role)(5.1.2 template database role)
+  \end{itemize}
+\end{frame}
+\begin{frame}{FIXME I should introduce composites earlier}
+\end{frame}
+
+\begin{frame}{Bibliography}
+  Some references to showcase [allowframebreaks] \cite{netchain, incbricks, daiet, sharp}
+\end{frame}
+
+\section{Conclusions}
+
+% \begin{frame}{Summary}
+
+%   Get the source of this theme and the demo presentation from
+
+%   \begin{center}\url{github.com/matze/mtheme}\end{center}
+
+%   The theme \emph{itself} is licensed under a
+%   \href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons
+%   Attribution-ShareAlike 4.0 International License}.
+
+%   \begin{center}\ccbysa\end{center}
+
+% \end{frame}
+
+\begin{frame}[standout]
+  Questions?
+\end{frame}
+
+\begin{frame}[standout]
+  Thank you
+\end{frame}
+
+\appendix
+
+% \begin{frame}[fragile]{Backup slides}
+%   Sometimes, it is useful to add slides at the end of your presentation to
+%   refer to during audience questions.
+
+%   The best way to do this is to include the \verb|appendixnumberbeamer|
+%   package in your preamble and call \verb|\appendix| before your backup slides.
+
+%   \themename will automatically turn off slide numbering and progress bars for
+%   slides in the appendix.
+% \end{frame}
+
+\begin{frame}[allowframebreaks]{Bibliography}
+  \bibliographystyle{abbrv}
+  \bibliography{../thesis/utility/references}
+\end{frame}
+
+\end{document}
