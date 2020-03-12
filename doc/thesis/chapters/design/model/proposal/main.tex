@@ -13,8 +13,11 @@ allows tenant applications to specify
     \ifdefined\THESISSUMMARY \else
     (\cmark \ref{requirements:model:tenant:composites})
     \fi
-    and \glspl{resource:logical}\ifdefined\THESISSUMMARY \else
-    (\cmark \ref{requirements:model:tenant:logical}) \fi,
+    and
+    \ifdefined\THESISSUMMARY
+    \glspl{resource:logical},
+    \else
+    \glspl{resource:logical} (\cmark \ref{requirements:model:tenant:logical}),\fi
     \item different bandwidth demands
     \ifdefined\THESISSUMMARY \else
     (\cmark \ref{requirements:model:bandwidth})
@@ -34,11 +37,11 @@ An example of an \gls{etag} is depicted in \autoref{tagmodfigure}.
     \label{tagmodfigure}
 \end{figure}
 
-The introduction of \glspl{resource:composite} in the model delegates their translation to \glspl{resource:logical} to the \gls{rm} and not by the tenant
+The introduction of \glspl{resource:composite} in the model delegates their translation into \glspl{resource:logical} to the
 \ifdefined\THESISSUMMARY
-application.
+\gls{rm}.
 \else
-application (\cmark \ref{requirements:model:translation}).
+\gls{rm} (\cmark \ref{requirements:model:translation}).
 \fi
 The \textit{template database}
 \ifdefined\THESISSUMMARY \else
