@@ -29,7 +29,6 @@
 \end{frame}
 \begin{frame}[fragile]{In-Network Processing (INP)}
   \begin{itemize}
-    
     \item Offloading computation to network devices (e.g., programmable switches, network accelerators, middleboxes, etc.), hence reducing load on servers
     \item (Daiet introduction: "The functionality of networks can now be enriched without hardware changes while retaining the capability of processing packets at very high rates, even above Terabits per second") \cite{daiet}
     \item Few solutions out there already: Daiet \cite{daiet}, SHArP \cite{sharp}, NetChain \cite{netchain}, IncBricks \cite{incbricks}
@@ -109,28 +108,36 @@
 \end{frame}
 \begin{frame}{Resource models (3.4)}
   \begin{columns}[T,onlytextwidth]
-    \column{0.5\textwidth}
-      % Items
-      \begin{itemize}
+    \column{0.4\textwidth}
+      \begin{enumerate}
         \item \glsentryfull{vc}\\
         \begin{center}
-          \includegraphics[page=1, clip, trim=0.5cm 0.6cm 0.5cm 1cm, width=0.7\textwidth]{analysis/models/solutions.pdf}
+          \includegraphics[page=1, clip, trim=0.5cm 0.6cm 3.85cm 1cm, width=0.7\textwidth]{analysis/models/solutions.pdf}
         \end{center}
-        \item \glsentryfull{voc}\\
-        \begin{center}
-          \includegraphics[page=2, clip, trim=0.5cm 0.6cm 0.5cm 0.7cm, width=\textwidth]{analysis/models/solutions.pdf}
-        \end{center}
-      \end{itemize}
-
-    \column{0.5\textwidth}
-      \begin{itemize}
+        \item \glsentryfull{voc}
+        \begin{itemize}
+          \item $N$ \glsentryshortpl{vc} connected to a single root virtual switch
+        \end{itemize}
+        % \begin{center}
+        %   \includegraphics[page=2, clip, trim=0.5cm 0.6cm 0.5cm 0.7cm, width=\textwidth]{analysis/models/solutions.pdf}
+        % \end{center}
+      \end{enumerate}
+    \column{0.6\textwidth}
+      \begin{enumerate}
+        \setcounter{enumi}{2}
         \item \glsentryfull{tag}\\
         \begin{center}
-          \includegraphics[page=3, clip, trim=0.5cm 0.5cm 0.5cm 0.5cm, width=0.7\textwidth]{analysis/models/solutions.pdf}
+          \includegraphics[page=3, clip, trim=0.5cm 0.5cm 0.5cm 0.5cm, width=0.95\textwidth]{analysis/models/solutions.pdf}
         \end{center}
         \item Fine-grained resource requests
+        \begin{itemize}
+          \item List of server-only resource demands
+        \end{itemize}
         \item High-level goals
-      \end{itemize}
+        \begin{itemize}
+          \item E.g., job completion time (Bazaar \cite{bazaar})
+        \end{itemize}
+      \end{enumerate}
   \end{columns}
 \end{frame}
 \begin{frame}{Intregrating INP resources in RMs}
@@ -160,10 +167,6 @@
 \end{frame}
 \begin{frame}{FIXME I should introduce composites earlier}
   % TODO I should mention generic groups
-\end{frame}
-
-\begin{frame}{Bibliography}
-  Some references to showcase [allowframebreaks] \cite{netchain, incbricks, daiet, sharp}
 \end{frame}
 
 \section{Conclusions}
