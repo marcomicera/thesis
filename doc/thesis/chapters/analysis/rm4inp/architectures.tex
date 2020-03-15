@@ -9,8 +9,7 @@ Such a scheduling architecture will be used later on to build a greedy \gls{inp}
 
 \paragraph{Two-level}
 In the two-level architecture, a centralized node master (or \textit{allocator}) proposes resources to the schedulers.
-Let us suppose that the allocator not only proposes \glslink{resource:physical:server}{server resources} but also \gls{inp} ones: all resources must be locked from the instant in which resources are
-26offered until the scheduler accepts or denies the offer.
+Let us suppose that the allocator not only proposes \glslink{resource:physical:server}{server resources} but also \gls{inp} ones: all resources must be locked from the instant in which resources are offered until the scheduler accepts or denies the offer.
 Locking \gls{inp} resources though means locking either \glslink{resource:physical:switch}{network devices' resources} (to perform computation) or links' bandwidth (for guarantees), which can heavily affect the performance of all nodes using these shared network resources.\par
 One could think of not locking \gls{inp} resources during the delay introduced by the scheduler when accepting or denying the request, but the allocator would then need to repeat the whole offering process in case another scheduler accepts some \gls{inp} resources that have been acquired by some other scheduler in the meantime.
 
