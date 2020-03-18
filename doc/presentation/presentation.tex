@@ -36,8 +36,8 @@
 \end{frame}
 \begin{frame}[fragile]{Problem statement}
   \begin{itemize}
+    \item TODO mention network-aware RMs % TODO
     \item there is no \gls{rm} that considering server and switch resources \textbf{conjunctly}...
-    % TODO mention network-aware RMs (verbally?)
   \end{itemize}
 \end{frame}
 \begin{frame}[fragile]{Goals}
@@ -143,11 +143,34 @@
 \begin{frame}{Intregrating INP resources in RMs}
   (3.3)
 \end{frame}
-\begin{frame}{FIXME: the only “network-aware” RM + its problems}
-  (3.3.2)
+\begin{frame}{Level of network awareness in RMs}
+  % 3.3.2
+  \vspace{2mm}
+  \begin{itemize}
+    \item \glsentryshortpl{vm} proximity-aware
+    \begin{itemize}
+      \item Spreading \glsentryshortpl{vm} across different failure domains (e.g., racks, power domains, etc.)
+      \item Omega \cite{omega}, \glsdesc{yarn}, Mesos \cite{mesos}, etc.
+    \end{itemize}
+    \item Bandwidth-aware
+    \begin{itemize}
+      \item Allowing tenants to specify bandwidth demands
+      \item "Virtual network" models (i.e., \glsentryshortpl{vc}, \glsentryshortpl{voc} and \glsentryshortpl{tag})
+      \item CloudMirror \cite{cloudmirror}, Oktopus \cite{oktopus}, Kraken \cite{kraken}, Proteus \cite{proteus}, etc.
+    \end{itemize}
+    \item Network resources-aware
+    \begin{itemize}
+      \item At the time of writing, there seemed to be only one embedding solution\footnote{\tiny{Rabbani, Md Golam, et al. "On tackling virtual data center embedding problem." \textit{2013 IFIP/IEEE International Symposium on Integrated Network Management (IM 2013)}. IEEE, 2013. \cite{ontackling}}} considering switch resources
+      \item The scheduler places server and switch resources in separate rounds
+    \end{itemize}
+  \end{itemize}
+  \vspace{5mm}
 \end{frame}
+% \begin{frame}{FIXME: the only “network-aware” RM + its problems}
+%   (3.3.2)
+% \end{frame}
 
-\section{FIXME Requirements? It is necessary?}
+% \section{Requirements} % FIXME Is this necessary?
 
 \section{Design}
 \begin{frame}{Composites}
