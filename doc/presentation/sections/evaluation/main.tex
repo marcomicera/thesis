@@ -1,0 +1,18 @@
+\begin{frame}{Simulation}
+    \begin{itemize}
+        \item Simulator built from the ground up % in Scala
+        \begin{itemize}
+            \item Inspired by Omega's \cite{omega} \textit{lightweight simulator}\footnote[2]{\scriptsize{Available at \href{https://github.com/google/cluster-scheduler-simulator}{github.com/google/cluster-scheduler-simulator}}}
+            \item Supports multiple resource dimensions, \glslink{resource:physical:switch}{switch resources}, and \glspl{resource:composite}
+            \item \glslink{resource:physical:switch}{Switches} have \textit{properties} (e.g., supported \gls{inp} solutions)
+        \end{itemize}
+        \item Simulated data center physical architecture: fat-tree with 4 pods
+        \item 3 days-long randomly-generated workload
+        % TODO Scheduler: greedy (mention others I cannot include?)
+    \end{itemize}
+\end{frame}
+
+% TODO Entries in the template database: following the two generic groups
+% TODO STC?
+% TODO Evaluation metrics (% INP requests, avg. utilization across all dimensions, etc.)
+% TODO Results

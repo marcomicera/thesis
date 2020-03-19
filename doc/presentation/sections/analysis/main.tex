@@ -1,26 +1,20 @@
 \begin{frame}{Currently existing \gls{inp} solutions}
-    \begin{itemize}
-        \item In-network \textbf{storage}
-        \begin{itemize}
-        \item Switches must
-        \begin{itemize}
-            \item dedicate part of their local memory to store a distributed map
-            \item form a chain
-        \end{itemize}
-        \item IncBricks \cite{incbricks}, NetChain \cite{netchain}
-        \end{itemize}
-            \item In-network \textbf{data aggregation}
-        \begin{itemize}
-        \item Switches must
-        \begin{itemize}
-            \item form a tree whose root is connected to data consumers and whose leaves are connected to data producers
-            \item dedicate part of their local memory to store a key-value map
-            \item be able to perform basic operations on data, such as writing and hashing
-            \item wait for all its children to send aggregated data
-        \end{itemize}
-        \item Daiet \cite{daiet}, SHArP \cite{sharp}
-        \end{itemize}
-    \end{itemize}
+    % \begin{table}[]
+    %     \begin{tabular}{|r|l|}
+    %     \hline
+    %     Name      & Type                      \\ \hline
+    %     IncBricks & In-network caching system \\ \hline
+    %     NetChain  & Coordination services     \\ \hline
+    %     Daiet     & In-network aggregation    \\ \hline
+    %     SHArP     & Aggregation protocol      \\ \hline
+    %     \end{tabular}
+    % \end{table}
+    \begin{enumerate}
+        \item IncBricks (In-network caching system) % \cite{incbricks}
+        \item NetChain (Coordination services) % \cite{netchain}
+        \item Daiet (In-network aggregation) % \cite{daiet}
+        \item SHArP (Aggregation protocol) % \cite{sharp}
+    \end{enumerate}
 \end{frame}
 
 \begin{frame}{In-network caching system: IncBricks}
@@ -67,6 +61,7 @@
         \column{0.4\textwidth}
         \begin{enumerate}
             \item \glsentryfull{vc}\\
+            \vspace{1mm}
             \begin{center}
                 \includegraphics[page=1, clip, trim=0.5cm 0.6cm 3.85cm 1cm, width=0.7\textwidth]{analysis/models/solutions.pdf}
             \end{center}
@@ -125,6 +120,6 @@
     \vspace{5mm}
 \end{frame}
 
-% \begin{frame}{FIXME: the only “network-aware” RM + its problems}
+% \begin{frame}{the only “network-aware” RM + its problems}
 %   (3.3.2)
 % \end{frame}
