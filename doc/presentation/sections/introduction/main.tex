@@ -1,30 +1,45 @@
 \begin{frame}[fragile]{Introduction}
-    \begin{itemize}
-        \item (NetCache introduction: "modern Internet services, such as search, social networking and e-commerce, critically depend on high-performance key-value stores. Rendering even a single web page often requires hundreds or even thousands of storage accesses." \cite{netchain}
-        \item need to scale up (SHArP introduction, \textit{justifying INP}: "As the number of compute elements grows, and the need to expose and utilize higher levels of parallelism grows, it is essential to reconsider system architectures, and focus on developing architectures that lend themselves better to providing extreme-scale simulation capabilities.") \cite{sharp}
-        \item However, modern-day data centers only exploit servers to perform computation % FIXME
-    \end{itemize}
+
+    \vspace{5mm}
+
+    % HPC, thousands of requests
+    \begin{aquote}{NetChain \cite{netchain} authors}
+        \textbf{Modern Internet services}, such as search, social networking and e-commerce, \textbf{critically depend on high-performance key-value stores}. Rendering even a single web page often requires hundreds or even thousands of storage accesses.
+    \end{aquote}
+
+    \vspace{7mm}
+
+    % Need to scale up
+    \begin{aquote}{SHArP \cite{sharp} authors}
+        As the number of compute elements grows, and the need to expose and utilize higher levels of parallelism grows, \textbf{it is essential to [...] focus on developing architectures that lend themselves better to providing extreme-scale simulation capabilities}.
+    \end{aquote}
 \end{frame}
 
 \begin{frame}[fragile]{In-Network Processing (INP)}
     \begin{itemize}
-        \item Offloading computation to network devices (e.g., programmable switches, network accelerators, middleboxes, etc.), hence reducing load on servers
-        \item (Daiet introduction: "The functionality of networks can now be enriched without hardware changes while retaining the capability of processing packets at very high rates, even above Terabits per second") \cite{daiet}
+        \item INP refers to the technique of \textbf{offloading some parts of the computation to network devices} (e.g., programmable switches, network accelerators, middleboxes, etc.), hence reducing the load on servers
+        \item Advantages:
+        \begin{enumerate} % From IncBricks
+            \item Serve network requests on the fly with low latency
+            \item Reduce data center traffic and mitigate network congestion
+            \item Save energy by running servers in a low-power mode
+        \end{enumerate}
+        % \item (Daiet introduction: "The functionality of networks can now be enriched without hardware changes while retaining the capability of processing packets at very high rates, even above Terabits per second") \cite{daiet}
         \item Few solutions out there already: Daiet \cite{daiet}, SHArP \cite{sharp}, NetChain \cite{netchain}, IncBricks \cite{incbricks}
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Problem statement}
-    \begin{itemize}
-        \item TODO mention network-aware RMs % TODO
-        \item there is no \gls{rm} that considering server and switch resources \textbf{conjunctly}...
-    \end{itemize}
-\end{frame}
+\begin{frame}[fragile]{Thesis goals}
+    
+    \textbf{Problem statement}\\
+    For the time being, it seems that there is still no \gls{rm} that takes into account the presence of a network having a data plane that supports (partially or completely) INP
 
-\begin{frame}[fragile]{Goals}
-(abstract)
+    \vspace{5mm}
+
+    \textbf{Goals}\\
     \begin{enumerate}
         \item Model and evaluate an API through which applications can ask for INP resources
         \item Discuss the importance of a scheduler which can reject INP requests and propose their server-only equivalent when needed (e.g., high switch utilization)
     \end{enumerate}
+
 \end{frame}
