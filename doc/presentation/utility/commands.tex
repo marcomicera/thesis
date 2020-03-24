@@ -1,5 +1,11 @@
 \documentclass[11pt, aspectratio=169]{beamer}
 
+% Notes
+\IfFileExists{notes_on}{\setbeameroption{show notes}}{}
+
+% "Import file if it exists" macro
+\newcommand{\inputifexists}[1]{\IfFileExists{#1}{\input{#1}}{}}
+
 \usetheme{metropolis}
 \setbeamercolor{background canvas}{bg=white}
 \usepackage{appendixnumberbeamer}

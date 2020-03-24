@@ -1,4 +1,5 @@
 \begin{frame}[fragile]{Introduction}
+    \inputifexists{sections/introduction/beamernotes/introduction.tex}
 
     \vspace{5mm}
 
@@ -17,6 +18,7 @@
 
 \glsreset{inp}
 \begin{frame}[fragile]{\gls*{inp}}
+    \inputifexists{sections/introduction/beamernotes/inp.tex}
     \begin{itemize}
         \item INP refers to the technique of \textbf{offloading parts of the computation to network devices} (e.g., programmable switches, network accelerators, middleboxes, etc.), hence reducing the load on servers
         \item Advantages:
@@ -31,6 +33,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{Thesis goals}
+    \inputifexists{sections/introduction/beamernotes/goals.tex}
     
     \textbf{Problem statement}\\
     For the time being, it seems that there is still no \gls*{rm} that takes into account the presence of a network having a data plane that supports (partially or completely) INP
