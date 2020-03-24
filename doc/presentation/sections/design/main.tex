@@ -1,34 +1,36 @@
-\begin{frame}{Composites}
-    \inputifexists{sections/design/beamernotes/compositex.tex}
-    % Thesis repository \texttt{dock/thesis/figures/design/model/presentation.pdf}
+\glsreset{etag}
+\begin{frame}{The \Gls*{etag}}
+    \inputifexists{sections/design/beamernotes/model.tex}
+
+    \vspace{2mm}
+
+    % eTag picture
+    \centering
+    \includegraphics[page=3, clip, trim=0.6cm 0.6cm 0.6cm 0.6cm, width=\textwidth]{design/model/variants.pdf}
+
+    \vspace{2mm}
+
+    % Composites
     \begin{itemize}
         \item A composite is a template that describes high-level logical components
         \begin{itemize}
             \item It can be of two types:
             \begin{itemize}
                 \item Server (e.g., “web server”, “database”, ...)
-                \item INP (e.g., “IncBricks caching system”, “NetChain locking system”, ...)
+                \item \gls*{inp} (e.g., “IncBricks caching system”, “NetChain locking system”, ...)
             \end{itemize}
             \item It can be made out of
             \begin{itemize}
                 \item Other Composites
-                \begin{description}[abc] % for indentation of length of abc
-                    \item[$\bullet$] A composite loop must not be allowed since it would be impossible to place % FIXME
-                \end{description}
+                % \begin{description}[abc] % for indentation of length of abc
+                %     \item[$\bullet$] A composite loop must not be allowed since it would be impossible to place % FIXME
+                % \end{description}
                 \item Logical resources
             \end{itemize}
         \end{itemize}
     \end{itemize}
-\end{frame}
 
-\begin{frame}{The extended-Tenant Application Graph (eTag)}
-    \inputifexists{sections/design/beamernotes/etag.tex}
-    % \begin{itemize}
-    %     \item (5.2.1 why existing resource models do not satisfy all requirements)
-    %     \item (5.2.2 eTag)
-    % \end{itemize}
-    \centering
-    \includegraphics[page=3, clip, trim=0.6cm 0.6cm 0.6cm 0.6cm, width=\textwidth]{design/model/variants.pdf}
+    
 \end{frame}
 
 \begin{frame}{Generic groups}
