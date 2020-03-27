@@ -1,9 +1,12 @@
 \begin{frame}{Simulation 1/2}
     \inputifexists{sections/evaluation/beamernotes/sim1.tex}
+
+    \setcounter{footnote}{0}
+
     \begin{itemize}
         \item Simulator built from the ground up % in Scala
         \begin{itemize}
-            \item Inspired by Omega's \cite{omega} \textit{lightweight simulator}\footnote[2]{\scriptsize{Available at \href{https://github.com/google/cluster-scheduler-simulator}{github.com/google/cluster-scheduler-simulator}}}
+            \item Inspired by Omega's\footnotemark{} \textit{lightweight simulator}\footnotemark{}
             \item Supports multiple resource dimensions, \glslink{resource:physical:switch}{switch resources}, and \glspl{resource:composite}
         \end{itemize}
         \item Simulated data center physical architecture: fat-tree with 4 pods
@@ -20,6 +23,9 @@
         \end{itemize}
         \item Simple greedy scheduler
     \end{itemize}
+
+    \setcounter{footnote}{1}
+    \footnotetext{\cite{omega}, \textsuperscript{2}available at \href{https://github.com/google/cluster-scheduler-simulator}{github.com/google/cluster-scheduler-simulator}}
 \end{frame}
 
 \begin{frame}{Simulation 2/2}

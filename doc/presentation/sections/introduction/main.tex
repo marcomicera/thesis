@@ -1,24 +1,30 @@
 \begin{frame}[fragile]{Introduction}
     \inputifexists{sections/introduction/beamernotes/introduction.tex}
 
-    \vspace{5mm}
+    % \vspace{3mm}
 
     % HPC, thousands of requests
-    \begin{aquote}{NetChain \cite{netchain} authors}
+    \begin{aquote}{NetChain\footnotemark{} authors}
         \textbf{Modern Internet services}, such as search, social networking, and e-commerce, \textbf{critically depend on high-performance key-value stores}. Rendering even a single web page often requires hundreds or even thousands of storage accesses.
     \end{aquote}
 
     \vspace{7mm}
 
     % Need to scale up
-    \begin{aquote}{SHArP \cite{sharp} authors}
+    \begin{aquote}{SHArP\footnotemark{} authors}
         As the number of compute elements grows, and the need to expose and utilize higher levels of parallelism grows, \textbf{it is essential to [...] focus on developing architectures that lend themselves better to providing extreme-scale simulation capabilities}.
     \end{aquote}
+
+    \setcounter{footnote}{1}
+    \footnotetext{\cite{netchain}, \textsuperscript{2}\cite{sharp}}
 \end{frame}
 
 \glsreset{inp}
 \begin{frame}[fragile]{\gls*{inp}}
     \inputifexists{sections/introduction/beamernotes/inp.tex}
+
+    \setcounter{footnote}{0}
+
     \begin{itemize}
         \item INP refers to the technique of \textbf{offloading parts of the computation to network devices} (e.g., programmable switches, network accelerators, middleboxes, etc.), hence reducing the load on servers
         \item Advantages:
@@ -28,8 +34,11 @@
             \item Save energy by running servers in a low-power mode
         \end{enumerate}
         % \item (Daiet introduction: "The functionality of networks can now be enriched without hardware changes while retaining the capability of processing packets at very high rates, even above Terabits per second") \cite{daiet}
-        \item Few solutions out there already: Daiet \cite{daiet}, SHArP \cite{sharp}, NetChain \cite{netchain}, IncBricks \cite{incbricks}
+        \item Few solutions out there already: Daiet\footnotemark{}, SHArP\footnotemark{}, NetChain\footnotemark{}, IncBricks\footnotemark{}
     \end{itemize}
+
+    \setcounter{footnote}{1}
+    \footnotetext{\cite{daiet}, \textsuperscript{2}\cite{sharp}, \textsuperscript{3}\cite{netchain}, \textsuperscript{4}\cite{incbricks}}
 \end{frame}
 
 \begin{frame}[fragile]{Thesis goals}

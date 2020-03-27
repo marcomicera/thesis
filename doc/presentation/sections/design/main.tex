@@ -35,6 +35,9 @@
 
 \begin{frame}{Generic groups}
     \inputifexists{sections/design/beamernotes/groups.tex}
+    
+    \setcounter{footnote}{0}
+
     \begin{itemize}
         \item In-network \textbf{storage}
         \begin{itemize}
@@ -43,7 +46,7 @@
             \item dedicate part of their local memory to store a distributed map
             \item form a chain
         \end{itemize}
-        \item IncBricks \cite{incbricks}, NetChain \cite{netchain}
+        \item IncBricks\footnotemark{}, NetChain\footnotemark{}
         \end{itemize}
             \item In-network \textbf{data aggregation}
         \begin{itemize}
@@ -54,9 +57,14 @@
             \item be able to perform basic operations on data, such as writing and hashing
             \item wait for all its children to send aggregated data
         \end{itemize}
-        \item Daiet \cite{daiet}, SHArP \cite{sharp}
+        \item Daiet\footnotemark{}, SHArP\footnotemark{}
         \end{itemize}
     \end{itemize}
+
+    \vspace{5mm}
+
+    \setcounter{footnote}{1}
+    \footnotetext{\cite{incbricks}, \textsuperscript{2}\cite{netchain}, \textsuperscript{3}\cite{daiet}, \textsuperscript{4}\cite{sharp}}
 \end{frame}
 
 % \begin{frame}{The template database}
